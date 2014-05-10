@@ -1,0 +1,4 @@
+<div class="form-group">
+  <%= link_to 'Create new protocol', new_protocol_path, class: 'btn btn-success' %>
+</div>
+<%= render partial: 'shared/protocols', locals: {protocols: @protocols} %>
