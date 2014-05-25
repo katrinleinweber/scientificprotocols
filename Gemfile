@@ -45,6 +45,8 @@ gem 'octokit'
 
 gem 'friendly_id'
 
+gem 'activeresource'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', '~> 0.4.0'
