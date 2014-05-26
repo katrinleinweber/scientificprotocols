@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140521050644) do
+ActiveRecord::Schema.define(version: 20140526020421) do
 
   create_table "friendly_id_slugs", force: true do |t|
     t.string   "slug",                      null: false
@@ -29,11 +29,13 @@ ActiveRecord::Schema.define(version: 20140521050644) do
   create_table "protocols", force: true do |t|
     t.string   "title"
     t.text     "description"
+    t.string   "gist_id",     null: false
     t.string   "slug",        null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "protocols", ["gist_id"], name: "index_protocols_on_gist_id", unique: true, using: :btree
   add_index "protocols", ["slug"], name: "index_protocols_on_slug", unique: true, using: :btree
 
   create_table "users", force: true do |t|
