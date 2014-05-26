@@ -21,7 +21,7 @@ class Protocol < ActiveRecord::Base
       description: self.title,
       public: true,
       files: {
-        'protocol.txt' => {
+        PROTOCOL_FILE_NAME => {
           content: self.description
         }
       }
@@ -32,7 +32,7 @@ class Protocol < ActiveRecord::Base
   def update_gist
     gist = OCTOKIT_CLIENT.gist(self.gist_id)
     gist.description = self.title
-    gist.files['protocol.txt'].content = self.description
+    gist.files[PROTOCOL_FILE_NAME].content = self.description
     OCTOKIT_CLIENT.edit_gist(self.gist_id, gist)
   end
   def destroy_gist
