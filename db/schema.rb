@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20140526020421) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "friendly_id_slugs", force: true do |t|
     t.string   "slug",                      null: false
     t.integer  "sluggable_id",              null: false
@@ -29,17 +32,16 @@ ActiveRecord::Schema.define(version: 20140526020421) do
   create_table "protocols", force: true do |t|
     t.string   "title"
     t.text     "description"
-    t.string   "gist_id",     null: false
-    t.string   "slug",        null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "slug",        null: false
+    t.string   "gist_id",     null: false
   end
 
   add_index "protocols", ["gist_id"], name: "index_protocols_on_gist_id", unique: true, using: :btree
   add_index "protocols", ["slug"], name: "index_protocols_on_slug", unique: true, using: :btree
 
   create_table "users", force: true do |t|
-    t.string   "username",               default: "", null: false
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -50,9 +52,10 @@ ActiveRecord::Schema.define(version: 20140526020421) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.string   "slug",                                null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "username",               default: "", null: false
+    t.string   "slug",                                null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
