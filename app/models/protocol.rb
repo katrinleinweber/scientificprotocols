@@ -17,7 +17,6 @@ class Protocol < ActiveRecord::Base
   self.per_page = 10
   private
   def create_gist
-    octokit_client = Octokit::Client.new
     gist = {
       description: self.title,
       public: true,
@@ -27,18 +26,16 @@ class Protocol < ActiveRecord::Base
         }
       }
     }
-    gist = octokit_client.create_gist(gist)
+    gist = OCTOKIT_CLIENT.create_gist(gist)
     self.gist_id = gist.id
   end
   def update_gist
-    octokit_client = Octokit::Client.new
-    gist = octokit_client.gist(self.gist_id)
+    gist = OCTOKIT_CLIENT.gist(self.gist_id)
     gist.description = self.title
     gist.files['protocol.txt'].content = self.description
-    octokit_client.edit_gist(self.gist_id, gist)
+    OCTOKIT_CLIENT.edit_gist(self.gist_id, gist)
   end
   def destroy_gist
-    octokit_client = Octokit::Client.new
-    octokit_client.delete_gist(self.gist_id)
+    OCTOKIT_CLIENT.delete_gist(self.gist_id)
   end
 end
