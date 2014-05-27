@@ -1,8 +1,8 @@
 # config/unicorn.rb
 # https://devcenter.heroku.com/articles/rails-unicorn
 # to run this in development use$ bundle exec unicorn -p 3000 -c ./config/unicorn.rb
-worker_processes Integer(ENV["WEB_CONCURRENCY"] || 2)
-timeout 20 # seconds
+worker_processes Integer(ENV['WEB_CONCURRENCY'] || 3)
+timeout Integer(ENV['WEB_TIMEOUT'] || 15)
 preload_app true
 
 before_fork do |server, worker|
