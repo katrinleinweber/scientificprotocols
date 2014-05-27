@@ -62,7 +62,9 @@ group :test, :development do
   gem 'thin'
 end
 
-group :production do
+group :production, :staging do
   # Use unicorn as the app server
   gem 'unicorn-rails'
+  # Enable static asset serving and logging on Heroku
+  gem 'rails_12factor'
 end
