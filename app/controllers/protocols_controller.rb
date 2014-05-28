@@ -15,6 +15,7 @@ class ProtocolsController < ApplicationController
   # GET /protocols/1
   # GET /protocols/1.json
   def show
+    @protocol_manager = ProtocolManager.where(protocol: @protocol, user: current_user).first if current_user.present?
   end
 
   # GET /protocols/new
@@ -24,6 +25,7 @@ class ProtocolsController < ApplicationController
 
   # GET /protocols/1/edit
   def edit
+
   end
 
   # POST /protocols

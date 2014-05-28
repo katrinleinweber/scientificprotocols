@@ -1,4 +1,15 @@
 <%= render partial: 'shared/page_title', locals: { page_title: @protocol.title } %>
 <%= MARKDOWN.render(@protocol.description).html_safe %>
-<%= link_to 'Edit', edit_protocol_path(@protocol) %> |
-<%= link_to 'Back', protocols_path %>
+<div class="btn-group">
+  <%= link_to protocols_path, class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-arrow-left"></span> Back
+  <% end %>
+  <% if @protocol_manager.present? %>
+    <%= link_to edit_protocol_path(@protocol), class: 'btn btn-primary' do %>
+      <span class="glyphicon glyphicon-pencil"></span> Edit
+    <% end %>
+    <%= link_to protocol_path(@protocol), data: { confirm: 'Are you sure?'}, method: :delete, class: 'btn btn-danger' do %>
+      <span class="glyphicon glyphicon-remove-circle"></span> Delete
+    <% end %>
+  <% end %>
+</div>
