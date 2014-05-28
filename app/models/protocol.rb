@@ -4,6 +4,8 @@ class Protocol < ActiveRecord::Base
   before_update :update_gist
   before_destroy :destroy_gist
   friendly_id :title, use: :slugged
+  has_many :protocol_managers
+  has_many :users, through: :protocol_managers
   validates :title, presence: true
   validates :description, presence: true
   searchable do
