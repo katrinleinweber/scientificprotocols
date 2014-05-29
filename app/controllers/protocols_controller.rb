@@ -43,14 +43,14 @@ class ProtocolsController < ApplicationController
   # POST /protocols.json
   def create
     @protocol_manager = ProtocolManager.new(user: current_user, protocol: Protocol.new(protocol_params))
-
+    @protocol = @protocol_manager.protocol
     respond_to do |format|
       if @protocol_manager.save
-        format.html { redirect_to @protocol_manager.protocol, notice: 'Protocol was successfully created.' }
-        format.json { render :show, status: :created, location: @protocol_manager.protocol }
+        format.html { redirect_to @protocol, notice: 'Protocol was successfully created.' }
+        format.json { render :show, status: :created, location: @protocol }
       else
         format.html { render :new }
-        format.json { render json: @protocol_manager.errors, status: :unprocessable_entity }
+        format.json { render json: @protocol.errors, status: :unprocessable_entity }
       end
     end
   end
