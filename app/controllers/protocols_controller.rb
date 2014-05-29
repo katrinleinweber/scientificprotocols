@@ -6,17 +6,27 @@ class ProtocolsController < ApplicationController
   # GET /protocols
   # GET /protocols.json
   def index
-    @search = Protocol.search do
-      fulltext params[:search]
-      paginate(page: params[:page] || 1, per_page: Protocol.per_page)
+    if params[:u].present?
+      @protocols = Protocol.managed_by(User.find_by_username(params[:u]))
+        .paginate(page: params[:page] || 1, per_page: Protocol.per_page)
+    else
+      @search = Protocol.search do
+        fulltext params[:search]
+        paginate(page: params[:page] || 1, per_page: Protocol.per_page)
+      end
+      @protocols = @search.results
     end
-    @protocols = @search.results
   end
 
   # GET /protocols/1
   # GET /protocols/1.json
   def show
     @protocol_manager = ProtocolManager.where(protocol: @protocol, user: current_user).first if current_user.present?
+    if params[:controller] == 'protocols'
+      @back_path = request.referer
+    else
+      @back_path = protocols_path
+    end
   end
 
   # GET /protocols/new

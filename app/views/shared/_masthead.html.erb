@@ -28,7 +28,7 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
             <ul class="dropdown-menu">
               <%= link_to 'Edit Account', edit_user_registration_path %>
-              <a href="#">Contributions</a>
+              <%= link_to 'Contributions', protocols_path(u: current_user.username) %>
             </ul>
           </li>
           <li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>
