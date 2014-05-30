@@ -63,6 +63,14 @@ end
 
 group :test, :development do
   gem 'thin'
+  # Our testing framework.
+  gem 'rspec-rails'
+  # Preloads rails environment for faster tests.
+  gem 'spork-rails'
+  # Used for running tests automatically.
+  gem 'guard-rspec'
+  # Used alongside spork to preload tests automatically.
+  gem 'guard-spork'
 end
 
 group :production, :staging do
