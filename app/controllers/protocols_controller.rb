@@ -24,10 +24,10 @@ class ProtocolsController < ApplicationController
     @protocol_manager = ProtocolManager.where(protocol: @protocol, user: current_user).first if current_user.present?
     gist = OCTOKIT_CLIENT.gist(@protocol.gist_id)
     @revision_url = gist.html_url + '/revisions'
+    @back_path = protocols_path
     if params[:controller] == 'protocols'
-      @back_path = request.referer
-    else
-      @back_path = protocols_path
+      user_id = get_query_string_param(:u)
+      @back_path = protocols_path({u: user_id}) if user_id.present?
     end
   end
 

@@ -5,6 +5,17 @@ class ApplicationController < ActionController::Base
   #before_action :authenticate_user!
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
+  def get_query_string_param(param)
+    uri = nil
+    begin
+      uri = URI.parse(request.referer)
+    rescue URI::InvalidURIError
+      return uri
+    end
+    params = uri.query.present? ? CGI::parse(uri.query).symbolize_keys : {}
+    params.present? ? params[param][0] : nil
+  end
+
   protected
 
   def configure_permitted_parameters
