@@ -22,6 +22,8 @@ class ProtocolsController < ApplicationController
   # GET /protocols/1.json
   def show
     @protocol_manager = ProtocolManager.where(protocol: @protocol, user: current_user).first if current_user.present?
+    gist = OCTOKIT_CLIENT.gist(@protocol.gist_id)
+    @revision_url = gist.html_url + '/revisions'
     if params[:controller] == 'protocols'
       @back_path = request.referer
     else
