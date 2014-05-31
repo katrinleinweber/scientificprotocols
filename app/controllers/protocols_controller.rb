@@ -14,8 +14,8 @@ class ProtocolsController < ApplicationController
       @protocols = @search.results
     else
       @protocols = Protocol.paginate(page: params[:page] || 1, per_page: Protocol.per_page)
+      @protocols = @protocols.managed_by(User.find_by_username(params[:u])) if params[:u].present?
     end
-    @protocols = @protocols.managed_by(User.find_by_username(params[:u])) if params[:u].present?
   end
 
   # GET /protocols/1
