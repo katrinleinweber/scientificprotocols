@@ -6,7 +6,7 @@ class Protocol < ActiveRecord::Base
   friendly_id :title, use: :slugged
   has_many :protocol_managers
   has_many :users, through: :protocol_managers
-  default_scope { order(:title) }
+  default_scope { order('LOWER(title)') }
   scope :managed_by, -> (user) { joins(:protocol_managers).where(protocol_managers: { user: user }) }
   validates :title, presence: true
   validates :description, presence: true
