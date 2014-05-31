@@ -1,7 +1,7 @@
 class ProtocolsController < ApplicationController
   before_filter :authenticate_user!, except: [:show, :index]
   before_action :set_protocol, only: [:show, :edit, :update, :destroy]
-  #load_and_authorize_resource TODO
+  load_and_authorize_resource
 
   # GET /protocols
   # GET /protocols.json

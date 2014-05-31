@@ -71,6 +71,10 @@ group :test, :development do
   gem 'guard-rspec'
   # Used alongside spork to preload tests automatically.
   gem 'guard-spork'
+  # Create mock objects for testing.
+  gem 'factory_girl_rails'
+  # Used for generating fake data for tests.
+  gem 'faker'
 end
 
 group :production, :staging do
