@@ -78,4 +78,6 @@ group :production, :staging do
   gem 'unicorn-rails'
   # Enable static asset serving and logging on Heroku
   gem 'rails_12factor'
+  # Use compressed asset versions
+  gem 'heroku_rails_deflate'
 end
