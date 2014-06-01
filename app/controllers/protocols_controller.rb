@@ -1,7 +1,7 @@
 class ProtocolsController < ApplicationController
   before_filter :authenticate_user!, except: [:show, :index]
   before_action :set_protocol, only: [:show, :edit, :update, :destroy]
-  #load_and_authorize_resource
+  load_and_authorize_resource
 
   # GET /protocols
   # GET /protocols.json
@@ -74,10 +74,14 @@ class ProtocolsController < ApplicationController
   # DELETE /protocols/1
   # DELETE /protocols/1.json
   def destroy
-    @protocol.destroy
     respond_to do |format|
-      format.html { redirect_to protocols_url, notice: 'Protocol was successfully destroyed.' }
-      format.json { head :no_content }
+      if @protocol.destroy
+        format.html { redirect_to protocols_url, notice: 'Protocol was successfully deleted.' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to @protocol, alert: 'Protocol deletion failed.' }
+        format.json { render json: @protocol.errors, status: :unprocessable_entity }
+      end
     end
   end
 
