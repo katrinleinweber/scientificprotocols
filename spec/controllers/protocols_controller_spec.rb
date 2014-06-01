@@ -77,28 +77,25 @@ describe ProtocolsController do
       end
     end
     describe 'GET #edit' do
-      it 'renders the :edit template' do
+      it 'forbids access' do
         get :edit, id: protocol.id
-        expect(response).to render_template :edit
+        expect(response).to raise_error(CanCan::AccessDenied)
       end
     end
     describe 'PATCH #update' do
-      it 'renders the :index template' do
+      it 'forbids access' do
         patch :update, id: protocol.id, protocol: protocol
-        expect(response).to render_template :show
-      end
-      it 'updates the protocol' do
-
+        expect(response).to raise_error(CanCan::AccessDenied)
       end
     end
     describe 'DELETE #destroy' do
-      it 'renders the :index template' do
+      it 'forbids access' do
         delete :destroy, id: protocol.id
-        expect(response).to render_template :index
-      end
-      it 'deletes the protocol' do
-        expect{ delete :destroy, id: protocol.id }.to change{ Protocol.count }.from(1).to(0)
+        expect(response).to raise_error(CanCan::AccessDenied)
       end
     end
+  end
+  context 'Protocol Owner' do
+
   end
 end

@@ -41,6 +41,7 @@ class Ability
     end
     def define_guest_abilities(user)
       can :read, Protocol
+      can :read, ProtocolManager
     end
     def define_user_abilities(user)
       can :manage, User, id: user.id
@@ -50,6 +51,7 @@ class Ability
       can :manage, Protocol, users: {id: user.id}
     end
     def define_protocol_manager_abilities(user)
+      can [:read, :create], ProtocolManager
       can :manage, ProtocolManager, user_id: user.id
     end
   end
