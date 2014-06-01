@@ -16,9 +16,12 @@ class ApplicationController < ActionController::Base
     begin
       uri = URI.parse(request.referer)
     rescue URI::InvalidURIError
-      return uri
+      return nil
     end
     params = uri.query.present? ? CGI::parse(uri.query).symbolize_keys : {}
-    params.present? ? params[param][0] : nil
+    if params.present? && params[param].present?
+      return params[param][0]
+    end
+    nil
   end
 end
