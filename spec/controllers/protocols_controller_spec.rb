@@ -68,7 +68,7 @@ describe ProtocolsController do
       end
     end
     describe 'POST #create' do
-      it 'renders the :index template' do
+      it 'renders the :show template' do
         post :create, protocol: protocol
         expect(response).to render_template :show
       end
