@@ -86,4 +86,7 @@ Rails.application.configure do
 
   # Set solr index URL.
   Sunspot.config.solr.url = ENV['WEBSOLR_URL']
+
+  # Sets the host for mailers.
+  config.action_mailer.default_url_options = {host: 'www.scientificprotocols.org', protocol: 'https'}
 end
