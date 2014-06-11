@@ -53,6 +53,10 @@ gem 'roboto'
 
 gem 'postmark-rails'
 
+gem 'aws-sdk'
+
+gem 'sitemap_generator'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', '~> 0.4.0'
