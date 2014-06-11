@@ -55,7 +55,10 @@ gem 'postmark-rails'
 
 gem 'aws-sdk'
 
+# Sitemap generation.
 gem 'sitemap_generator'
+gem 'carrierwave'
+gem 'fog'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
