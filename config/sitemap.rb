@@ -10,7 +10,7 @@ SitemapGenerator::Sitemap.public_path = 'tmp/'
 
 # Only upload to S3 in production
 if Rails.env == 'production'
-  SitemapGenerator::Sitemap.sitemaps_host = 'https://scientificprotocols.s3-website-us-east-1.amazonaws.com'
+  SitemapGenerator::Sitemap.sitemaps_host = 'http://scientificprotocols.s3-website-us-east-1.amazonaws.com'
   SitemapGenerator::Sitemap.sitemaps_path = 'sitemaps/'
   SitemapGenerator::Sitemap.adapter = SitemapGenerator::WaveAdapter.new
 end
