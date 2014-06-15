@@ -31,6 +31,8 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
+    acts-as-taggable-on (3.2.6)
+      activerecord (>= 3, < 5)
     addressable (2.3.6)
     arel (5.0.1.20140414130214)
     aws-sdk (1.38.0)
@@ -41,6 +43,7 @@ GEM
     bootstrap-sass (3.1.1.1)
       sass (~> 3.2)
     bootstrap_form (2.1.1)
+    bootstrap_tokenfield_rails (0.0.6)
     builder (3.2.2)
     cancancan (1.8.0)
     carrierwave (0.10.0)
@@ -130,6 +133,8 @@ GEM
     jquery-rails (3.1.0)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
+    jquery-ui-rails (4.2.1)
+      railties (>= 3.2.16)
     json (1.8.1)
     kgio (2.9.2)
     listen (2.7.1)
@@ -293,9 +298,11 @@ PLATFORMS
 
 DEPENDENCIES
   activeresource
+  acts-as-taggable-on
   aws-sdk
   bootstrap-sass
   bootstrap_form
+  bootstrap_tokenfield_rails
   cancancan
   carrierwave
   coffee-rails (~> 4.0.0)
@@ -309,6 +316,7 @@ DEPENDENCIES
   heroku_rails_deflate
   jbuilder (~> 2.0)
   jquery-rails
+  jquery-ui-rails
   kgio
   octokit
   pg

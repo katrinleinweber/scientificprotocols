@@ -2,6 +2,7 @@
   <%= f.alert_message t('errors.messages.not_saved') %>
   <%= f.text_field :title %>
   <%= f.text_area :description, 'data-provide' => 'markdown', rows: '20' %>
+  <%= f.text_field :tag_list, label: 'Tags (optional)', class: 'token-input tokenize', help: 'Select up to three tags that categorize your protocol' %>
   <div class="actions">
     <%= f.submit 'Save', class: 'btn btn-primary' %>
   </div>

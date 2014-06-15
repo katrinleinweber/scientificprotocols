@@ -1,6 +1,7 @@
 class Protocol < ActiveRecord::Base
   extend FriendlyId
   include ProtocolObserver
+  acts_as_taggable
   friendly_id :title, use: :slugged
   has_many :protocol_managers
   has_many :users, through: :protocol_managers

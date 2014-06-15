@@ -16,6 +16,7 @@ gem 'coffee-rails', '~> 4.0.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 # gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -29,36 +30,43 @@ gem 'kgio'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# Bootstrap fields.
 gem 'bootstrap-sass'
 gem 'bootstrap_form'
+gem 'bootstrap_tokenfield_rails'
 
+# Authorization & Access control.
 gem 'devise'
-
 gem 'cancancan'
 
+# Markdown.
 gem 'redcarpet'
 
+# Search.
 gem 'sunspot_solr'
 gem 'sunspot_rails'
 
 gem 'will_paginate'
 
+# GitHub.
 gem 'octokit'
-
-gem 'friendly_id'
 
 gem 'activeresource'
 
+# SEO.
 gem 'roboto'
+gem 'friendly_id'
 
+# Email.
 gem 'postmark-rails'
-
-gem 'aws-sdk'
 
 # Sitemap generation.
 gem 'sitemap_generator'
+gem 'aws-sdk'
 gem 'carrierwave'
 gem 'fog'
+
+gem 'acts-as-taggable-on'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

@@ -1,3 +1,17 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+$("input.tokenize").tokenfield
+  autocomplete:
+    source: [
+      "red"
+      "blue"
+      "green"
+      "yellow"
+      "violet"
+      "brown"
+      "purple"
+      "black"
+      "white"
+    ]
+    delay: 100
+
+  showAutocompleteOnFocus: true
+  limit: 3
