@@ -45,6 +45,12 @@ describe ProtocolsController do
         expect(response).to redirect_to new_user_session_url
       end
     end
+    describe 'GET #tags' do
+      it 'redirects to the login page' do
+        get :tags, format: :json
+        expect(response.code).to eq('200')
+      end
+    end
   end
   context 'Authenticated User' do
     login_user
@@ -145,6 +151,12 @@ describe ProtocolsController do
         expect{
           delete :destroy, id: new_protocol.id
         }.to change{ Protocol.count }.by(-1)
+      end
+    end
+    describe 'GET #tags' do
+      it 'redirects to the login page' do
+        get :tags, format: :json
+        expect(response.code).to eq('200')
       end
     end
   end

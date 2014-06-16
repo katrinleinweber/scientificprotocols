@@ -1,7 +1,7 @@
 class ProtocolsController < ApplicationController
-  before_filter :authenticate_user!, except: [:show, :index]
+  before_filter :authenticate_user!, except: [:show, :index, :tags]
   before_action :set_protocol, only: [:show, :edit, :update, :destroy]
-  load_and_authorize_resource
+  load_and_authorize_resource except: [:tags]
 
   # GET /protocols
   # GET /protocols.json
@@ -85,6 +85,13 @@ class ProtocolsController < ApplicationController
     end
   end
 
+  def tags
+    @tokens = params[:term].present? ? ActsAsTaggableOn::Tag.named_like(params[:term]).map(&:name) : ActsAsTaggableOn::Tag.all.map(&:name)
+    respond_to do |format|
+      format.json { render json: @tokens }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_protocol
@@ -93,6 +100,6 @@ class ProtocolsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def protocol_params
-      params.require(:protocol).permit(:title, :description)
+      params.require(:protocol).permit(:title, :description, :tag_list)
     end
 end
