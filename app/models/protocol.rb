@@ -13,6 +13,7 @@ class Protocol < ActiveRecord::Base
     text :title, boost: 5
     text :description
     time :created_at
+    text :tag_list, boost: 2
     string :sort_title do
       title.downcase.gsub(/^(an?|the)\b/, '')
     end
