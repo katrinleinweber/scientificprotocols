@@ -1,5 +1,5 @@
 <%= render partial: 'shared/page_title', locals: { page_title: @protocol.title } %>
-<% if @protocols.tag_list.present? %>
+<% if @protocol.tag_list.present? %>
   <div style="margin-bottom: 15px">
     <% @protocol.tag_list.each do |tag| %>
       <span class="label label-default"><%= tag %></span>
