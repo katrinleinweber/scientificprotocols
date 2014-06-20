@@ -95,6 +95,12 @@ describe ProtocolsController do
         expect{ delete :destroy, id: protocol.id }.to raise_error(CanCan::AccessDenied)
       end
     end
+    describe 'GET #tags' do
+      it 'redirects to the login page' do
+        get :tags, format: :json
+        expect(response.code).to eq('200')
+      end
+    end
   end
   context 'Protocol Manager' do
     login_user
