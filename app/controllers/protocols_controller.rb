@@ -25,9 +25,9 @@ class ProtocolsController < ApplicationController
     gist = OCTOKIT_CLIENT.gist(@protocol.gist_id)
     @revision_url = gist.html_url + '/revisions'
     @back_path = protocols_path
-    if params[:controller] == 'protocols'
-      user_id = get_query_string_param(:u)
-      @back_path = protocols_path({u: user_id}) if user_id.present?
+    query_string = URI.parse(request.referer).query
+    if params[:controller] == 'protocols' && query_string.present?
+      @back_path << '?' + query_string
     end
   end
 

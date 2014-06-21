@@ -10,18 +10,4 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:login, :username, :email, :password, :remember_me) }
     devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:username, :email, :password, :password_confirmation, :current_password) }
   end
-
-  def get_query_string_param(param)
-    uri = nil
-    begin
-      uri = URI.parse(request.referer)
-    rescue URI::InvalidURIError
-      return nil
-    end
-    params = uri.query.present? ? CGI::parse(uri.query).symbolize_keys : {}
-    if params.present? && params[param].present?
-      return params[param][0]
-    end
-    nil
-  end
 end
