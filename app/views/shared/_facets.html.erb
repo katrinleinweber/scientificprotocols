@@ -1,6 +1,18 @@
+<%
+  existing_tag_facets = params[:tags].present? ? params[:tags].split('-') : []
+  params.except!(:tags) if params[:tags].present?
+%>
 <div class="list-group">
   <% facets.each do |facet| %>
-    <%= link_to @params.merge(facet: facet.name), class: get_facet_list_class(params, facet.name) do -%>
+    <%
+      active = existing_tag_facets.include? facet.name
+      list_class = active ? 'list-group-item active' : 'list-group-item'
+      icon_class = active ? 'glyphicon glyphicon-minus-sign' : 'glyphicon glyphicon-plus-sign'
+      tag_facets = active ? (existing_tag_facets - [facet.name]).join('-') : (existing_tag_facets + [facet.name]).join('-')
+      new_params = tag_facets.present? ? params.merge(tags: tag_facets) : params
+    %>
+    <%= link_to params.merge(new_params), class: list_class do -%>
+      <span class="<%= icon_class %>"></span>
       <%= facet.name -%>
       <span class="badge pull-right"><%= facet.taggings_count %></span>
     <% end %>
