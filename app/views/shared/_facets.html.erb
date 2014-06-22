@@ -1,5 +1,6 @@
 <%
   existing_tag_facets = params[:tags].present? ? params[:tags].split('-') : []
+  params.except!(:page) if params[:page].present?
   params.except!(:tags) if params[:tags].present?
 %>
 <div class="list-group">
