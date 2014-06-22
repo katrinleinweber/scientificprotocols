@@ -1,0 +1,9 @@
+<div class="list-group">
+  <% facets.each do |facet| %>
+    <%= link_to @params.merge(facet: facet.name), class: get_facet_list_class(params, facet.name) do -%>
+      <%= facet.name -%>
+      <span class="badge pull-right"><%= facet.taggings_count %></span>
+    <% end %>
+  <% end %>
+</div>
+

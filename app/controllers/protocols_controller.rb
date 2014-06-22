@@ -1,6 +1,7 @@
 class ProtocolsController < ApplicationController
   before_filter :authenticate_user!, except: [:show, :index, :tags]
   before_action :set_protocol, only: [:show, :edit, :update, :destroy]
+  before_filter :set_params, only: [:show, :index]
   load_and_authorize_resource except: [:tags]
 
   # GET /protocols
@@ -16,6 +17,7 @@ class ProtocolsController < ApplicationController
       @protocols = Protocol.paginate(page: params[:page] || 1, per_page: Protocol.per_page)
       @protocols = @protocols.managed_by(User.find_by_username(params[:u])) if params[:u].present?
     end
+    @facets = Protocol.tag_counts.order(:name)
   end
 
   # GET /protocols/1
@@ -101,5 +103,10 @@ class ProtocolsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def protocol_params
       params.require(:protocol).permit(:title, :description, :tag_list)
+    end
+
+    # Get a hash of approved query string params.
+    def set_params
+      @params = params.slice(:page, :u, :search, :utf8, :facet)
     end
 end
