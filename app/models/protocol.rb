@@ -19,4 +19,15 @@ class Protocol < ActiveRecord::Base
     end
   end
   self.per_page = 10
+
+  # Get the protocol facets. A count of tags against protocols.
+  #
+  # @param [Array] tags A list of tags to filter the facets by.
+  # @return [Array] An array of facets.
+  def self.facets(protocols)
+    return Protocol.tag_counts.order(:name) if protocols.blank?
+    # Correct the tag count to account for multiple tag selections.
+    protocols = Protocol.where(id: protocols.map(&:id))
+    protocols.tag_counts.order(:name).each {|tag| tag.taggings_count = protocols.tagged_with(tag).count}
+  end
 end
