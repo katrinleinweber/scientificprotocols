@@ -27,7 +27,12 @@ class Protocol < ActiveRecord::Base
       search = solr_search do
         fulltext params[:search]
         facet :tag_list
-        paginate(page: params[:page] || 1, per_page: Protocol.per_page) if options[:paginate]
+        if options[:paginate]
+          paginate(page: params[:page] || 1, per_page: Protocol.per_page)
+        else
+          # Solr has no disable pagination so you have to return a single page with all results.
+          paginate(page: 1, per_page: Protocol.count)
+        end
         tags.each {|tag| with(:tag_list, tag)} if tags.present?
       end
       protocols = search.results
