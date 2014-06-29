@@ -20,5 +20,6 @@
     <%= render partial: 'shared/footer' %>
   </div>
   <%= javascript_include_tag 'application_footer' %>
+  <%= render partial: 'shared/google_analytics' if Rails.env.production? %>
 </body>
 </html>
