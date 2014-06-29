@@ -20,14 +20,43 @@ class Protocol < ActiveRecord::Base
   end
   self.per_page = 10
 
-  # Get the protocol facets. A count of tags against protocols.
-  #
-  # @param [Array] tags A list of tags to filter the facets by.
-  # @return [Array] An array of facets.
+  def self.search(params = {}, options = {})
+    options.reverse_merge!({paginate: true})
+    tags = params[:tags].present? ? params[:tags].split('-') : nil
+    if params[:search].present?
+      search = solr_search do
+        fulltext params[:search]
+        facet :tag_list
+        paginate(page: params[:page] || 1, per_page: Protocol.per_page) if options[:paginate]
+        tags.each {|tag| with(:tag_list, tag)} if tags.present?
+      end
+      protocols = search.results
+    else
+      protocols = options[:paginate] ? Protocol.paginate(
+        page: params[:page] || 1, per_page: Protocol.per_page
+      ) : Protocol.all
+      protocols = protocols.tagged_with(tags) if tags.present?
+      protocols = protocols.managed_by(User.find_by_username(params[:u])) if params[:u].present?
+    end
+    return protocols
+  end
+
+  # Get the protocol facets. A count of tags against protocols in the context of
+  # the current search and/or filter.
   def self.facets(protocols)
-    return Protocol.tag_counts.order(:name) if protocols.blank?
-    # Correct the tag count to account for multiple tag selections.
-    protocols = Protocol.where(id: protocols.map(&:id))
-    protocols.tag_counts.order(:name).each {|tag| tag.taggings_count = protocols.tagged_with(tag).count}
+    facet_tags = []
+    protocols.each do |protocol|
+      facet_tags = (facet_tags + protocol.tag_list).uniq
+    end
+    facets = ActsAsTaggableOn::Tag.where(name: facet_tags).order(:name)
+    facets.each do |tag|
+      tag_count = 0
+      protocols.each do |protocol|
+        if protocol.tag_list.include?(tag.name)
+          tag_count = tag_count + 1
+        end
+      end
+      tag.taggings_count = tag_count
+    end
   end
 end

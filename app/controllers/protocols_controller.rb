@@ -7,21 +7,8 @@ class ProtocolsController < ApplicationController
   # GET /protocols
   # GET /protocols.json
   def index
-    tags = params[:tags].present? ? params[:tags].split('-') : nil
-    if params[:search].present?
-      @search = Protocol.search do
-        fulltext params[:search]
-        facet :tag_list
-        paginate(page: params[:page] || 1, per_page: Protocol.per_page)
-        tags.each {|tag| with(:tag_list, tag)} if tags.present?
-      end
-      @protocols = @search.results
-    else
-      @protocols = Protocol.paginate(page: params[:page] || 1, per_page: Protocol.per_page)
-      @protocols = @protocols.tagged_with(tags) if tags.present?
-      @protocols = @protocols.managed_by(User.find_by_username(params[:u])) if params[:u].present?
-    end
-    @facets = Protocol.facets(@protocols)
+    @protocols = Protocol.search(params)
+    @facets = Protocol.facets(Protocol.search(params, paginate: false))
   end
 
   # GET /protocols/1
