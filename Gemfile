@@ -92,6 +92,8 @@ group :test, :development do
   gem 'factory_girl_rails'
   # Used for generating fake data for tests.
   gem 'faker'
+  # Custom matchers for rspec.
+  gem 'shoulda'
 end
 
 group :production, :staging do
