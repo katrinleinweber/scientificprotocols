@@ -83,6 +83,9 @@ gem 'acts-as-taggable-on'
 gem 'memcachier'
 gem 'dalli'
 
+# Performance metrics
+gem 'newrelic_rpm'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', '~> 0.4.0'
