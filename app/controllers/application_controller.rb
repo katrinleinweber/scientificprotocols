@@ -10,4 +10,15 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:login, :username, :email, :password, :remember_me) }
     devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:username, :email, :password, :password_confirmation, :current_password) }
   end
+  # Get the query string from the request referrer.
+  # @param [Request] request The request object to get the query string from.
+  def get_query_string_from_referrer(request)
+    query_string = nil
+    begin
+      query_string = URI.parse(request.referer).query
+    rescue URI::InvalidURIError => e
+      Rails.logger.warn("Could not parse #{request.referer}\n#{e.to_s}")
+    end
+    query_string
+  end
 end
