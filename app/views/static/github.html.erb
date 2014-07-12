@@ -1,16 +1,18 @@
 <%= render partial: 'shared/page_title', locals: { page_title: 'Built on GitHub' } %>
-<h3>What is GitHub?</h3>
-<p>
-  GitHub is a web-based hosting service for software development projects that use the Git revision control system. GitHub offers both paid plans for private repositories, and free accounts for open source projects.
-</p>
-<h3>What is version control and why is it important?</h3>
-<p>
-  Version control is a system that records changes to a file or set of files over time so that you can recall specific versions later. Any type of file on a computer can be placed under version control.
-  In addition to being able to track the history of changes to a file using a version control system means that if you make a mistake or lose files, you can recover them easily.
-</p>
-<h3>How does Scientific Protocols use GitHub?</h3>
-<p>
-  Every protocol stored on Scientific Protocols is actually a GitHub Gist. A Gist is a fully forkable GitHub repository presented in a concise "snippet" style.
-  Storing protocols in this fashion means that you can leverage the full power of GitHub with each and every protocol on the site. This allows you to monitor changes to
-  a protocol over time, fork a protocol to create a new one based on an original, save your favorite protocols for easy retrieval and much more.
-</p>
+<% cache 'Github' do %>
+  <h3>What is GitHub?</h3>
+  <p>
+    GitHub is a web-based hosting service for software development projects that use the Git revision control system. GitHub offers both paid plans for private repositories, and free accounts for open source projects.
+  </p>
+  <h3>What is version control and why is it important?</h3>
+  <p>
+    Version control is a system that records changes to a file or set of files over time so that you can recall specific versions later. Any type of file on a computer can be placed under version control.
+    In addition to being able to track the history of changes to a file using a version control system means that if you make a mistake or lose files, you can recover them easily.
+  </p>
+  <h3>How does Scientific Protocols use GitHub?</h3>
+  <p>
+    Every protocol stored on Scientific Protocols is actually a GitHub Gist. A Gist is a fully forkable GitHub repository presented in a concise "snippet" style.
+    Storing protocols in this fashion means that you can leverage the full power of GitHub with each and every protocol on the site. This allows you to monitor changes to
+    a protocol over time, fork a protocol to create a new one based on an original, save your favorite protocols for easy retrieval and much more.
+  </p>
+<% end %>
