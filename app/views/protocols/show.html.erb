@@ -8,18 +8,18 @@
     </div>
   <% end %>
   <%= MARKDOWN.render(@protocol.description).html_safe %>
-  <div class="btn-toolbar" role="toolbar">
-    <%= link_to @back_path, class: 'btn btn-default' do %>
-      <span class="glyphicon glyphicon-arrow-left"></span> Back
-    <% end %>
-    <% if @revision_url.present? %>
-      <%= link_to @revision_url, class: 'btn btn-default' do %>
-        <span class="glyphicon glyphicon-tasks"></span> Revisions
-      <% end %>
-    <% end %>
-    <% if @protocol_manager.present? %>
-      <%= link_to 'Edit', edit_protocol_path(@protocol), class: 'btn btn-primary' %>
-      <%= link_to 'Delete', protocol_path(@protocol), data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-danger' %>
-    <% end %>
-  </div>
 <% end %>
+<div class="btn-toolbar" role="toolbar">
+  <%= link_to @back_path, class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-arrow-left"></span> Back
+  <% end %>
+  <% if @revision_url.present? %>
+    <%= link_to @revision_url, class: 'btn btn-default' do %>
+      <span class="glyphicon glyphicon-tasks"></span> Revisions
+    <% end %>
+  <% end %>
+  <% if @protocol_manager.present? %>
+    <%= link_to 'Edit', edit_protocol_path(@protocol), class: 'btn btn-primary' %>
+    <%= link_to 'Delete', protocol_path(@protocol), data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-danger' %>
+  <% end %>
+</div>

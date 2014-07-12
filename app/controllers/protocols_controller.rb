@@ -19,7 +19,6 @@ class ProtocolsController < ApplicationController
     @revision_url = gist.html_url + '/revisions'
     @back_path = protocols_path
     query_string = get_query_string_from_referrer(request)
-    Rails.logger.info("Controller: #{params[:controller]}")
     if params[:controller] == 'protocols' && query_string.present?
       @back_path << '?' + query_string
     end

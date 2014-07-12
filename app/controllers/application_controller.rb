@@ -16,7 +16,6 @@ class ApplicationController < ActionController::Base
     query_string = nil
     begin
       query_string = URI.parse(request.referer).query
-      Rails.logger.info("Query string: #{query_string}")
     rescue URI::InvalidURIError => e
       Rails.logger.warn("Could not parse #{request.referer}\n#{e.to_s}")
     end
