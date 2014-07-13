@@ -1,6 +1,6 @@
+<%= render partial: 'shared/page_title', locals: { page_title: @protocol.title } %>
 <% cache ['Protocol', @protocol] do %>
   <% managed_by = @protocol.users.first %>
-  <%= render partial: 'shared/page_title', locals: { page_title: @protocol.title } %>
   <div class="row">
     <div class="col-md-6">
       <% if @protocol.tag_list.present? %>
