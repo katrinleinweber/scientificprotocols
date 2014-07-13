@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       get :tags
     end
   end
+  resources :users, only: :show
   get 'sitemap.xml', to: redirect('https://s3.amazonaws.com/scientificprotocols/sitemaps/sitemap.xml.gz')
   get ':action' => 'static#:action'
 end
