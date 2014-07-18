@@ -1,4 +1,4 @@
-### ScientificProtocols.org - GitHub for ScientificProtocols
+### ScientificProtocols.org - GitHub for Scientific Protocols
 The core codebase for the [ScientificProtocols.org](https://www.scientificprotocols.org) website. The purpose of this site is to provide a free
 and easy way for scientists to publish and collaborate on scientific protocols. By sharing scientific protocols we hope to encourage transparency in
 research and promote reproducibility of published results. [ScientificProtocols.org](https://www.scientificprotocols.org)
