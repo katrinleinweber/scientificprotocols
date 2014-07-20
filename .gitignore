@@ -24,3 +24,6 @@
 
 # Ignore .idea
 /.idea
+
+# Ignore sensitive settings.
+/config/settings.local.yml

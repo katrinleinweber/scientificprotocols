@@ -1,1 +1,1 @@
-Postmark.api_key = API_KEYS['postmark'][Rails.env]
+Postmark.api_key = Rails.configuration.api_postmark

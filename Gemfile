@@ -86,6 +86,9 @@ gem 'dalli'
 # Performance metrics
 gem 'newrelic_rpm'
 
+# Choice gem. Easy external settings.
+gem 'choices'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', '~> 0.4.0'
