@@ -1,0 +1,35 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database:
+  pool: 5
+  username:
+  password:
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database:
+  pool: 5
+  username:
+  password:
+
+staging:
+  adapter: postgresql
+  encoding: unicode
+  host:
+  port: 5432
+  database:
+  pool: 5
+  username:
+  password:
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  host:
+  port: 5432
+  database:
+  pool: 5
+  username:
+  password:

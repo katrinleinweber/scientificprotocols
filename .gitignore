@@ -27,3 +27,4 @@
 
 # Ignore sensitive settings.
 /config/settings.local.yml
+/config/database.yml
