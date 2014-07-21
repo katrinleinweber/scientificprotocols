@@ -12,6 +12,24 @@ The core website codebase has been made open source ([MIT License](http://openso
 Thank you to [Science Exchange](https://www.scienceexchange.com) for their support and input on the site and for their general support
 of all initiatives dedicated to making researchers lives easier and improving the quality of scientific research.
 
+### Getting started
+**Database**
+
+Create a database.yml file in the config directory. Copy the template supplied in database.yml.example into your database.yml file 
+and complete the missing information as per your local and remote database settings.
+
+**Settings**
+
+[ScientificProtocols.org](https://www.scientificprotocols.org) uses the [Choices Gem](https://github.com/mislav/choices) to handle
+settings in the application. Create a file called settings.local.yml in the config directory. Create a dev and test section in this
+file and populate it with the required third party API keys and any other settings stored in the settings.yml file. Make sure when
+deploying remotely to setup the required env variables.
+
+If you plan to use the site as is at the very minimum you will require API keys for the following:
+- [GitHub API](https://developer.github.com/v3/gists/) with Gist creation permission.
+- [Postmark API](http://developer.postmarkapp.com/developer-build.html).
+- [Amazon AWS](http://aws.amazon.com/documentation/).
+
 ### License
 [ScientificProtocols.org](https://www.scientificprotocols.org) is licensed under the [MIT License](http://opensource.org/licenses/MIT).
 
