@@ -1,0 +1,26 @@
+defaults: &defaults
+  api_github: <%= ENV["API_GITHUB"] %>
+  api_postmark: <%= ENV["API_POSTMARK"] %>
+  api_aws_access_key_id: <%= ENV["API_AWS_ACCESS_KEY_ID"] %>
+  api_aws_access_key: <%= ENV["API_AWS_ACCESS_KEY"] %>
+  new_relic_license_key: <%= ENV["NEW_RELIC_LICENSE_KEY"] %>
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+staging:
+  api_github: <%= ENV["API_GITHUB"] %>
+  api_postmark: <%= ENV["API_POSTMARK"] %>
+  api_aws_access_key_id: <%= ENV["API_AWS_ACCESS_KEY_ID"] %>
+  api_aws_access_key: <%= ENV["API_AWS_ACCESS_KEY"] %>
+  new_relic_license_key: <%= ENV["NEW_RELIC_LICENSE_KEY"] %>
+
+production:
+  api_github: <%= ENV["API_GITHUB"] %>
+  api_postmark: <%= ENV["API_POSTMARK"] %>
+  api_aws_access_key_id: <%= ENV["API_AWS_ACCESS_KEY_ID"] %>
+  api_aws_access_key: <%= ENV["API_AWS_ACCESS_KEY"] %>
+  new_relic_license_key: <%= ENV["NEW_RELIC_LICENSE_KEY"] %>

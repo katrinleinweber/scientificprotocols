@@ -27,6 +27,5 @@
 
 # Ignore sensitive settings.
 /config/settings.local.yml
-/config/settings.yml
 /config/sunspot.yml
 /config/database.yml
