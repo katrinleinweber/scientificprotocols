@@ -1,5 +1,5 @@
 test:
-  api_github: 12345fake
+#  api_github: 12345fake
   api_postmark: POSTMARK_API_TEST
   api_aws_access_key_id: 12345fake
   api_aws_access_key: 12345fake
