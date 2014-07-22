@@ -24,6 +24,7 @@ class User < ActiveRecord::Base
   def self.from_omniauth(auth)
     where(auth.slice(:provider, :uid)).first_or_create do |user|
       user.email = auth.info.email
+      user.username = auth.info.nickname
       user.password = Devise.friendly_token[0,20]
       # Science is your name now.
       # user.name = auth.info.name   # assuming the user model has a name
