@@ -4,8 +4,15 @@ ruby '2.1.2'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.1'
 
-# Use PostgreSQL as the database for Active Record
-gem 'pg'
+group :production, :staging do
+  # Use PostgreSQL as the database for Active Record.
+  gem 'pg'
+end
+
+group :development, :test do
+  # Use sql light in development and test.
+  gem 'sqlite3'
+end
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
