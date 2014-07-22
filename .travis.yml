@@ -3,3 +3,4 @@ rvm:
   - 2.1.2
 before_script:
   - cp config/database.travis.yml config/database.yml
+  - cp config/settings.travis.yml config/settings.local.yml
