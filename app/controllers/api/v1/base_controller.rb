@@ -29,7 +29,11 @@ class Api::V1::BaseController < ActionController::Base
 
   def restrict_access
     authenticate_or_request_with_http_token do |token, options|
-      Token.exists?(token: token)
+      if Token.exists?(token: token)
+        sign_in(Token.find_by_token(token).user)
+        return true
+      end
+      false
     end
   end  
   protected :restrict_access
