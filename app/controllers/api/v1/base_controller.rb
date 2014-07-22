@@ -11,10 +11,8 @@ class Api::V1::BaseController < ActionController::Base
       false
     end
   end
-
-  # TODO(golyshev) Add default rendering fo the 404, 403 pages
-
   protected :is_integer_id
+  # TODO(golyshev) Add default rendering fo the 404, 403 pages
 
   def internal_server_error(exception = nil)
     result = {error: 'internal_server_error'}
@@ -25,7 +23,5 @@ class Api::V1::BaseController < ActionController::Base
     end
     respond_with(result, status: :internal_server_error)
   end
-
   protected :internal_server_error
-
 end
