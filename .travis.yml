@@ -12,7 +12,7 @@ env:
   # into this config file.
 
   # Encrypted api_github
-  secure: "RYwfMXH9c3LlD9LuSrpnFyky0puG7/jJ0O+qslfV6wrtrCovWoLlV6AMckShFv6R23gRAnkYg5hApM/YSUuj+EwwEAw0m8V5oWaqbCUfF4bQ3z7497O/p4LjQYVL4klgwS2ECvnXqY2CT8Im4McKW1S2KMTck/w7aqeZIpO3Q6U="
+  secure: "GqDfjKz4ZcomhHvz6iePJm5iAuV8aqBwywamkJ70erFqs+NlXs6a4UfjTv/0Cy2OaQz6ns53tUEkX/W8fOmt1twCUpOwbH6PdgN5atwmKUNRrsrHUuJHu1RKaqHVN7VyvS/eKDvkkzK8904I0UQgUyhS3Wo5O7gvdx+p1KIbcQw="
   # Encrypted api_aws_access_key_id
   secure: "LEU5un6GK62ZMM4CT+UNcjnxmJac3STYQlq3p3mJxQWvTZcVejLi5z/wHQ4cCzDqGv+TtNA+1Zdl4uSc7x0xjT5MgK1gkVGGLu7NUDw1gd43z9gBsGYgc/7qQD6ln950m3zCblIUXHTJCdPXJ1piJfQnmQh8b66r4tjmUDxJyMY="
   # Encrypted api_aws_access_key
