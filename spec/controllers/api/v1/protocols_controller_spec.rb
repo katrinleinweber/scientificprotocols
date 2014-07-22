@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Api::V1::ProtocolsController do
   context "No auth token" do
-    let(:protocol){ FactoryGirl.create(:protocol) }
+    let(:protocol) { FactoryGirl.create(:protocol) }
     describe 'GET /api/v1/#index' do
       it 'responds with 200' do
         get :index, format: :json
