@@ -4,3 +4,5 @@ rvm:
 before_script:
   - cp config/database.travis.yml config/database.yml
   - cp config/settings.travis.yml config/settings.local.yml
+env:
+  secure: "RYwfMXH9c3LlD9LuSrpnFyky0puG7/jJ0O+qslfV6wrtrCovWoLlV6AMckShFv6R23gRAnkYg5hApM/YSUuj+EwwEAw0m8V5oWaqbCUfF4bQ3z7497O/p4LjQYVL4klgwS2ECvnXqY2CT8Im4McKW1S2KMTck/w7aqeZIpO3Q6U="
