@@ -10,5 +10,9 @@ env:
   # The above command will produce a string like "secure: <encrypted stuff>" which you can paste
   # into this config file.
 
-  # Encrypted test Github API key
+  # Encrypted api_github
   secure: "RYwfMXH9c3LlD9LuSrpnFyky0puG7/jJ0O+qslfV6wrtrCovWoLlV6AMckShFv6R23gRAnkYg5hApM/YSUuj+EwwEAw0m8V5oWaqbCUfF4bQ3z7497O/p4LjQYVL4klgwS2ECvnXqY2CT8Im4McKW1S2KMTck/w7aqeZIpO3Q6U="
+  # Encrypted api_aws_access_key_id
+  secure: "LEU5un6GK62ZMM4CT+UNcjnxmJac3STYQlq3p3mJxQWvTZcVejLi5z/wHQ4cCzDqGv+TtNA+1Zdl4uSc7x0xjT5MgK1gkVGGLu7NUDw1gd43z9gBsGYgc/7qQD6ln950m3zCblIUXHTJCdPXJ1piJfQnmQh8b66r4tjmUDxJyMY="
+  # Encrypted api_aws_access_key
+  secure: "JyBHim1/RnB9GferuxjetICUR/JJ4Fn6sqZKCP1hWLZV4j+M6bM/VJuWkObiz4X7AUFWLBcqlZHeBGvlCosEcLR5nRQtBBvOQt5oY44DWwWqF64kQFK5YSktDosamtWu2faEJVC/h0T8vwrSoSOE/Jp8rZfOpXFKdOcd3gAILk0="
