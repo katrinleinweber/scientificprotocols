@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_many :tokens, dependent: :destroy
+
   extend FriendlyId
   friendly_id :username, use: :slugged
   # Include default devise modules. Others available are:

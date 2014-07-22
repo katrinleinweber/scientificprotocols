@@ -1,4 +1,6 @@
 class Api::V1::BaseController < ActionController::Base
+  before_filter :restrict_access, :except => [:index, :show]
+
   respond_to :json
 
   rescue_from Exception, with: :internal_server_error
@@ -24,4 +26,11 @@ class Api::V1::BaseController < ActionController::Base
     respond_with(result, status: :internal_server_error)
   end
   protected :internal_server_error
+
+  def restrict_access
+    authenticate_or_request_with_http_token do |token, options|
+      Token.exists?(token: token)
+    end
+  end  
+  protected :restrict_access
 end

@@ -1,4 +1,6 @@
 class Api::V1::ProtocolsController < Api::V1::BaseController
+  load_resource :find_by => :slug 
+  authorize_resource  
   # GET /api/v1/protocols/protocol-slug
   def show
     if !is_integer_id(params[:id])
