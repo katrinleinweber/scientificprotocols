@@ -8,12 +8,19 @@ describe Api::V1::ProtocolsController do
         get :index, format: :json
         expect(response.code).to eq('200')
       end
-      it 'responds with an array of protocols' do
-        get :index, format: :json
-        expect(response.map(&:slug)).to include(protocol.slug)
-      end
     end
-    describe 'GET /api/v1/#index' do
+    describe 'GET /api/v1/#show' do
+      it 'responds with 200' do
+        get :show, id: protocol.slug, format: :json
+        expect(response.code).to eq('200')
+      end
+      it 'not allowing ids, slugs only' do
+          get :show, id: protocol.id, format: :json
+          expect(JSON.parse(response.body)).to eq({
+            "error" => "internal_server_error",
+            "debug_message" => "ActiveRecord::RecordNotFound",
+          })
+      end
     end
   end
 end
