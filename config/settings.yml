@@ -1,26 +1,11 @@
-defaults: &defaults
-  api_github: <%= ENV["API_GITHUB"] %>
-  api_postmark: <%= ENV["API_POSTMARK"] %>
-  api_aws_access_key_id: <%= ENV["API_AWS_ACCESS_KEY_ID"] %>
-  api_aws_access_key: <%= ENV["API_AWS_ACCESS_KEY"] %>
-  new_relic_license_key: <%= ENV["NEW_RELIC_LICENSE_KEY"] %>
-
 development:
-  <<: *defaults
+  api_github: 6729d3df43c6175308b115cc0b77fd3342998e79
+  api_postmark: POSTMARK_API_TEST
+  api_aws_access_key_id: AKIAIB5GUKUHGACR7VHQ
+  api_aws_access_key: ew713I45fDbj02IhDIl9iAHA40PrrTVetbYnDbXN
 
 test:
-  <<: *defaults
-
-staging:
-  api_github: <%= ENV["API_GITHUB"] %>
-  api_postmark: <%= ENV["API_POSTMARK"] %>
-  api_aws_access_key_id: <%= ENV["API_AWS_ACCESS_KEY_ID"] %>
-  api_aws_access_key: <%= ENV["API_AWS_ACCESS_KEY"] %>
-  new_relic_license_key: <%= ENV["NEW_RELIC_LICENSE_KEY"] %>
-
-production:
-  api_github: <%= ENV["API_GITHUB"] %>
-  api_postmark: <%= ENV["API_POSTMARK"] %>
-  api_aws_access_key_id: <%= ENV["API_AWS_ACCESS_KEY_ID"] %>
-  api_aws_access_key: <%= ENV["API_AWS_ACCESS_KEY"] %>
-  new_relic_license_key: <%= ENV["NEW_RELIC_LICENSE_KEY"] %>
+  api_github: 6729d3df43c6175308b115cc0b77fd3342998e79
+  api_postmark: POSTMARK_API_TEST
+  api_aws_access_key_id: AKIAIB5GUKUHGACR7VHQ
+  api_aws_access_key: ew713I45fDbj02IhDIl9iAHA40PrrTVetbYnDbXN
