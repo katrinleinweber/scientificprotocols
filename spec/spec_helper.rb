@@ -49,8 +49,11 @@ RSpec.configure do |config|
   config.order = "random"
 
   config.include Devise::TestHelpers, type: :controller
+
   # http://stackoverflow.com/a/12334380/880381
-  config.include ControllerMacros, type: :controller
+  # http://stackoverflow.com/a/6296767/880381
+  config.infer_spec_type_from_file_location!
+  config.extend ControllerMacros, type: :controller
 
   config.include FactoryGirl::Syntax::Methods
 end
