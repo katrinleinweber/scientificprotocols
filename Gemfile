@@ -53,9 +53,13 @@ gem 'bootstrap_tokenfield_rails'
 # Authorization & Access control.
 gem 'devise'
 gem 'cancancan'
+gem 'omniauth-github'
 
 # Markdown.
 gem 'redcarpet'
+
+# Serializers.
+gem "active_model_serializers"
 
 # Search.
 gem 'sunspot_solr'

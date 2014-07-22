@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   mount_roboto
-  devise_for :users
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   root to: 'home#index'
   resources :protocols do
     collection do
@@ -10,4 +10,10 @@ Rails.application.routes.draw do
   resources :users, only: :show
   get 'sitemap.xml', to: redirect('https://s3.amazonaws.com/scientificprotocols/sitemaps/sitemap.xml.gz')
   get ':action' => 'static#:action'
+
+  namespace :api, defaults: {format: :json} do
+    namespace :v1 do
+      resources :protocols, only: [:index, :show]
+    end
+  end
 end
