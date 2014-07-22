@@ -58,6 +58,9 @@ gem 'omniauth-github'
 # Markdown.
 gem 'redcarpet'
 
+# Serializers.
+gem "active_model_serializers"
+
 # Search.
 gem 'sunspot_solr'
 gem 'sunspot_rails'
