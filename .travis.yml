@@ -3,6 +3,12 @@ rvm:
   - 2.1.2
 before_script:
   - cp config/database.travis.yml config/database.yml
-  - cp config/settings.travis.yml config/settings.local.yml
 env:
+  # Encrypted seekrits. These are done by using the command line 'travis' tool, like so:
+  # $ gem install travis
+  # $ travis encrypt "secret_api_key: MyFakeSecret"
+  # The above command will produce a string like "secure: <encrypted stuff>" which you can paste
+  # into this config file.
+
+  # Encrypted test Github API key
   secure: "RYwfMXH9c3LlD9LuSrpnFyky0puG7/jJ0O+qslfV6wrtrCovWoLlV6AMckShFv6R23gRAnkYg5hApM/YSUuj+EwwEAw0m8V5oWaqbCUfF4bQ3z7497O/p4LjQYVL4klgwS2ECvnXqY2CT8Im4McKW1S2KMTck/w7aqeZIpO3Q6U="
