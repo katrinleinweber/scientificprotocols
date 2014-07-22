@@ -3,6 +3,7 @@ rvm:
   - 2.1.2
 before_script:
   - cp config/database.travis.yml config/database.yml
+  - cp config/settings.travis.yml config/settings.local.yml
 env:
   # Encrypted seekrits. These are done by using the command line 'travis' tool, like so:
   # $ gem install travis
