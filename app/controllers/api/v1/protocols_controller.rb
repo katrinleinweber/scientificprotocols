@@ -20,7 +20,7 @@ class Api::V1::ProtocolsController < Api::V1::BaseController
 
   # POST /api/v1/protocols
   def create
-    Protocol.create! protocol_params
+    # Protocol.create! protocol_params
   end
 
   # PATCH /api/v1/protocols/protocol-slug
