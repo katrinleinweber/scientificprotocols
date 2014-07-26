@@ -6,7 +6,7 @@ before_script:
   - cp config/database.travis.yml config/database.yml
 env:
   global:
-    # Encrypted seekrits. These are done by using the command line 'travis' tool, like so:
+    # Encrypted secrets. These are done by using the command line 'travis' tool, like so:
     # $ gem install travis
     # $ travis encrypt "API_KEY=MyAPISecret"
     # The above command will produce a string like "secure: <encrypted stuff>" which you can paste

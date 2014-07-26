@@ -112,6 +112,8 @@ GEM
     fog-softlayer (0.3.9)
       fog-core
       fog-json
+    font-awesome-rails (4.1.0.0)
+      railties (>= 3.2, < 5.0)
     formatador (0.2.5)
     friendly_id (5.0.4)
       activerecord (>= 4.0.0)
@@ -168,6 +170,9 @@ GEM
       net-ssh (>= 2.6.5)
     net-ssh (2.9.1)
     newrelic_rpm (3.9.0.229)
+    ngrok (1.6.1)
+      daemons
+      listen
     nokogiri (1.6.3)
       mini_portile (= 0.6.0)
     oauth2 (1.0.0)
@@ -352,6 +357,7 @@ DEPENDENCIES
   factory_girl_rails
   faker
   fog
+  font-awesome-rails
   friendly_id
   guard-rspec
   guard-spork
@@ -362,6 +368,7 @@ DEPENDENCIES
   kgio
   memcachier
   newrelic_rpm
+  ngrok
   octokit
   omniauth-github
   pg

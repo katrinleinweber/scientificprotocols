@@ -50,6 +50,9 @@ gem 'bootstrap-sass'
 gem 'bootstrap_form'
 gem 'bootstrap_tokenfield_rails'
 
+# Font awesome
+gem 'font-awesome-rails'
+
 # Authorization & Access control.
 gem 'devise'
 gem 'cancancan'
@@ -108,6 +111,8 @@ end
 group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  # Expose your local webserver without messing with DNS and firewall settings.
+  gem 'ngrok'
 end
 
 group :test, :development do

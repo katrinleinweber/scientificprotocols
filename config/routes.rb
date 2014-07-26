@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   mount_roboto
-  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+  devise_for :users, controllers: {
+    omniauth_callbacks: 'users/omniauth_callbacks',
+    registrations: 'registrations'
+  }
   root to: 'home#index'
   resources :protocols do
     collection do
