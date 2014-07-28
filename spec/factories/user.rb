@@ -6,6 +6,6 @@ FactoryGirl.define do
   end
   factory :github_user, parent: :user do
     uid { rand(1000000..9999999).to_s }
-    provider { :github }
+    provider { 'github' }
   end
 end

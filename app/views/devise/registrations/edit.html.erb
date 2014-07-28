@@ -22,11 +22,30 @@
           <%= f.submit 'Update', class: 'btn btn-primary' %>
         </div>
     <% end %>
+
+    <h3>GitHub Integration</h3>
+    <% if current_user.github_connected? %>
+      <div class="alert alert-success" role="alert">
+        You have successfully connected your GitHub account.
+      </div>
+    <% else %>
+      <div class="alert alert-danger" role="alert">
+        <strong>GitHub Disconnected.</strong> You currently have no associated GitHub account. Without an associated GitHub account
+        many advanced site features will be unavailable.
+      </div>
+      <%= link_to user_omniauth_authorize_path(:github), class: 'btn btn-block btn-social btn-github' do %>
+        <i class="fa fa-github"></i> Connect GitHub Account
+      <% end %>
+    <% end %>
+
+    <h3>Cancel account</h3>
+
+    <p>Permanently delete your account. This action cannot be undone.
+      <%= button_to 'Cancel account', registration_path(resource_name),
+            data: { confirm: 'Are you sure?'}, method: :delete, class: 'btn btn-danger' %></p>
+
+    <%= link_to 'Back', :back %>
   </div>
 </div>
 
-<h3>Cancel account</h3>
 
-<p>Permanently delete your account. This action cannot be undone. <%= button_to 'Cancel account', registration_path(resource_name), data: { confirm: 'Are you sure?'}, method: :delete, class: 'btn btn-danger' %></p>
-
-<%= link_to 'Back', :back %>

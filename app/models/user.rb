@@ -20,20 +20,36 @@ class User < ActiveRecord::Base
       where(conditions).first
     end
   end
-  def self.from_omniauth(auth)
+  # Find an existing user using credentials obtained from oAuth.
+  # Create the user if they don't exist. Associate a current user
+  # with a GitHub account if current user supplied.
+  # @param [Hash] auth The authentication settings returned from GitHub.
+  # @param [User] current_user The user to associate the GitHub account with.
+  def self.from_omniauth(auth, current_user = nil)
     user = where(auth.slice(:provider, :uid)).first
     if user.nil?
-      user = User.create(
-        email: auth.info.email,
-        username: get_unique_username(auth.info.nickname),
-        password: Devise.friendly_token[0,20],
-        uid: auth.uid,
-        provider: auth.provider
-      )
+      if current_user.nil?
+        user = User.create(
+          email: auth.info.email,
+          username: get_unique_username(auth.info.nickname),
+          password: Devise.friendly_token[0,20],
+          uid: auth.uid,
+          provider: auth.provider
+        )
+      else
+        # Associate the GitHub account with the user.
+        current_user.update_attributes(
+          uid: auth.uid,
+          provider: auth.provider
+        )
+        user = current_user
+      end
     end
     user
   end
-
+  def github_connected?
+    return (self.provider == 'github' && self.uid.present?)
+  end
   private
 
   # Ensure the username is unique if it came from oAuth.
