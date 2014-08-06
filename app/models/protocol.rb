@@ -49,19 +49,12 @@ class Protocol < ActiveRecord::Base
   # Get the protocol facets. A count of tags against protocols in the context of
   # the current search and/or filter.
   def self.facets(protocols)
-    facet_tags = []
-    protocols.each do |protocol|
-      facet_tags = (facet_tags + protocol.tag_list).uniq
+    tags = []
+    all_tags = Protocol.tag_counts.order(:name)
+    all_tags.each do |tag|
+      tag.taggings_count = protocols.tagged_with(tag).count
+      tags << tag if tag.taggings_count > 0
     end
-    facets = ActsAsTaggableOn::Tag.where(name: facet_tags).order(:name)
-    facets.each do |tag|
-      tag_count = 0
-      protocols.each do |protocol|
-        if protocol.tag_list.include?(tag.name)
-          tag_count = tag_count + 1
-        end
-      end
-      tag.taggings_count = tag_count
-    end
+    tags
   end
 end
