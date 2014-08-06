@@ -49,6 +49,10 @@ class Protocol < ActiveRecord::Base
   # Get the protocol facets. A count of tags against protocols in the context of
   # the current search and/or filter.
   def self.facets(protocols)
+    # Hack - How to convert this collection better?
+    protocols = Protocol.where(id: protocols.map(&:id)) if protocols.is_a? Sunspot::Search::PaginatedCollection
+
+    # Recalculate tag count based on current result set not total result set.
     tags = []
     all_tags = Protocol.tag_counts.order(:name)
     all_tags.each do |tag|
