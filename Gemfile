@@ -49,6 +49,7 @@ gem 'kgio'
 gem 'bootstrap-sass'
 gem 'bootstrap_form'
 gem 'bootstrap_tokenfield_rails'
+gem 'autoprefixer-rails'
 
 # Font awesome
 gem 'font-awesome-rails'
@@ -62,7 +63,7 @@ gem 'omniauth-github'
 gem 'redcarpet'
 
 # Serializers.
-gem "active_model_serializers"
+gem 'active_model_serializers'
 
 # Search.
 gem 'sunspot_solr'
