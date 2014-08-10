@@ -91,11 +91,14 @@ gem 'acts-as-taggable-on'
 gem 'memcachier'
 gem 'dalli'
 
-# Performance metrics
+# Performance metrics.
 gem 'newrelic_rpm'
 
 # Choice gem. Easy external settings.
 gem 'choices'
+
+# State management.
+gem 'workflow'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
