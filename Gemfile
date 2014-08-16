@@ -45,7 +45,6 @@ gem 'autoprefixer-rails'
 gem 'font-awesome-rails'
 
 # Authorization & Access control.
-gem 'devise'
 gem 'cancancan'
 gem 'omniauth-github'
 

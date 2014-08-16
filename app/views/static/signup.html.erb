@@ -1,0 +1,10 @@
+<%= render partial: 'shared/page_title', locals: { page_title: 'Sign up' } %>
+<p>Scientific Protocols is built on top of the GitHub API and requires a GitHub account to
+  perform certain functions such as creating protocols.</p>
+<div class="row">
+  <div class="col-md-4">
+    <%= link_to signin_path, class: 'btn btn-block btn-social btn-lg btn-github' do %>
+      <i class="fa fa-github"></i> Sign up with GitHub
+    <% end %>
+  </div>
+</div>

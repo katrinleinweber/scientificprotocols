@@ -18,31 +18,31 @@ describe ProtocolsController do
     describe 'GET #new' do
       it 'redirects to the login page' do
         get :new
-        expect(response).to redirect_to new_user_session_url
+        expect(response).to redirect_to '/signup'
       end
     end
     describe 'POST #create' do
       it 'redirects to the login page' do
         post :create, protocol: FactoryGirl.attributes_for(:protocol)
-        expect(response).to redirect_to new_user_session_url
+        expect(response).to redirect_to '/signup'
       end
     end
     describe 'GET #edit' do
       it 'redirects to the login page' do
         get :edit, id: protocol.id
-        expect(response).to redirect_to new_user_session_url
+        expect(response).to redirect_to '/signup'
       end
     end
     describe 'PATCH #update' do
       it 'redirects to the login page' do
         patch :update, id: protocol.id, protocol: { title: Faker::Lorem.sentence(5) }
-        expect(response).to redirect_to new_user_session_url
+        expect(response).to redirect_to '/signup'
       end
     end
     describe 'DELETE #destroy' do
       it 'redirects to the login page' do
         delete :destroy, id: protocol.id
-        expect(response).to redirect_to new_user_session_url
+        expect(response).to redirect_to '/signup'
       end
     end
     describe 'GET #tags' do
