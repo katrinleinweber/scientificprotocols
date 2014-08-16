@@ -1,5 +1,5 @@
 class RegistrationsController < Devise::RegistrationsController
-  # By default devise does not allow the user to edit their account with a password
+  # By default Devise does not allow the user to edit their account without a password
   # confirmation. Overriding this behavior here as users who signed up with oAuth won't know
   # their password making for a clumsy experience.
   def update
