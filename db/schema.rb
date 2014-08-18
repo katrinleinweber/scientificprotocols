@@ -29,52 +29,6 @@ ActiveRecord::Schema.define(version: 20140817004045) do
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
-  create_table "mailboxer_conversation_opt_outs", force: true do |t|
-    t.integer "unsubscriber_id"
-    t.string  "unsubscriber_type"
-    t.integer "conversation_id"
-  end
-
-  create_table "mailboxer_conversations", force: true do |t|
-    t.string   "subject",    default: ""
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-  end
-
-  create_table "mailboxer_notifications", force: true do |t|
-    t.string   "type"
-    t.text     "body"
-    t.string   "subject",              default: ""
-    t.integer  "sender_id"
-    t.string   "sender_type"
-    t.integer  "conversation_id"
-    t.boolean  "draft",                default: false
-    t.string   "notification_code"
-    t.integer  "notified_object_id"
-    t.string   "notified_object_type"
-    t.string   "attachment"
-    t.datetime "updated_at",                           null: false
-    t.datetime "created_at",                           null: false
-    t.boolean  "global",               default: false
-    t.datetime "expires"
-  end
-
-  add_index "mailboxer_notifications", ["conversation_id"], name: "index_mailboxer_notifications_on_conversation_id", using: :btree
-
-  create_table "mailboxer_receipts", force: true do |t|
-    t.integer  "receiver_id"
-    t.string   "receiver_type"
-    t.integer  "notification_id",                            null: false
-    t.boolean  "is_read",                    default: false
-    t.boolean  "trashed",                    default: false
-    t.boolean  "deleted",                    default: false
-    t.string   "mailbox_type",    limit: 25
-    t.datetime "created_at",                                 null: false
-    t.datetime "updated_at",                                 null: false
-  end
-
-  add_index "mailboxer_receipts", ["notification_id"], name: "index_mailboxer_receipts_on_notification_id", using: :btree
-
   create_table "protocol_managers", force: true do |t|
     t.integer  "user_id"
     t.integer  "protocol_id"
