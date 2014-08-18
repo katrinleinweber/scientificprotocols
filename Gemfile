@@ -4,16 +4,6 @@ ruby '2.1.2'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.4'
 
-group :production, :staging do
-  # Use PostgreSQL as the database for Active Record.
-  gem 'pg'
-end
-
-group :development, :test do
-  # Use sql light in development and test.
-  gem 'sqlite3'
-end
-
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 
@@ -55,12 +45,14 @@ gem 'autoprefixer-rails'
 gem 'font-awesome-rails'
 
 # Authorization & Access control.
-gem 'devise'
 gem 'cancancan'
 gem 'omniauth-github'
 
 # Markdown.
 gem 'redcarpet'
+
+# HTML truncate.
+gem 'truncate_html'
 
 # Serializers.
 gem 'active_model_serializers'
@@ -98,11 +90,14 @@ gem 'acts-as-taggable-on'
 gem 'memcachier'
 gem 'dalli'
 
-# Performance metrics
+# Performance metrics.
 gem 'newrelic_rpm'
 
 # Choice gem. Easy external settings.
 gem 'choices'
+
+# State management.
+gem 'workflow'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -132,6 +127,8 @@ group :test, :development do
   gem 'faker'
   # Custom matchers for rspec.
   gem 'shoulda'
+  # Use sql light in development and test.
+  gem 'sqlite3'
 end
 
 group :production, :staging do
@@ -141,4 +138,6 @@ group :production, :staging do
   gem 'rails_12factor'
   # Use compressed asset versions
   gem 'heroku_rails_deflate'
+  # Use PostgreSQL as the database for Active Record.
+  gem 'pg'
 end

@@ -1,9 +1,10 @@
 module ControllerMacros
   def login_user
     before(:each) do
-      @request.env["devise.mapping"] = Devise.mappings[:user]
       @current_user = FactoryGirl.create(:user)
-      sign_in @current_user
+      session[:user_id] = @current_user.id
+      request.env['omniauth.auth'] = OmniAuth.config.mock_auth[:github]
+      session[:access_token] = Rails.configuration.api_github
     end
   end
 end

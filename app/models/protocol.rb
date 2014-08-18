@@ -1,5 +1,6 @@
 class Protocol < ActiveRecord::Base
   extend FriendlyId
+  include Octokitable
   include ProtocolObserver
   acts_as_taggable
   friendly_id :title, use: :slugged
