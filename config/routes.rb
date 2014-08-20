@@ -8,6 +8,10 @@ Rails.application.routes.draw do
     collection do
       get :tags
     end
+    member do
+      put :star
+      delete :unstar
+    end
   end
   resources :users, except: :index
   get 'sitemap.xml', to: redirect('https://s3.amazonaws.com/scientificprotocols/sitemaps/sitemap.xml.gz')

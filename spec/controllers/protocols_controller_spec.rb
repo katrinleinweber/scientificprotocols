@@ -46,9 +46,21 @@ describe ProtocolsController do
       end
     end
     describe 'GET #tags' do
-      it 'redirects to the login page' do
+      it 'allows access' do
         get :tags, format: :json
         expect(response.code).to eq('200')
+      end
+    end
+    describe 'PUT #star' do
+      it 'redirects to the login page' do
+        put :star, id: protocol.id
+        expect(response).to redirect_to '/signup'
+      end
+    end
+    describe 'DELETE #unstar' do
+      it 'redirects to the login page' do
+        delete :unstar, id: protocol.id
+        expect(response).to redirect_to '/signup'
       end
     end
   end
@@ -96,9 +108,19 @@ describe ProtocolsController do
       end
     end
     describe 'GET #tags' do
-      it 'redirects to the login page' do
+      it 'allows access' do
         get :tags, format: :json
         expect(response.code).to eq('200')
+      end
+    end
+    describe 'PUT #star' do
+      it 'forbids access' do
+        expect { put :star, id: protocol.id }.to raise_error(CanCan::AccessDenied)
+      end
+    end
+    describe 'DELETE #unstar' do
+      it 'forbids access' do
+        expect{ delete :unstar, id: protocol.id }.to raise_error(CanCan::AccessDenied)
       end
     end
   end
@@ -160,9 +182,21 @@ describe ProtocolsController do
       end
     end
     describe 'GET #tags' do
-      it 'redirects to the login page' do
+      it 'allows access' do
         get :tags, format: :json
         expect(response.code).to eq('200')
+      end
+    end
+    describe 'PUT #star' do
+      it 'redirects to the protocols page' do
+        put :star, id: protocol.id
+        expect(response).to redirect_to protocol
+      end
+    end
+    describe 'DELETE #unstar' do
+      it 'redirects to the protocols page' do
+        delete :unstar, id: protocol.id
+        expect(response).to redirect_to protocol
       end
     end
   end

@@ -1,8 +1,9 @@
 class ProtocolsController < ApplicationController
   before_filter :authenticate_user!, except: [:show, :index, :tags]
-  before_action :set_protocol, only: [:show, :edit, :update, :destroy]
+  before_action :set_protocol, only: [:show, :edit, :update, :destroy, :star, :unstar]
   before_filter :set_params, only: [:show, :index]
-  before_filter :set_octokit_client, only: [:update, :destroy]
+  before_filter :set_octokit_client, only: [:update, :destroy, :star, :unstar]
+  before_filter :set_gist, only: [:star, :unstar]
   load_and_authorize_resource except: [:tags]
 
   # GET /protocols
@@ -17,14 +18,15 @@ class ProtocolsController < ApplicationController
   # GET /protocols/1
   def show
     set_octokit_client(true)
+    set_gist
     @protocol_manager = ProtocolManager.where(protocol: @protocol, user: current_user).first if current_user.present?
-    gist = @protocol.octokit_client.gist(@protocol.gist_id)
-    @revision_url = gist.html_url + '/revisions'
+    @revision_url = @gist.html_url + '/revisions'
     @back_path = protocols_path
     query_string = get_query_string_from_referrer(request)
     if params[:controller] == 'protocols' && query_string.present?
       @back_path << '?' + query_string
     end
+    @gist_starred = @protocol.octokit_client.gist_starred?(@gist.id)
     respond_to do |format|
       format.html
     end
@@ -88,6 +90,26 @@ class ProtocolsController < ApplicationController
     end
   end
 
+  def star
+    respond_to do |format|
+      if @protocol.octokit_client.star_gist(@gist.id)
+        format.html { redirect_to @protocol, notice: t('notices.protocols.starred') }
+      else
+        format.html { redirect_to @protocol, alert: t('alerts.protocols.starred_failed') }
+      end
+    end
+  end
+
+  def unstar
+    respond_to do |format|
+      if @protocol.octokit_client.unstar_gist(@gist.id)
+        format.html { redirect_to @protocol, notice: t('notices.protocols.unstarred') }
+      else
+        format.html { redirect_to @protocol, alert: t('alerts.protocols.unstarred_failed') }
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_protocol
@@ -97,6 +119,11 @@ class ProtocolsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def protocol_params
       params.require(:protocol).permit(:title, :description, :tag_list)
+    end
+
+    # Set the Gist associated with the protocol.
+    def set_gist
+      @gist = @protocol.octokit_client.gist(@protocol.gist_id)
     end
 
     # Get a hash of approved query string params.

@@ -27,8 +27,14 @@ en:
     sessions:
       signed_in: 'You have signed in successfully'
       signed_out: 'You have signed out successfully'
+    protocols:
+      starred: 'Protocol was starred successfully.'
+      unstarred: 'Protocol was unstarred successfully.'
   alerts:
     sessions:
       authentication_failed: 'Your sign in was not successful. %{error}'
       signin_required: 'Please sign in to access this page'
+    protocols:
+      starred_failed: 'Protocol star attempt failed.'
+      unstarred_failed: 'Protocol unstar attempt failed.'
 

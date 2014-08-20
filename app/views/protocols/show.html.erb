@@ -29,6 +29,15 @@
       <span class="glyphicon glyphicon-tasks"></span> Revisions
     <% end %>
   <% end %>
+  <% if @gist_starred %>
+    <%= link_to unstar_protocol_path(@protocol), method: :delete, class: 'btn btn-default' do %>
+      <span class="glyphicon glyphicon-star"></span> Unstar
+    <% end %>
+  <% else %>
+    <%= link_to star_protocol_path(@protocol), method: :put, class: 'btn btn-default' do %>
+      <span class="glyphicon glyphicon-star-empty"></span> Star
+    <% end %>
+  <% end %>
   <% if @protocol_manager.present? %>
     <%= link_to 'Edit', edit_protocol_path(@protocol), class: 'btn btn-primary' %>
     <%= link_to 'Delete', protocol_path(@protocol), data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-danger' %>
