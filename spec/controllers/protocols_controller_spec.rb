@@ -114,13 +114,15 @@ describe ProtocolsController do
       end
     end
     describe 'PUT #star' do
-      it 'forbids access' do
-        expect { put :star, id: protocol.id }.to raise_error(CanCan::AccessDenied)
+      it 'redirects to the protocols page' do
+        put :star, id: protocol.id
+        expect(response).to redirect_to protocol
       end
     end
     describe 'DELETE #unstar' do
-      it 'forbids access' do
-        expect{ delete :unstar, id: protocol.id }.to raise_error(CanCan::AccessDenied)
+      it 'redirects to the protocols page' do
+        delete :unstar, id: protocol.id
+        expect(response).to redirect_to protocol
       end
     end
   end
