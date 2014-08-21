@@ -1,9 +1,9 @@
 module ProtocolObserver
   extend ActiveSupport::Concern
   included do
-    before_create :create_gist
-    before_update :update_gist
-    before_destroy :destroy_gist
+    before_create :create_gist, if: lambda { !self.skip_callbacks }
+    before_update :update_gist, if: lambda { !self.skip_callbacks }
+    before_destroy :destroy_gist, if: lambda { !self.skip_callbacks }
   end
   private
   def create_gist

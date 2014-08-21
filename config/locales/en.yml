@@ -30,6 +30,7 @@ en:
     protocols:
       starred: 'Protocol was starred successfully.'
       unstarred: 'Protocol was unstarred successfully.'
+      forked: 'Protocol was forked successfully.'
   alerts:
     sessions:
       authentication_failed: 'Your sign in was not successful. %{error}'
@@ -37,4 +38,5 @@ en:
     protocols:
       starred_failed: 'Protocol star attempt failed.'
       unstarred_failed: 'Protocol unstar attempt failed.'
+      forked_failed: 'Protocol forking attempt failed.'
 

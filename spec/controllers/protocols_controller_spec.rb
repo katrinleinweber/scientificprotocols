@@ -63,6 +63,12 @@ describe ProtocolsController do
         expect(response).to redirect_to '/signup'
       end
     end
+    describe 'POST #fork' do
+      it 'redirects to the login page' do
+        post :fork, id: protocol.id
+        expect(response).to redirect_to '/signup'
+      end
+    end
   end
   context 'Authenticated User' do
     login_user
@@ -123,6 +129,11 @@ describe ProtocolsController do
       it 'redirects to the protocols page' do
         delete :unstar, id: protocol.id
         expect(response).to redirect_to protocol
+      end
+    end
+    describe 'POST #fork' do
+      it 'forks a protocol' do
+        expect{ post :fork, protocol: protocol }.to change{ Protocol.count }.by(1)
       end
     end
   end
@@ -199,6 +210,11 @@ describe ProtocolsController do
       it 'redirects to the protocols page' do
         delete :unstar, id: protocol.id
         expect(response).to redirect_to protocol
+      end
+    end
+    describe 'POST #fork' do
+      it 'forks a protocol' do
+        expect{ post :fork, protocol: protocol }.to change{ Protocol.count }.by(1)
       end
     end
   end

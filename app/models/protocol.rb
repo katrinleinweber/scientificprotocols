@@ -1,5 +1,6 @@
 class Protocol < ActiveRecord::Base
   extend FriendlyId
+  attr_accessor :skip_callbacks
   include Octokitable
   include ProtocolObserver
   acts_as_taggable
@@ -61,5 +62,33 @@ class Protocol < ActiveRecord::Base
       tags << tag if tag.taggings_count > 0
     end
     tags
+  end
+
+  # Fork a protocol. Return the forked protocol object. Note you cannot fork a gist you own.
+  # WARNING - Protocol callbacks are skipped.
+  # @param [String] gist_id The ID of the Gist we're forking.
+  # @param [User] protocol_manager The user who will manage the protocol.
+  # @return [Protocol] The new protocol that came from the fork.
+  def fork(gist_id, protocol_manager)
+    return nil if self.octokit_client.blank? || gist_id.blank? || protocol_manager.blank?
+    new_gist = self.octokit_client.fork_gist(gist_id)
+    if new_gist.present?
+      title = "[#{protocol_manager.username}] #{new_gist.description}"
+      response = Net::HTTP.get_response(URI.parse(new_gist.files[PROTOCOL_FILE_NAME].raw_url))
+      description = response.code == '200' ? response.body : nil
+      protocol_manager = ProtocolManager.create(
+        user: protocol_manager,
+        protocol: Protocol.new(
+          title: title,
+          description: description,
+          gist_id: new_gist.id,
+          tag_list: self.tag_list,
+          skip_callbacks: true
+        )
+      )
+      protocol_manager.persisted? ? protocol_manager.protocol : nil
+    else
+      nil
+    end
   end
 end

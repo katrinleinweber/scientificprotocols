@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     member do
       put :star
       delete :unstar
+      post :fork
     end
   end
   resources :users, except: :index

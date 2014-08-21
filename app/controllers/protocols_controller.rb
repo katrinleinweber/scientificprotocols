@@ -1,9 +1,9 @@
 class ProtocolsController < ApplicationController
   before_filter :authenticate_user!, except: [:show, :index, :tags]
-  before_action :set_protocol, only: [:show, :edit, :update, :destroy, :star, :unstar]
+  before_action :set_protocol, only: [:show, :edit, :update, :destroy, :star, :unstar, :fork]
   before_filter :set_params, only: [:show, :index]
-  before_filter :set_octokit_client, only: [:update, :destroy, :star, :unstar]
-  before_filter :set_gist, only: [:star, :unstar]
+  before_filter :set_octokit_client, only: [:update, :destroy, :star, :unstar, :fork]
+  before_filter :set_gist, only: [:star, :unstar, :fork]
   load_and_authorize_resource except: [:tags]
 
   # GET /protocols
@@ -27,6 +27,7 @@ class ProtocolsController < ApplicationController
       @back_path << '?' + query_string
     end
     @gist_starred = @protocol.octokit_client.gist_starred?(@gist.id)
+    @forkable = current_user.present? && @protocol_manager.blank?
     respond_to do |format|
       format.html
     end
@@ -106,6 +107,17 @@ class ProtocolsController < ApplicationController
         format.html { redirect_to @protocol, notice: t('notices.protocols.unstarred') }
       else
         format.html { redirect_to @protocol, alert: t('alerts.protocols.unstarred_failed') }
+      end
+    end
+  end
+
+  def fork
+    new_protocol = @protocol.fork(@gist.id, current_user)
+    respond_to do |format|
+      if new_protocol.present?
+        format.html { redirect_to new_protocol, notice: t('notices.protocols.forked') }
+      else
+        format.html { redirect_to @protocol, alert: t('alerts.protocols.forked_failed') }
       end
     end
   end
