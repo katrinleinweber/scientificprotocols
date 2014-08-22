@@ -63,6 +63,12 @@ describe ProtocolsController do
         expect(response).to redirect_to '/signup'
       end
     end
+    describe 'POST #fork' do
+      it 'redirects to the login page' do
+        post :fork, id: protocol.id
+        expect(response).to redirect_to '/signup'
+      end
+    end
   end
   context 'Authenticated User' do
     login_user
@@ -124,6 +130,13 @@ describe ProtocolsController do
         delete :unstar, id: protocol.id
         expect(response).to redirect_to protocol
       end
+    end
+    describe 'POST #fork' do
+      # TODO - This is hard. You need a Gist created with a different GitHub account from
+      # the current user in order to avoid "can't fork your own Gist" error.
+      # it 'forks a protocol' do
+      #   expect{ post :fork, id: protocol.id, protocol: protocol }.to change{ Protocol.count }.by(1)
+      # end
     end
   end
   context 'Protocol Manager' do
@@ -200,6 +213,13 @@ describe ProtocolsController do
         delete :unstar, id: protocol.id
         expect(response).to redirect_to protocol
       end
+    end
+    describe 'POST #fork' do
+      # TODO - This is hard. You need a Gist created with a different GitHub account from
+      # the current user in order to avoid "can't fork your own Gist" error.
+      # it 'forks a protocol' do
+      #   expect{ post :fork, id: protocol.id, protocol: protocol }.to change{ Protocol.count }.by(1)
+      # end
     end
   end
 end
