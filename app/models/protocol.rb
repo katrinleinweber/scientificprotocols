@@ -71,9 +71,11 @@ class Protocol < ActiveRecord::Base
   # @return [Protocol] The new protocol that came from the fork.
   def fork(gist_id, protocol_manager)
     return nil if self.octokit_client.blank? || gist_id.blank? || protocol_manager.blank?
+    managed_by = self.users.first
+    managed_by_username = managed_by.username if managed_by.present?
     new_gist = self.octokit_client.fork_gist(gist_id)
     if new_gist.present?
-      title = "[#{protocol_manager.username}] #{new_gist.description}"
+      title = format_title("[#{protocol_manager.username}] #{new_gist.description}", managed_by_username)
       response = Net::HTTP.get_response(URI.parse(new_gist.files[PROTOCOL_FILE_NAME].raw_url))
       description = response.code == '200' ? response.body : nil
       protocol_manager = ProtocolManager.create(
@@ -91,4 +93,14 @@ class Protocol < ActiveRecord::Base
       nil
     end
   end
+
+  private
+    # Format a protocol title. Strip the bracketed username for a forked protocol.
+    # @param [String] title The title of that we're formatting.
+    # @param [String] username The username we're stripping from the string.
+    # @return [String] The formatted title.
+    def format_title(title, username)
+      title.slice! "[#{username}]"
+      title
+    end
 end
