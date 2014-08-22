@@ -3,6 +3,10 @@
   <% managed_by = @protocol.users.first %>
   <div class="row">
     <div class="col-md-6">
+      <% if @fork_of.present? %>
+        Fork of: <%= link_to(@fork_of.title, @fork_of) %>
+        <div class="clearfix"></div>
+      <% end %>
       <% if @protocol.tag_list.present? %>
         <% @protocol.tag_list.each do |tag| %>
           <span class="label label-default"><%= tag %></span>

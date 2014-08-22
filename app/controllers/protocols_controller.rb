@@ -28,6 +28,7 @@ class ProtocolsController < ApplicationController
     end
     @gist_starred = @protocol.octokit_client.gist_starred?(@gist.id)
     @forkable = current_user.present? && @protocol_manager.blank?
+    @fork_of = @gist.fork_of.present? ? Protocol.find_by_gist_id(@gist.fork_of.id) : nil
     respond_to do |format|
       format.html
     end
