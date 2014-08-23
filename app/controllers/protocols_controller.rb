@@ -20,15 +20,16 @@ class ProtocolsController < ApplicationController
     set_octokit_client(true)
     set_gist
     @protocol_manager = ProtocolManager.where(protocol: @protocol, user: current_user).first if current_user.present?
-    @revision_url = @gist.html_url + '/revisions'
+    @revision_url = @protocol.gist_revision_url
     @back_path = protocols_path
     query_string = get_query_string_from_referrer(request)
     if params[:controller] == 'protocols' && query_string.present?
       @back_path << '?' + query_string
     end
-    @gist_starred = @protocol.octokit_client.gist_starred?(@gist.id)
+    @gist_starred = @protocol.octokit_client.gist_starred?(@protocol.gist.id)
     @forkable = current_user.present? && @protocol_manager.blank?
-    @fork_of = @gist.fork_of.present? ? Protocol.find_by_gist_id(@gist.fork_of.id) : nil
+    @fork_of = @protocol.gist.fork_of.present? ? Protocol.find_by_gist_id(@protocol.gist.fork_of.id) : nil
+    @embed_script = @protocol.gist_embed_script
     respond_to do |format|
       format.html
     end
@@ -56,7 +57,7 @@ class ProtocolsController < ApplicationController
     set_octokit_client
     respond_to do |format|
       if @protocol_manager.save
-        format.html { redirect_to @protocol, notice: 'Protocol was successfully created.' }
+        format.html { redirect_to @protocol, notice: t('notices.protocols.create') }
       else
         format.html { render :new }
       end
@@ -67,7 +68,7 @@ class ProtocolsController < ApplicationController
   def update
     respond_to do |format|
       if @protocol.update(protocol_params)
-        format.html { redirect_to @protocol, notice: 'Protocol was successfully updated.' }
+        format.html { redirect_to @protocol, notice: t('notices.protocols.update') }
       else
         format.html { render :edit }
       end
@@ -78,9 +79,9 @@ class ProtocolsController < ApplicationController
   def destroy
     respond_to do |format|
       if @protocol.destroy
-        format.html { redirect_to protocols_url, notice: 'Protocol was successfully deleted.' }
+        format.html { redirect_to protocols_url, notice: t('notices.protocols.delete') }
       else
-        format.html { redirect_to @protocol, alert: 'Protocol deletion failed.' }
+        format.html { redirect_to @protocol, alert: t('alerts.protocols.delete_failed') }
       end
     end
   end
@@ -94,7 +95,7 @@ class ProtocolsController < ApplicationController
 
   def star
     respond_to do |format|
-      if @protocol.octokit_client.star_gist(@gist.id)
+      if @protocol.octokit_client.star_gist(@protocol.gist.id)
         format.html { redirect_to @protocol, notice: t('notices.protocols.starred') }
       else
         format.html { redirect_to @protocol, alert: t('alerts.protocols.starred_failed') }
@@ -104,7 +105,7 @@ class ProtocolsController < ApplicationController
 
   def unstar
     respond_to do |format|
-      if @protocol.octokit_client.unstar_gist(@gist.id)
+      if @protocol.octokit_client.unstar_gist(@protocol.gist.id)
         format.html { redirect_to @protocol, notice: t('notices.protocols.unstarred') }
       else
         format.html { redirect_to @protocol, alert: t('alerts.protocols.unstarred_failed') }
@@ -113,7 +114,7 @@ class ProtocolsController < ApplicationController
   end
 
   def fork
-    new_protocol = @protocol.fork(@gist.id, current_user)
+    new_protocol = @protocol.fork(@protocol.gist.id, current_user)
     respond_to do |format|
       if new_protocol.present?
         format.html { redirect_to new_protocol, notice: t('notices.protocols.forked') }
@@ -136,7 +137,7 @@ class ProtocolsController < ApplicationController
 
     # Set the Gist associated with the protocol.
     def set_gist
-      @gist = @protocol.octokit_client.gist(@protocol.gist_id)
+      @protocol.gist = @protocol.octokit_client.gist(@protocol.gist_id)
     end
 
     # Get a hash of approved query string params.

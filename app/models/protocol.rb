@@ -2,6 +2,7 @@ class Protocol < ActiveRecord::Base
   extend FriendlyId
   attr_accessor :skip_callbacks
   include Octokitable
+  include Gistable
   include ProtocolObserver
   acts_as_taggable
   friendly_id :title, use: :slugged

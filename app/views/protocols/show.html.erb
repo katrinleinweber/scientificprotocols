@@ -1,56 +1,74 @@
 <%= render partial: 'shared/page_title', locals: { page_title: @protocol.title } %>
-<% cache ['Protocol', @protocol] do %>
-  <% managed_by = @protocol.users.first %>
-  <div class="row">
-    <div class="col-md-6">
-      <% if @fork_of.present? %>
-        Fork of: <%= link_to(@fork_of.title, @fork_of) %>
-        <div class="clearfix"></div>
+<% managed_by = @protocol.users.first %>
+<div class="row margin-bottom-10">
+  <div class="col-md-6">
+    <% if @fork_of.present? %>
+      Fork of: <%= link_to(@fork_of.title, @fork_of) %>
+      <div class="clearfix"></div>
+    <% end %>
+    <% if @protocol.tag_list.present? %>
+      <% @protocol.tag_list.each do |tag| %>
+        <span class="label label-default"><%= tag %></span>
       <% end %>
-      <% if @protocol.tag_list.present? %>
-        <% @protocol.tag_list.each do |tag| %>
-          <span class="label label-default"><%= tag %></span>
+    <% end %>
+  </div>
+  <div class="col-md-6">
+    <% if managed_by.present? %>
+      <p class="text-right">
+        <%= link_to managed_by.username, user_path(managed_by.slug) %>
+        authored <%= time_ago_in_words(@protocol.updated_at) %> ago
+      </p>
+    <% end %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-10">
+    <% cache ['Protocol', @protocol] do %>
+      <%= MARKDOWN.render(@protocol.description).html_safe %>
+    <% end %>
+  </div>
+  <div class="col-md-2">
+    <div class="btn-group-vertical btn-block margin-bottom-10">
+      <%= link_to @back_path, class: 'btn btn-default' do %>
+        <span class="glyphicon glyphicon-arrow-left"></span> Back
+      <% end %>
+      <% if @revision_url.present? %>
+        <%= link_to @revision_url, class: 'btn btn-default' do %>
+          <span class="glyphicon glyphicon-tasks"></span> Revisions
+        <% end %>
+      <% end %>
+      <% if current_user.present? %>
+        <% if @gist_starred %>
+          <%= link_to unstar_protocol_path(@protocol), method: :delete, class: 'btn btn-default' do %>
+            <span class="glyphicon glyphicon-star"></span> Unstar
+          <% end %>
+        <% else %>
+          <%= link_to star_protocol_path(@protocol), method: :put, class: 'btn btn-default' do %>
+            <span class="glyphicon glyphicon-star-empty"></span> Star
+          <% end %>
+        <% end %>
+      <% end %>
+      <% if @forkable %>
+        <%= link_to fork_protocol_path(@protocol), method: :post, class: 'btn btn-default' do %>
+          <span class="glyphicon glyphicon-random"></span> Fork
         <% end %>
       <% end %>
     </div>
-    <div class="col-md-6">
-      <% if managed_by.present? %>
-        <p class="text-right">
-          <%= link_to managed_by.username, user_path(managed_by.slug) %>
-          authored <%= time_ago_in_words(@protocol.updated_at) %> ago
-        </p>
+    <% if @embed_script.present? %>
+      <div class="input-group margin-bottom-10">
+        <%= text_field_tag 'embed_script', @embed_script, id: 'embed_script', class:'form-control', readonly: true %>
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button" data-clipboard-target="embed_script">
+            <span class="glyphicon glyphicon-share"></span>
+          </button>
+        </span>
+      </div>
+    <% end %>
+    <div class="btn-group-vertical btn-block">
+      <% if @protocol_manager.present? %>
+        <%= link_to 'Edit', edit_protocol_path(@protocol), class: 'btn btn-primary' %>
+        <%= link_to 'Delete', protocol_path(@protocol), data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-danger' %>
       <% end %>
     </div>
   </div>
-  <%= MARKDOWN.render(@protocol.description).html_safe %>
-<% end %>
-<div class="btn-toolbar" role="toolbar">
-  <%= link_to @back_path, class: 'btn btn-default' do %>
-    <span class="glyphicon glyphicon-arrow-left"></span> Back
-  <% end %>
-  <% if @revision_url.present? %>
-    <%= link_to @revision_url, class: 'btn btn-default' do %>
-      <span class="glyphicon glyphicon-tasks"></span> Revisions
-    <% end %>
-  <% end %>
-  <% if current_user.present? %>
-    <% if @gist_starred %>
-      <%= link_to unstar_protocol_path(@protocol), method: :delete, class: 'btn btn-default' do %>
-        <span class="glyphicon glyphicon-star"></span> Unstar
-      <% end %>
-    <% else %>
-      <%= link_to star_protocol_path(@protocol), method: :put, class: 'btn btn-default' do %>
-        <span class="glyphicon glyphicon-star-empty"></span> Star
-      <% end %>
-    <% end %>
-  <% end %>
-  <% if @forkable %>
-    <%= link_to fork_protocol_path(@protocol), method: :post, class: 'btn btn-default' do %>
-      <span class="glyphicon glyphicon-random"></span> Fork
-    <% end %>
-  <% end %>
-  <% if @protocol_manager.present? %>
-    <%= link_to 'Edit', edit_protocol_path(@protocol), class: 'btn btn-primary' %>
-    <%= link_to 'Delete', protocol_path(@protocol), data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-danger' %>
-  <% end %>
 </div>
