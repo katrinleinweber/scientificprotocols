@@ -18,5 +18,5 @@ $("input.tokenize").tokenfield
 
 # Setup embed protocol button.
 $(document).ready ->
-  clip = new ZeroClipboard($("#embed_script"))
+  clip = new ZeroClipboard($("#d_clip_button"))
   return
