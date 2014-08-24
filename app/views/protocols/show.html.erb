@@ -67,11 +67,11 @@
         </div>
       </div>
     <% end %>
-    <div class="btn-group-vertical btn-block">
-      <% if @protocol_manager.present? %>
+    <% if @protocol_manager.present? %>
+      <div class="btn-group-vertical btn-block">
         <%= link_to 'Edit', edit_protocol_path(@protocol), class: 'btn btn-primary' %>
         <%= link_to 'Delete', protocol_path(@protocol), data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-danger' %>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
   </div>
 </div>
