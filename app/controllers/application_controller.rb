@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
 
   def authenticate_user!
     if !current_user
-      redirect_to '/signup', notice: t('alerts.sessions.signin_required')
+      redirect_to '/signup', notice: t('notices.sessions.signin_required')
     end
   end
 
