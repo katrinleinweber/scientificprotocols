@@ -55,13 +55,16 @@
       <% end %>
     </div>
     <% if @embed_script.present? %>
-      <div class="input-group margin-bottom-10">
-        <%= text_field_tag 'embed_script', @embed_script, id: 'embed_script', class:'form-control', readonly: true %>
-        <span class="input-group-btn">
-          <button class="btn btn-default" type="button" data-clipboard-target="embed_script">
-            <span class="glyphicon glyphicon-share"></span>
-          </button>
-        </span>
+      <div class="input-group margin-bottom-10 btn-block">
+        <label for="embed_script">Embed URL</label>
+        <div class="input-group">
+          <%= text_field_tag 'embed_script', @embed_script, id: 'embed_script', class:'form-control', readonly: true %>
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button" data-clipboard-target="embed_script">
+              <span class="glyphicon glyphicon-share"></span>
+            </button>
+          </span>
+        </div>
       </div>
     <% end %>
     <div class="btn-group-vertical btn-block">
