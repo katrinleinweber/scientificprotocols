@@ -1,3 +1,4 @@
+<%= render partial: 'shared/jquery_ui' %>
 <%= bootstrap_form_for(@protocol, inline_errors: false) do |f| %>
   <%= f.alert_message t('errors.messages.not_saved') %>
   <%= f.text_field :title %>
