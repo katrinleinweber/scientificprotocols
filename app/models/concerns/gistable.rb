@@ -10,7 +10,7 @@ module Gistable
   end
   def gist_embed_url
     return nil if self.gist.blank?
-    self.gist.url + '.js'
+    self.gist.html_url + '.js'
   end
   def gist_embed_script
     return nil if self.gist.blank?
