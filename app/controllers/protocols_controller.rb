@@ -1,9 +1,9 @@
 class ProtocolsController < ApplicationController
   before_filter :authenticate_user!, except: [:show, :index, :tags]
-  before_action :set_protocol, only: [:show, :edit, :update, :destroy, :star, :unstar, :fork]
+  before_action :set_protocol, only: [:show, :edit, :update, :destroy, :star, :unstar, :fork, :discussion]
   before_filter :set_params, only: [:show, :index]
-  before_filter :set_octokit_client, only: [:update, :destroy, :star, :unstar, :fork]
-  before_filter :set_gist, only: [:star, :unstar, :fork]
+  before_filter :set_octokit_client, only: [:update, :destroy, :star, :unstar, :fork, :discussion]
+  before_filter :set_gist, only: [:star, :unstar, :fork, :discussion]
   load_and_authorize_resource except: [:tags]
 
   # GET /protocols
@@ -17,19 +17,7 @@ class ProtocolsController < ApplicationController
 
   # GET /protocols/1
   def show
-    set_octokit_client(true)
-    set_gist
-    @protocol_manager = ProtocolManager.where(protocol: @protocol, user: current_user).first if current_user.present?
-    @revision_url = @protocol.gist_revision_url
-    @back_path = protocols_path
-    query_string = get_query_string_from_referrer(request)
-    if params[:controller] == 'protocols' && query_string.present?
-      @back_path << '?' + query_string
-    end
-    @gist_starred = @protocol.octokit_client.gist_starred?(@protocol.gist.id)
-    @forkable = current_user.present? && @protocol_manager.blank?
-    @fork_of = @protocol.gist.fork_of.present? ? Protocol.find_by_gist_id(@protocol.gist.fork_of.id) : nil
-    @embed_script = @protocol.gist_embed_script
+    set_globals
     respond_to do |format|
       format.html
     end
@@ -124,6 +112,13 @@ class ProtocolsController < ApplicationController
     end
   end
 
+  def discussion
+    set_globals
+    respond_to do |format|
+      format.html
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_protocol
@@ -151,5 +146,22 @@ class ProtocolsController < ApplicationController
       access_token = session[:access_token]
       access_token = Rails.configuration.api_github if access_token.blank? && use_default_token
       @protocol.set_octokit_client(access_token) if access_token.present?
+    end
+
+    # Setup globals used by multiple actions.
+    def set_globals
+      set_octokit_client(true)
+      set_gist
+      @protocol_manager = ProtocolManager.where(protocol: @protocol, user: current_user).first if current_user.present?
+      @revision_url = @protocol.gist_revision_url
+      @back_path = protocols_path
+      query_string = get_query_string_from_referrer(request)
+      if params[:controller] == 'protocols' && query_string.present?
+        @back_path << '?' + query_string
+      end
+      @gist_starred = @protocol.octokit_client.gist_starred?(@protocol.gist.id)
+      @forkable = current_user.present? && @protocol_manager.blank?
+      @fork_of = @protocol.gist.fork_of.present? ? Protocol.find_by_gist_id(@protocol.gist.fork_of.id) : nil
+      @embed_script = @protocol.gist_embed_script
     end
 end
