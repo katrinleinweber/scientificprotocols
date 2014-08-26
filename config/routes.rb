@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       delete :unstar
       post :fork
       get :discussion
+      post :comment
     end
   end
   resources :users, except: :index

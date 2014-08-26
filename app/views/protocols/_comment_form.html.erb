@@ -1,0 +1,6 @@
+<%= bootstrap_form_tag(url: comment_protocol_path(@protocol), inline_errors: false) do |f| %>
+  <%= f.text_area :body, hide_label: :true, 'data-provide' => 'markdown', rows: '5' %>
+  <div class="actions">
+    <%= f.submit 'Comment', class: 'btn btn-primary' %>
+  </div>
+<% end %>

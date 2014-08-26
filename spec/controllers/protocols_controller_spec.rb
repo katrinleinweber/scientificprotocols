@@ -72,6 +72,12 @@ describe ProtocolsController do
     describe 'GET #discussion' do
       it 'allows access' do
         get :discussion, id: protocol.id
+        expect(response).to render_template :discussion
+      end
+    end
+    describe 'POST #comment' do
+      it 'redirects to the login page' do
+        post :comment, id: protocol.id, body: Faker::Lorem.words(20)
         expect(response).to redirect_to '/signup'
       end
     end
@@ -148,6 +154,12 @@ describe ProtocolsController do
       it 'allows access' do
         get :discussion, id: protocol.id
         expect(response).to render_template :discussion
+      end
+    end
+    describe 'POST #comment' do
+      it 'redirects to the discussion page' do
+        post :comment, id: protocol.id, body: Faker::Lorem.words(20)
+        expect(response).to redirect_to discussion_protocol_path(protocol)
       end
     end
   end
@@ -237,6 +249,12 @@ describe ProtocolsController do
       it 'allows access' do
         get :discussion, id: protocol.id
         expect(response).to render_template :discussion
+      end
+    end
+    describe 'POST #comment' do
+      it 'redirects to the discussion page' do
+        post :comment, id: protocol.id, body: Faker::Lorem.words(20)
+        expect(response).to redirect_to discussion_protocol_path(protocol)
       end
     end
   end

@@ -1,9 +1,9 @@
 class ProtocolsController < ApplicationController
-  before_filter :authenticate_user!, except: [:show, :index, :tags]
-  before_action :set_protocol, only: [:show, :edit, :update, :destroy, :star, :unstar, :fork, :discussion]
+  before_filter :authenticate_user!, except: [:show, :index, :tags, :discussion]
+  before_action :set_protocol, only: [:show, :edit, :update, :destroy, :star, :unstar, :fork, :discussion, :comment]
   before_filter :set_params, only: [:show, :index]
-  before_filter :set_octokit_client, only: [:update, :destroy, :star, :unstar, :fork, :discussion]
-  before_filter :set_gist, only: [:star, :unstar, :fork, :discussion]
+  before_filter :set_octokit_client, only: [:update, :destroy, :star, :unstar, :fork, :comment]
+  before_filter :set_gist, only: [:star, :unstar, :fork, :comment]
   load_and_authorize_resource except: [:tags]
 
   # GET /protocols
@@ -117,6 +117,17 @@ class ProtocolsController < ApplicationController
     @comments = @protocol.octokit_client.gist_comments(@protocol.gist.id)
     respond_to do |format|
       format.html
+    end
+  end
+
+  def comment
+    new_comment = @protocol.octokit_client.create_gist_comment(@protocol.gist.id, params[:body]) if params[:body].present?
+    respond_to do |format|
+      if new_comment.present?
+        format.html { redirect_to discussion_protocol_path(@protocol), notice: t('notices.protocols.comment') }
+      else
+        format.html { redirect_to discussion_protocol_path(@protocol), alert: t('alerts.protocols.comment_failed') }
+      end
     end
   end
 

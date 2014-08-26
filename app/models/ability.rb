@@ -18,7 +18,7 @@ class Ability
     can :manage, User, id: user.id
   end
   def define_protocol_abilities(user)
-    can [:read, :create, :star, :unstar, :fork, :discussion], Protocol
+    can [:read, :create, :star, :unstar, :fork, :discussion, :comment], Protocol
     can :manage, Protocol, users: {id: user.id}
   end
   def define_protocol_manager_abilities(user)
