@@ -11,7 +11,7 @@ describe 'User' do
       context 'for guest user' do
         let(:user) { nil }
         let(:protocol) { FactoryGirl.create(:protocol) }
-        it { should have_ability(:read, for: protocol) }
+        it { should have_ability([:read, :discussion], for: protocol) }
         it { should_not have_ability(change, for: protocol) }
       end
       context 'for authenticated user' do

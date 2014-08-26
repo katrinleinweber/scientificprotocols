@@ -12,7 +12,7 @@ class Ability
     define_protocol_manager_abilities user
   end
   def define_guest_abilities(user)
-    can :read, Protocol
+    can [:read, :discussion], Protocol
   end
   def define_user_abilities(user)
     can :manage, User, id: user.id
