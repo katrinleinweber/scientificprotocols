@@ -114,6 +114,7 @@ class ProtocolsController < ApplicationController
 
   def discussion
     set_globals
+    @comments = @protocol.octokit_client.gist_comments(@protocol.gist.id)
     respond_to do |format|
       format.html
     end

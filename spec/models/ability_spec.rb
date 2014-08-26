@@ -17,7 +17,7 @@ describe 'User' do
       context 'for authenticated user' do
         let(:user) { FactoryGirl.create(:user) }
         let(:protocol) { FactoryGirl.create(:protocol) }
-        it { should have_ability([:read, :create, :star, :unstar, :fork], for: protocol) }
+        it { should have_ability([:read, :create, :star, :unstar, :fork, :discussion], for: protocol) }
         it { should_not have_ability(change, for: protocol) }
       end
       context 'for protocol owner' do

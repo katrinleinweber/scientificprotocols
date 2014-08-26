@@ -69,6 +69,12 @@ describe ProtocolsController do
         expect(response).to redirect_to '/signup'
       end
     end
+    describe 'GET #discussion' do
+      it 'allows access' do
+        get :discussion, id: protocol.id
+        expect(response).to redirect_to '/signup'
+      end
+    end
   end
   context 'Authenticated User' do
     login_user
@@ -137,6 +143,12 @@ describe ProtocolsController do
       # it 'forks a protocol' do
       #   expect{ post :fork, id: protocol.id, protocol: protocol }.to change{ Protocol.count }.by(1)
       # end
+    end
+    describe 'GET #discussion' do
+      it 'allows access' do
+        get :discussion, id: protocol.id
+        expect(response).to render_template :discussion
+      end
     end
   end
   context 'Protocol Manager' do
@@ -220,6 +232,12 @@ describe ProtocolsController do
       # it 'forks a protocol' do
       #   expect{ post :fork, id: protocol.id, protocol: protocol }.to change{ Protocol.count }.by(1)
       # end
+    end
+    describe 'GET #discussion' do
+      it 'allows access' do
+        get :discussion, id: protocol.id
+        expect(response).to render_template :discussion
+      end
     end
   end
 end

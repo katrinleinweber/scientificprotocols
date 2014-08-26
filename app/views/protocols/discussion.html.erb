@@ -6,7 +6,7 @@
       <li><%= link_to 'Protocol', @protocol %></li>
       <li class="active"><%= link_to 'Discussion', discussion_protocol_path(@protocol) %></li>
     </ul>
-    <!-- Discussion -->
+    <%= render partial: 'shared/comments', locals: { comments: @comments } %>
   </div>
   <div class="col-md-2">
     <%= render partial: 'options', locals: {
