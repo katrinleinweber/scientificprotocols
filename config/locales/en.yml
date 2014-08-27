@@ -36,6 +36,7 @@ en:
       unstarred: 'Protocol was unstarred successfully.'
       forked: 'Protocol was forked successfully.'
       comment: 'Comment created successfully.'
+      delete_comment: 'Comment was successfully deleted.'
   alerts:
     sessions:
       authentication_failed: 'Your sign in was not successful. %{error}'
@@ -45,4 +46,4 @@ en:
       unstarred_failed: 'Protocol unstar attempt failed.'
       forked_failed: 'Protocol forking attempt failed.'
       comment_failed: 'Comment creation attempt failed.'
-
+      delete_comment_failed: 'Comment deletion failed.'

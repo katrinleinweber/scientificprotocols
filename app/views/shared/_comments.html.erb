@@ -1,9 +1,17 @@
-<div class="list-group">
+<div class="media">
   <% comments.each do |comment| %>
-    <h4 class="list-group-item-heading">
-      <%= comment.user.login %>
-      <small>commented <%= time_ago_in_words(comment.updated_at) %> ago</small>
-    </h4>
-    <p class="list-group-item-text"><%= MARKDOWN.render(comment.body).html_safe %></p>
+    <%= image_tag comment.user.avatar_url, class: 'media-object pull-left', style: 'width: 64px; height: 64px;' %>
+    <div class="media-body">
+      <h4 class="media-heading">
+        <%= comment.user.login %>
+        <small>commented <%= time_ago_in_words(comment.updated_at) %> ago</small>
+        <% if current_user.present? && current_user.username == comment.user.login %>
+          <%= link_to delete_comment_protocol_path(protocol, comment_id: comment.id), method: :delete, class: 'btn btn-default pull-right' do %>
+            <span class="glyphicon glyphicon-remove"></span>
+          <% end %>
+        <% end %>
+      </h4>
+      <%= MARKDOWN.render(comment.body).html_safe %>
+    </div>
   <% end %>
 </div>

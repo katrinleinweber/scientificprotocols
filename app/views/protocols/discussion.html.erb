@@ -11,7 +11,7 @@
     <% else %>
       <p class="margin-bottom-10">Please <%= link_to 'sign in', signin_path %> to participate in this discussion.</p>
     <% end %>
-    <%= render partial: 'shared/comments', locals: { comments: @comments } %>
+    <%= render partial: 'shared/comments', locals: { comments: @comments, protocol: @protocol, protocol_manager: @protocol_manager } %>
   </div>
   <div class="col-md-2">
     <%= render partial: 'options', locals: {

@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       post :fork
       get :discussion
       post :comment
+      delete :delete_comment
     end
   end
   resources :users, except: :index

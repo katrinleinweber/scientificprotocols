@@ -81,6 +81,12 @@ describe ProtocolsController do
         expect(response).to redirect_to '/signup'
       end
     end
+    describe 'DELETE #delete_comment' do
+      # it 'redirects to the login page' do
+      #   delete :delete_comment, id: protocol.id, comment_id:
+      #   expect(response).to redirect_to '/signup'
+      # end
+    end
   end
   context 'Authenticated User' do
     login_user
@@ -161,6 +167,12 @@ describe ProtocolsController do
         post :comment, id: protocol.id, body: Faker::Lorem.words(20)
         expect(response).to redirect_to discussion_protocol_path(protocol)
       end
+    end
+    describe 'DELETE #delete_comment' do
+      # it 'redirects to the login page' do
+      #   delete :delete_comment, id: protocol.id
+      #   expect(response).to redirect_to '/signup'
+      # end
     end
   end
   context 'Protocol Manager' do
@@ -256,6 +268,12 @@ describe ProtocolsController do
         post :comment, id: protocol.id, body: Faker::Lorem.words(20)
         expect(response).to redirect_to discussion_protocol_path(protocol)
       end
+    end
+    describe 'DELETE #delete_comment' do
+      # it 'redirects to the login page' do
+      #   delete :delete_comment, id: protocol.id
+      #   expect(response).to redirect_to '/signup'
+      # end
     end
   end
 end

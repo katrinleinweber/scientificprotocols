@@ -1,9 +1,9 @@
 class ProtocolsController < ApplicationController
   before_filter :authenticate_user!, except: [:show, :index, :tags, :discussion]
-  before_action :set_protocol, only: [:show, :edit, :update, :destroy, :star, :unstar, :fork, :discussion, :comment]
+  before_action :set_protocol, only: [:show, :edit, :update, :destroy, :star, :unstar, :fork, :discussion, :comment, :delete_comment]
   before_filter :set_params, only: [:show, :index]
-  before_filter :set_octokit_client, only: [:update, :destroy, :star, :unstar, :fork, :comment]
-  before_filter :set_gist, only: [:star, :unstar, :fork, :comment]
+  before_filter :set_octokit_client, only: [:update, :destroy, :star, :unstar, :fork, :comment, :delete_comment]
+  before_filter :set_gist, only: [:star, :unstar, :fork, :comment, :delete_comment]
   load_and_authorize_resource except: [:tags]
 
   # GET /protocols
@@ -127,6 +127,17 @@ class ProtocolsController < ApplicationController
         format.html { redirect_to discussion_protocol_path(@protocol), notice: t('notices.protocols.comment') }
       else
         format.html { redirect_to discussion_protocol_path(@protocol), alert: t('alerts.protocols.comment_failed') }
+      end
+    end
+  end
+
+  def delete_comment
+    result = @protocol.octokit_client.delete_gist_comment(@protocol.gist.id, params[:comment_id]) if params[:comment_id].present?
+    respond_to do |format|
+      if result
+        format.html { redirect_to discussion_protocol_path(@protocol), notice: t('notices.protocols.delete_comment') }
+      else
+        format.html { redirect_to discussion_protocol_path(@protocol), alert: t('alerts.protocols.delete_comment_failed') }
       end
     end
   end
