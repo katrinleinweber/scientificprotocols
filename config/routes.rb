@@ -13,7 +13,7 @@ Rails.application.routes.draw do
       delete :unstar
       post :fork
       get :discussion
-      post :comment
+      post :create_comment
       delete :delete_comment
     end
   end

@@ -1,9 +1,15 @@
 class ProtocolsController < ApplicationController
   before_filter :authenticate_user!, except: [:show, :index, :tags, :discussion]
-  before_action :set_protocol, only: [:show, :edit, :update, :destroy, :star, :unstar, :fork, :discussion, :comment, :delete_comment]
+  before_action :set_protocol, only: [
+    :show, :edit, :update, :destroy, :star, :unstar, :fork,
+    :discussion, :create_comment, :delete_comment
+  ]
   before_filter :set_params, only: [:show, :index]
-  before_filter :set_octokit_client, only: [:update, :destroy, :star, :unstar, :fork, :comment, :delete_comment]
-  before_filter :set_gist, only: [:star, :unstar, :fork, :comment, :delete_comment]
+  before_filter :set_octokit_client, only: [
+    :update, :destroy, :star, :unstar, :fork,
+    :create_comment, :delete_comment
+  ]
+  before_filter :set_gist, only: [:star, :unstar, :fork, :create_comment, :delete_comment]
   load_and_authorize_resource except: [:tags]
 
   # GET /protocols
@@ -74,6 +80,7 @@ class ProtocolsController < ApplicationController
     end
   end
 
+  # GET /protocols/tags
   def tags
     @tokens = params[:term].present? ? ActsAsTaggableOn::Tag.named_like(params[:term]).map(&:name) : ActsAsTaggableOn::Tag.all.map(&:name)
     respond_to do |format|
@@ -81,6 +88,7 @@ class ProtocolsController < ApplicationController
     end
   end
 
+  # POST /protocols/1/star
   def star
     respond_to do |format|
       if @protocol.octokit_client.star_gist(@protocol.gist.id)
@@ -91,6 +99,7 @@ class ProtocolsController < ApplicationController
     end
   end
 
+  # DELETE /protocols/1/unstar
   def unstar
     respond_to do |format|
       if @protocol.octokit_client.unstar_gist(@protocol.gist.id)
@@ -101,6 +110,7 @@ class ProtocolsController < ApplicationController
     end
   end
 
+  # POST /protocols/1/fork
   def fork
     new_protocol = @protocol.fork(@protocol.gist.id, current_user)
     respond_to do |format|
@@ -112,6 +122,7 @@ class ProtocolsController < ApplicationController
     end
   end
 
+  # GET /protocols/discussion
   def discussion
     set_globals
     @comments = @protocol.octokit_client.gist_comments(@protocol.gist.id)
@@ -120,7 +131,8 @@ class ProtocolsController < ApplicationController
     end
   end
 
-  def comment
+  # POST /protocols/1/create_comment
+  def create_comment
     new_comment = @protocol.octokit_client.create_gist_comment(@protocol.gist.id, params[:body]) if params[:body].present?
     respond_to do |format|
       if new_comment.present?
@@ -131,8 +143,9 @@ class ProtocolsController < ApplicationController
     end
   end
 
+  # DELETE /protocols/1/delete_comment
   def delete_comment
-    result = @protocol.octokit_client.delete_gist_comment(@protocol.gist.id, params[:comment_id]) if params[:comment_id].present?
+    result = @protocol.octokit_client.delete_gist_comment(@protocol.gist.id, params[:create_comment_id]) if params[:create_comment_id].present?
     respond_to do |format|
       if result
         format.html { redirect_to discussion_protocol_path(@protocol), notice: t('notices.protocols.delete_comment') }
