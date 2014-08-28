@@ -69,6 +69,24 @@ describe ProtocolsController do
         expect(response).to redirect_to '/signup'
       end
     end
+    describe 'GET #discussion' do
+      it 'allows access' do
+        get :discussion, id: protocol.id
+        expect(response).to render_template :discussion
+      end
+    end
+    describe 'POST #create_comment' do
+      it 'redirects to the login page' do
+        post :create_comment, id: protocol.id, body: Faker::Lorem.words(20)
+        expect(response).to redirect_to '/signup'
+      end
+    end
+    describe 'DELETE #delete_comment' do
+      it 'redirects to the login page' do
+        delete :delete_comment, id: protocol.id, comment_id: 1
+        expect(response).to redirect_to '/signup'
+      end
+    end
   end
   context 'Authenticated User' do
     login_user
@@ -132,11 +150,30 @@ describe ProtocolsController do
       end
     end
     describe 'POST #fork' do
-      # TODO - This is hard. You need a Gist created with a different GitHub account from
-      # the current user in order to avoid "can't fork your own Gist" error.
-      # it 'forks a protocol' do
-      #   expect{ post :fork, id: protocol.id, protocol: protocol }.to change{ Protocol.count }.by(1)
-      # end
+      login_user(Rails.configuration.api_github_2)
+      it 'forks a protocol' do
+        protocol
+        expect{ post :fork, id: protocol.id, protocol: protocol }.to change{ Protocol.count }.by(1)
+      end
+    end
+    describe 'GET #discussion' do
+      it 'allows access' do
+        get :discussion, id: protocol.id
+        expect(response).to render_template :discussion
+      end
+    end
+    describe 'POST #create_comment' do
+      it 'redirects to the discussion page' do
+        post :create_comment, id: protocol.id, body: Faker::Lorem.words(20)
+        expect(response).to redirect_to discussion_protocol_path(protocol)
+      end
+    end
+    describe 'DELETE #delete_comment' do
+      it 'redirects to the login page' do
+        post :create_comment, id: protocol.id, body: Faker::Lorem.words(20)
+        delete :delete_comment, id: protocol.id
+        expect(response).to redirect_to discussion_protocol_path(protocol)
+      end
     end
   end
   context 'Protocol Manager' do
@@ -215,11 +252,30 @@ describe ProtocolsController do
       end
     end
     describe 'POST #fork' do
-      # TODO - This is hard. You need a Gist created with a different GitHub account from
-      # the current user in order to avoid "can't fork your own Gist" error.
-      # it 'forks a protocol' do
-      #   expect{ post :fork, id: protocol.id, protocol: protocol }.to change{ Protocol.count }.by(1)
-      # end
+      login_user(Rails.configuration.api_github_2)
+      it 'forks a protocol' do
+        protocol
+        expect{ post :fork, id: protocol.id, protocol: protocol }.to change{ Protocol.count }.by(1)
+      end
+    end
+    describe 'GET #discussion' do
+      it 'allows access' do
+        get :discussion, id: protocol.id
+        expect(response).to render_template :discussion
+      end
+    end
+    describe 'POST #create_comment' do
+      it 'redirects to the discussion page' do
+        post :create_comment, id: protocol.id, body: Faker::Lorem.words(20)
+        expect(response).to redirect_to discussion_protocol_path(protocol)
+      end
+    end
+    describe 'DELETE #delete_comment' do
+      it 'redirects to the login page' do
+        post :create_comment, id: protocol.id, body: Faker::Lorem.words(20)
+        delete :delete_comment, id: protocol.id
+        expect(response).to redirect_to discussion_protocol_path(protocol)
+      end
     end
   end
 end

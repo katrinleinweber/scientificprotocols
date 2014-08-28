@@ -28,4 +28,19 @@ describe Protocol do
       end
     end
   end
+  describe 'instance methods' do
+    let(:protocol_manager) { create(:protocol_manager) }
+    let(:protocol) { protocol_manager.protocol }
+    describe '#format_title' do
+      it 'strips the bracketed username from the title' do
+        username = protocol_manager.user.username
+        protocol.title = "[#{username}] #{Faker::Lorem.words(5)}"
+        expect(protocol.send(:format_title, protocol.title, username).include?(username)).to eq(false)
+      end
+      it 'does not alter the title when bracketed username not present' do
+        username = protocol_manager.user.username
+        expect(protocol.send(:format_title, protocol.title, username)).to eq(protocol.title)
+      end
+    end
+  end
 end

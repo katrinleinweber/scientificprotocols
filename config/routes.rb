@@ -12,6 +12,9 @@ Rails.application.routes.draw do
       put :star
       delete :unstar
       post :fork
+      get :discussion
+      post :create_comment
+      delete :delete_comment
     end
   end
   resources :users, except: :index

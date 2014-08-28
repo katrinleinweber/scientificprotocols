@@ -3,12 +3,15 @@
 <div class="row">
   <div class="col-md-10">
     <ul class="nav nav-tabs margin-bottom-10">
-      <li class="active"><%= link_to 'Protocol', @protocol %></li>
-      <li><%= link_to 'Discussion', discussion_protocol_path(@protocol) %></li>
+      <li><%= link_to 'Protocol', @protocol %></li>
+      <li class="active"><%= link_to 'Discussion', discussion_protocol_path(@protocol) %></li>
     </ul>
-    <% cache ['Protocol', @protocol] do %>
-      <%= MARKDOWN.render(@protocol.description).html_safe %>
+    <% if current_user.present? %>
+      <%= render partial: 'comment_form', locals: { protocol: @protocol } %>
+    <% else %>
+      <p class="margin-bottom-10">Please <%= link_to 'sign in', signin_path %> to participate in this discussion.</p>
     <% end %>
+    <%= render partial: 'shared/comments', locals: { comments: @comments, protocol: @protocol, protocol_manager: @protocol_manager } %>
   </div>
   <div class="col-md-2">
     <%= render partial: 'options', locals: {
