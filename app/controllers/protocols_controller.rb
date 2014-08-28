@@ -122,7 +122,7 @@ class ProtocolsController < ApplicationController
     end
   end
 
-  # GET /protocols/discussion
+  # GET /protocols/1/discussion
   def discussion
     set_globals
     @comments = @protocol.octokit_client.gist_comments(@protocol.gist.id)
@@ -145,7 +145,7 @@ class ProtocolsController < ApplicationController
 
   # DELETE /protocols/1/delete_comment
   def delete_comment
-    result = @protocol.octokit_client.delete_gist_comment(@protocol.gist.id, params[:create_comment_id]) if params[:create_comment_id].present?
+    result = @protocol.octokit_client.delete_gist_comment(@protocol.gist.id, params[:comment_id]) if params[:comment_id].present?
     respond_to do |format|
       if result
         format.html { redirect_to discussion_protocol_path(@protocol), notice: t('notices.protocols.delete_comment') }
