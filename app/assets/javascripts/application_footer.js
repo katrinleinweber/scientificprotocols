@@ -4,5 +4,6 @@
 //= require bootstrap-tokenfield
 //= require zeroclipboard
 //= require protocols
+//= require static
 
 
