@@ -31,7 +31,7 @@ class ProtocolsController < ApplicationController
 
   # GET /protocols/new
   def new
-    @protocol = Protocol.new
+    @protocol = Protocol.new(description: t('constants.protocols.template'))
     respond_to do |format|
       format.html
     end
