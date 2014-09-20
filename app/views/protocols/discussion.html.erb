@@ -6,6 +6,11 @@
       <li><%= link_to 'Protocol', @protocol %></li>
       <li class="active"><%= link_to 'Discussion', discussion_protocol_path(@protocol) %></li>
     </ul>
+    <% if @comments.blank? %>
+      <div class="alert alert-info" role="alert">
+        There are currently no comments on this protocol.
+      </div>
+    <% end %>
     <% if current_user.present? %>
       <%= render partial: 'comment_form', locals: { protocol: @protocol } %>
     <% else %>
