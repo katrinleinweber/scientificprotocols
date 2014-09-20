@@ -174,6 +174,8 @@ class ProtocolsController < ApplicationController
     # Get a hash of approved query string params.
     def set_params
       @params = params.slice(:page, :u, :search, :utf8, :tags)
+      @contributor = User.find_by_username(params[:u]) if params[:u].present?
+      @search = params[:search] if params[:search].present?
     end
 
     # Setup the Octokit client for the protocol.

@@ -47,3 +47,9 @@ en:
       forked_failed: 'Protocol forking attempt failed.'
       comment_failed: 'Comment creation attempt failed.'
       delete_comment_failed: 'Comment deletion failed.'
+  info:
+    protocols:
+      no_contributions: '%{contributor} has not contributed any protocols.'
+      no_search_results: 'No protocols could be found matching your search criteria.'
+      no_comments: 'There are currently no comments on this protocol.'
+      no_protocols: 'There are no protocols to display.'

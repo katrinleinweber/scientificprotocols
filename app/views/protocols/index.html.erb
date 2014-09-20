@@ -3,6 +3,17 @@
 </div>
 <div class="row">
   <div class="col-xs-12 col-sm-6 col-md-8">
+    <% if @protocols.blank? %>
+      <div class="alert alert-info" role="alert">
+        <% if @search.present? %>
+          <%= t('info.protocols.no_search_results') %>
+        <% elsif @contributor.present? %>
+          <%= t('info.protocols.no_contributions', contributor: @contributor.username) %>
+        <% else %>
+          <%= t('info.protocols.no_protocols') %>
+        <% end %>
+      </div>
+    <% end %>
     <%= render partial: 'shared/protocols', locals: {protocols: @protocols} %>
   </div>
   <div class="col-xs-6 col-md-4">
