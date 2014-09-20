@@ -1,11 +1,11 @@
 <!-- Jumbotron -->
 <div class="jumbotron">
-  <h1>Scientific Protocols</h1>
-  <p class="lead">A free and easy way to share scientific protocols.</p>
+  <h1><%= t('views.home.index.brand') %></h1>
+  <p class="lead"><%= t('views.home.index.lead') %></p>
   <div class="row">
     <div class="col-md-4">
       <%= link_to signin_path, class: 'btn btn-block btn-social btn-lg btn-github' do %>
-        <i class="fa fa-github"></i> Sign up with GitHub
+        <i class="fa fa-github"></i> <%= t('views.home.index.link_to_signup') %>
       <% end if current_user.blank? %>
     </div>
   </div>
@@ -14,19 +14,19 @@
   <hr>
   <div class="row-fluid">
     <div class="col-md-4">
-      <h2>Built on GitHub</h2>
-      <p>Scientific Protocols is built on the GitHub API. Find out how GitHub allows Scientific Protocols to provide easy and powerful ways to share your protocols and track changes.</p>
-      <p><a class="btn btn-default" href="/github">View details »</a></p>
+      <h2><%= t('views.home.index.built_on_github') %></h2>
+      <p><%= t('views.home.index.built_on_github_text') %></p>
+      <p><a class="btn btn-default" href="/github"><%= t('views.home.index.link_to_github') %></a></p>
     </div>
     <div class="col-md-4">
-      <h2>Reproducibility</h2>
-      <p>The aim of the Reproducibility Initiative is to identify and reward high quality reproducible research via independent validation of key experimental results.</p>
-      <p><a class="btn btn-default" href="http://validation.scienceexchange.com/#/reproducibility-initiative">View details »</a></p>
+      <h2><%= t('views.home.index.reproducibility') %></h2>
+      <p><%= t('views.home.index.reproducibility_text') %></p>
+      <p><a class="btn btn-default" href="http://validation.scienceexchange.com/#/reproducibility-initiative"><%= t('views.home.index.link_to_reproducibility') %></a></p>
     </div>
     <div class="col-md-4">
-      <h2>GitHub for Science</h2>
-      <p>GitHub can be used for much more than just storing code. Find out more about how GitHub is being used to help scientists build the latest open source tools for science and achieve amazing things.</p>
-      <p><a class="btn btn-default" href="https://github.com/blog/1840-improving-github-for-science">View details »</a></p>
+      <h2><%= t('views.home.index.github_science') %></h2>
+      <p><%= t('views.home.index.github_science_text') %></p>
+      <p><a class="btn btn-default" href="https://github.com/blog/1840-improving-github-for-science"><%= t('views.home.index.link_to_github_science') %></a></p>
     </div>
   </div>
 <% end %>

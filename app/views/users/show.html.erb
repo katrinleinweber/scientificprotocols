@@ -2,10 +2,10 @@
 <% cache ['User', @user] do %>
   <% protocol_count = @user.protocols.count %>
   <p>
-    Authored <%= pluralize(protocol_count, 'protocol') %>
-    <%= link_to 'view protocol'.pluralize(protocol_count), protocols_path(u: @user.slug) %>
+    <%= t('views.users.show.managed_count', protocol: pluralize(protocol_count, t('views.users.show.protocol'))) %>
+    <%= link_to t('views.users.show.link_to_protocols').pluralize(protocol_count), protocols_path(u: @user.slug) %>
   </p>
-  <p>Member since: <%= @user.created_at %></p>
+  <p><%= t('views.users.show.member_since') %> <%= @user.created_at %></p>
   <div class="btn-toolbar hide" role="toolbar">
     <%= link_to '#', class: 'btn btn-default' do %>
       <span class="glyphicon glyphicon-envelope"></span> Message

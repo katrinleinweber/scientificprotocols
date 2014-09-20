@@ -3,8 +3,10 @@
 <div class="row">
   <div class="col-md-10">
     <ul class="nav nav-tabs margin-bottom-10">
-      <li><%= link_to 'Protocol', @protocol %></li>
-      <li class="active"><%= link_to 'Discussion', discussion_protocol_path(@protocol) %></li>
+      <li><%= link_to t('views.protocols.discussion.link_to_protocol'), @protocol %></li>
+      <li class="active">
+        <%= link_to t('views.protocols.discussion.link_to_discussion'), discussion_protocol_path(@protocol) %>
+      </li>
     </ul>
     <% if @comments.blank? %>
       <div class="alert alert-info" role="alert">
@@ -14,7 +16,10 @@
     <% if current_user.present? %>
       <%= render partial: 'comment_form', locals: { protocol: @protocol } %>
     <% else %>
-      <p class="margin-bottom-10">Please <%= link_to 'sign in', signin_path %> to participate in this discussion.</p>
+      <p class="margin-bottom-10">
+        <%= t('views.protocols.discussion.sign_in_request_html',
+              link_to_signin: link_to(t('views.protocols.discussion.link_to_signin'), signin_path)) %>
+      </p>
     <% end %>
     <%= render partial: 'shared/comments', locals: { comments: @comments, protocol: @protocol, protocol_manager: @protocol_manager } %>
   </div>

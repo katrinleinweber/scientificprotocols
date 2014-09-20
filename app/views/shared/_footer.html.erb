@@ -1,3 +1,9 @@
-<div class="footer" style="margin-top: 15px">
-  <p>Scientific Protocols is part of <%= link_to 'the Reproducibility Initiative', 'http://validation.scienceexchange.com/#/reproducibility-initiative' %></p>
+<div class="clearfix"></div>
+<hr>
+<div class="footer margin-bottom-10">
+  <p>
+    <%= t('views.shared.footer.reproducibility_html',
+          link_to_reproducibility: link_to(t('views.shared.footer.link_to_reproducibility'),
+          'http://validation.scienceexchange.com/#/reproducibility-initiative')) %>
+  </p>
 </div>

@@ -3,8 +3,8 @@
 <div class="row">
   <div class="col-md-10">
     <ul class="nav nav-tabs margin-bottom-10">
-      <li class="active"><%= link_to 'Protocol', @protocol %></li>
-      <li><%= link_to 'Discussion', discussion_protocol_path(@protocol) %></li>
+      <li class="active"><%= link_to t('views.protocols.show.link_to_protocol'), @protocol %></li>
+      <li><%= link_to t('views.protocols.discussion.link_to_discussion'), discussion_protocol_path(@protocol) %></li>
     </ul>
     <% cache ['Protocol', @protocol] do %>
       <%= MARKDOWN.render(@protocol.description).html_safe %>

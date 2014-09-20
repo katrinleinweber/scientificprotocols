@@ -53,6 +53,101 @@ en:
       no_search_results: 'No protocols could be found matching your search criteria.'
       no_comments: 'There are currently no comments on this protocol.'
       no_protocols: 'There are no protocols to display.'
+  views:
+    home:
+      index:
+        brand: 'Scientific Protocols'
+        lead: 'A free and easy way to share scientific protocols.'
+        link_to_signup: 'Sign up with GitHub'
+        link_to_github: 'View details »'
+        link_to_reproducibility: 'View details »'
+        link_to_github_science: 'View details »'
+        built_on_github: 'Built on GitHub'
+        built_on_github_text: 'Scientific Protocols is built on the GitHub API. Find out how GitHub allows Scientific Protocols to provide easy and powerful ways to share your protocols and track changes.'
+        reproducibility: 'Reproducibility'
+        reproducibility_text: 'The aim of the Reproducibility Initiative is to identify and reward high quality reproducible research via independent validation of key experimental results.'
+        github_science: 'GitHub for Science'
+        github_science_text: 'GitHub can be used for much more than just storing code. Find out more about how GitHub is being used to help scientists build the latest open source tools for science and achieve amazing things.'
+    layouts:
+      application:
+        page_title_prefix: 'Scientific Protocols - '
+        page_title_default: 'A free and easy way to share scientific protocols'
+      parallax:
+        page_title_prefix: 'Scientific Protocols - '
+        page_title_default: 'A free and easy way to share scientific protocols'
+    protocols:
+      comment_form:
+        submit: 'Comment'
+      comments:
+        commented_on_html: 'commented %{time} ago'
+        data_confirm: 'Are you sure?'
+        sr_delete: 'Delete comment'
+        title_delete: 'Delete comment'
+      discussion:
+        sign_in_request_html: 'Please %{link_to_signin} to participate in this discussion.'
+        link_to_protocol: 'Protocol'
+        link_to_signin: 'sign in'
+        link_to_discussion: 'Discussion'
+      edit:
+        link_to_show: 'Show'
+        link_to_back: 'Back'
+        page_title: 'Editing protocol'
+      form:
+        help_tag_list: 'Select up to three tags that categorize your protocol'
+      new:
+        link_to_back: 'Back'
+        page_title: 'New protocol'
+      options:
+        link_to_back: 'Back'
+        link_to_revisions: 'Revisions'
+        link_to_star: 'Star'
+        link_to_unstar: 'Unstar'
+        link_to_fork: 'Fork'
+        link_to_edit: 'Edit'
+        link_to_delete: 'Delete'
+        label_embed: 'Embed URL'
+        title_clipboard: 'Copy to clipboard'
+        data_confirm: 'Are you sure?'
+      show:
+        link_to_protocol: 'Protocol'
+        link_to_discussion: 'Discussion'
+      tagline:
+        fork_of_html: 'Fork of: %{link_to_protocol}'
+        managed_by_html: '%{link_to_user} authored %{time} ago'
+    shared:
+      footer:
+        reproducibility_html: 'Scientific Protocols is part of %{link_to_reproducibility}'
+        link_to_reproducibility: 'the Reproducibility Initiative'
+      masthead:
+        link_to_account: 'Account'
+        link_to_contributors: 'Contributors'
+        link_to_home_brand: 'Scientific Protocols'
+        link_to_home: 'Home'
+        link_to_protocols: 'Protocols'
+        link_to_signin: 'Sign in'
+        link_to_signout: 'Sign out'
+        placeholder_search: 'Search'
+        sr_toggle_nav: 'Toggle navigation'
+        submit: 'Submit'
+    static:
+      github:
+        page_title: 'Built on GitHub'
+        what_is_github: 'What is GitHub?'
+        what_is_github_text: 'GitHub is a web-based hosting service for software development projects that use the Git revision control system. GitHub offers both paid plans for private repositories, and free accounts for open source projects.'
+        what_is_version_control: 'What is version control and why is it important?'
+        what_is_version_control_text: 'Version control is a system that records changes to a file or set of files over time so that you can recall specific versions later. Any type of file on a computer can be placed under version control. In addition to being able to track the history of changes to a file using a version control system means that if you make a mistake or lose files, you can recover them easily.'
+        usage: 'How does Scientific Protocols use GitHub?'
+        usage_text: 'Every protocol stored on Scientific Protocols is actually a GitHub Gist. A Gist is a fully forkable GitHub repository presented in a concise "snippet" style. Storing protocols in this fashion means that you can leverage the full power of GitHub with each and every protocol on the site. This allows you to monitor changes to a protocol over time, fork a protocol to create a new one based on an original, save your favorite protocols for easy retrieval and much more.'
+      signup:
+        page_title: 'Sign up'
+        github_api: 'Scientific Protocols is built on top of the GitHub API and requires a GitHub account to perform certain functions such as creating protocols.'
+        link_to_signup: 'Sign up with GitHub'
+    users:
+      show:
+        managed_count: 'Authored %{protocol}'
+        link_to_protocols: 'view protocol'
+        protocol: 'protocol'
+        member_since: 'Member since:'
   constants:
     protocols:
       template: "    Authors:\n\n### Abstract\n\n### Materials\n\n### Equipment\n\n### Procedure\n\n### Recipes\n\n### References"

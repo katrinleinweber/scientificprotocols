@@ -2,7 +2,7 @@
 <div class="row margin-bottom-10">
   <div class="col-xs-7">
     <% if fork_of.present? %>
-      Fork of: <%= link_to(fork_of.title, fork_of) %>
+      <%= t('views.protocols.tagline.fork_of_html', link_to_protocol: link_to(fork_of.title, fork_of)) %>
       <div class="clearfix"></div>
     <% end %>
     <% if protocol.tag_list.present? %>
@@ -14,8 +14,10 @@
   <div class="col-xs-5">
     <% if managed_by.present? %>
       <p class="text-right">
-        <%= link_to managed_by.username, user_path(managed_by.slug) %>
-        authored <%= time_ago_in_words(protocol.updated_at) %> ago
+        <%= t('views.protocols.tagline.managed_by_html',
+              link_to_user: link_to(managed_by.username, user_path(managed_by.slug)),
+              time: time_ago_in_words(protocol.updated_at)
+            ) %>
       </p>
     <% end %>
   </div>
