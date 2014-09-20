@@ -1,15 +1,15 @@
 class ProtocolsController < ApplicationController
-  before_filter :authenticate_user!, except: [:show, :index, :tags, :discussion]
+  before_action :authenticate_user!, except: [:show, :index, :tags, :discussion]
   before_action :set_protocol, only: [
     :show, :edit, :update, :destroy, :star, :unstar, :fork,
     :discussion, :create_comment, :delete_comment
   ]
-  before_filter :set_params, only: [:show, :index]
-  before_filter :set_octokit_client, only: [
+  before_action :set_params, only: [:show, :index]
+  before_action :set_octokit_client, only: [
     :update, :destroy, :star, :unstar, :fork,
     :create_comment, :delete_comment
   ]
-  before_filter :set_gist, only: [:star, :unstar, :fork, :create_comment, :delete_comment]
+  before_action :set_gist, only: [:star, :unstar, :fork, :create_comment, :delete_comment]
   load_and_authorize_resource except: [:tags]
 
   # GET /protocols
