@@ -28,5 +28,8 @@ module Scientificprotocols
     # Sets the config for sending emails via Postmark.
     config.action_mailer.delivery_method = :postmark
     config.action_mailer.postmark_settings = {api_key: Rails.configuration.api_postmark}
+
+    # Use sass syntax.
+    config.sass.preferred_syntax = :sass
   end
 end

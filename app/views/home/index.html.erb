@@ -1,26 +1,27 @@
 <!-- Jumbotron -->
-<div class="jumbotron">
+<div class="jumbotron text-center">
   <h1>Scientific Protocols</h1>
-  <p class="lead">A free and easy way to share scientific protocols.</p>
-  <%= link_to 'Get started today', new_user_registration_path, class: 'btn btn-success' if current_user.blank? %>
+  <p class="lead">A free and easy way to access and share scientific protocols</p>
+  <%= link_to 'Browse', protocols_path, class: 'btn btn-success text-uppercase' %>
+  <%= link_to 'Create a protocol', new_user_registration_path, class: 'btn btn-success text-uppercase' %>
 </div>
 <% cache 'Home' do %>
-  <hr>
-  <div class="row-fluid">
-    <div class="col-md-4">
-      <h2>Built on GitHub</h2>
-      <p>Scientific Protocols is built on the GitHub API. Find out how GitHub allows Scientific Protocols to provide easy and powerful ways to share your protocols and track changes.</p>
-      <p><a class="btn btn-default" href="/github">View details »</a></p>
+  <div class="container">
+    <div class="row row-spacer-20">
+      <div class="col-md-4">
+        <h2>Open and free</h2>
+        <p class="lead">Search hunreds of open-source protocols from your colleagues across all scientific disciplines.</p>
+      </div>
+      <div class="col-md-4">
+        <h2>Total administration</h2>
+        <p class="lead">Publish, edit, and track changes to your protocols in a citable and reusable format.</p>
+      </div>
+      <div class="col-md-4">
+        <h2>Modern collaboration</h2>
+        <p class="lead">Discuss and edit protocols with clear visibility into collaborator change requests and inline comments.</p>
+      </div>
     </div>
-    <div class="col-md-4">
-      <h2>Reproducibility</h2>
-      <p>The aim of the Reproducibility Initiative is to identify and reward high quality reproducible research via independent validation of key experimental results.</p>
-      <p><a class="btn btn-default" href="http://validation.scienceexchange.com/#/reproducibility-initiative">View details »</a></p>
-    </div>
-    <div class="col-md-4">
-      <h2>GitHub for Science</h2>
-      <p>GitHub can be used for much more than just storing code. Find out more about how GitHub is being used to help scientists build the latest open source tools for science and achieve amazing things.</p>
-      <p><a class="btn btn-default" href="https://github.com/blog/1840-improving-github-for-science">View details »</a></p>
-    </div>
+    <hr>
+    <p class="lead" style="padding: 30px 84px; font-size: 33px">"By sharing scientific protocols we hope to encourage transparency in research and promote reproducibility of published results." - David Iorns, Creator</p>
   </div>
 <% end %>

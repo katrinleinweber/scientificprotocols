@@ -9,15 +9,15 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <%= render partial: 'shared/masthead' %>
+  <% if notice %>
+    <p class="alert alert-success"><%= notice %></p>
+  <% end %>
+  <% if alert %>
+    <p class="alert alert-danger"><%= alert %></p>
+  <% end %>
+  <%= yield %>
   <div class="container">
-    <%= render partial: 'shared/masthead' %>
-    <% if notice %>
-      <p class="alert alert-success"><%= notice %></p>
-    <% end %>
-    <% if alert %>
-      <p class="alert alert-danger"><%= alert %></p>
-    <% end %>
-    <%= yield %>
     <%= render partial: 'shared/footer' %>
   </div>
   <%= javascript_include_tag 'application_footer' %>
