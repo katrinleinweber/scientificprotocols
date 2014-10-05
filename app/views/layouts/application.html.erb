@@ -13,7 +13,7 @@
   <meta name=viewport content="width=device-width, initial-scale=1">
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body class="<%= controller.controller_name %>">
   <%= render partial: 'shared/masthead' %>
   <% if notice %>
     <p class="alert alert-success"><%= notice %></p>
@@ -21,7 +21,9 @@
   <% if alert %>
     <p class="alert alert-danger"><%= alert %></p>
   <% end %>
-  <%= yield %>
+  <div class="<%= 'container' unless controller.controller_name == 'home' %>">
+    <%= yield %>
+  </div>
   <div class="container">
     <%= render partial: 'shared/footer' %>
   </div>

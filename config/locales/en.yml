@@ -57,9 +57,17 @@ en:
     home:
       index:
         brand: 'Scientific Protocols'
-        lead: 'A free and easy way to share scientific protocols.'
+        lead: 'A free and easy way to share scientific protocols'
         link_to_signup: 'Sign up with GitHub'
         link_to_github: 'View details »'
+        open_and_free: 'Open and free'
+        open_and_free_lead: 'Search hunreds of open-source protocols from your colleagues across all scientific disciplines.'
+        full_administration: 'Full administration'
+        full_administration_lead: 'Publish, edit, and track changes to your protocols in a citable and reusable format.'
+        modern_collaboration: 'Modern collaboration'
+        modern_collaboration_lead: 'Discuss and edit protocols with clear visibility into collaborator change requests and inline comments.'
+        creator_quote: '"By sharing scientific protocols we hope to encourage transparency in research and promote reproducibility of published results." - '
+        creator_name: 'David Iorns'
         link_to_reproducibility: 'View details »'
         link_to_github_science: 'View details »'
         built_on_github: 'Built on GitHub'
@@ -116,7 +124,7 @@ en:
         managed_by_html: '%{link_to_user} authored %{time} ago'
     shared:
       footer:
-        reproducibility_html: 'Scientific Protocols is part of %{link_to_reproducibility}'
+        reproducibility_html: 'Scientific Protocols is part of %{link_to_reproducibility}.'
         link_to_reproducibility: 'the Reproducibility Initiative'
       masthead:
         link_to_account: 'Account'

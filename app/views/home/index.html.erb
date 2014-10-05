@@ -1,32 +1,28 @@
 <!-- Jumbotron -->
-<div class="jumbotron">
+<div class="jumbotron text-center">
   <h1><%= t('views.home.index.brand') %></h1>
   <p class="lead"><%= t('views.home.index.lead') %></p>
-  <div class="row">
-    <div class="col-md-4">
-      <%= link_to signin_path, class: 'btn btn-block btn-social btn-lg btn-github btn-success' do %>
-        <i class="fa fa-github"></i> <%= t('views.home.index.link_to_signup') %>
-      <% end if current_user.blank? %>
-    </div>
-  </div>
+    <%= link_to signin_path, class: 'btn btn-social btn-lg btn-github btn-success' do %>
+      <i class="fa fa-github"></i> <%= t('views.home.index.link_to_signup') %>
+    <% end if current_user.blank? %>
 </div>
 <% cache 'Home' do %>
   <div class="container">
     <div class="row row-spacer-20">
       <div class="col-md-4">
-        <h2>Open and free</h2>
-        <p class="lead">Search hunreds of open-source protocols from your colleagues across all scientific disciplines.</p>
+        <h2><%= t('views.home.index.open_and_free') %></h2>
+        <p class="lead"><%= t('views.home.index.open_and_free_lead') %></p>
       </div>
       <div class="col-md-4">
-        <h2>Total administration</h2>
-        <p class="lead">Publish, edit, and track changes to your protocols in a citable and reusable format.</p>
+        <h2><%= t('views.home.index.full_administration') %></h2>
+        <p class="lead"><%= t('views.home.index.full_administration_lead') %></p>
       </div>
       <div class="col-md-4">
-        <h2>Modern collaboration</h2>
-        <p class="lead">Discuss and edit protocols with clear visibility into collaborator change requests and inline comments.</p>
+        <h2><%= t('views.home.index.modern_collaboration') %></h2>
+        <p class="lead"><%= t('views.home.index.modern_collaboration_lead') %></p>
       </div>
     </div>
     <hr>
-    <p class="lead" style="padding: 30px 84px; font-size: 33px">"By sharing scientific protocols we hope to encourage transparency in research and promote reproducibility of published results." - David Iorns, Creator</p>
+    <p class="lead homepage-quote"><%= t('views.home.index.creator_quote') %><small><%= t('views.home.index.creator_name') %></small></p>
   </div>
 <% end %>
