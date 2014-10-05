@@ -4,29 +4,29 @@
   <p class="lead"><%= t('views.home.index.lead') %></p>
   <div class="row">
     <div class="col-md-4">
-      <%= link_to signin_path, class: 'btn btn-block btn-social btn-lg btn-github' do %>
+      <%= link_to signin_path, class: 'btn btn-block btn-social btn-lg btn-github btn-success' do %>
         <i class="fa fa-github"></i> <%= t('views.home.index.link_to_signup') %>
       <% end if current_user.blank? %>
     </div>
   </div>
 </div>
 <% cache 'Home' do %>
-  <hr>
-  <div class="row-fluid">
-    <div class="col-md-4">
-      <h2><%= t('views.home.index.built_on_github') %></h2>
-      <p><%= t('views.home.index.built_on_github_text') %></p>
-      <p><a class="btn btn-default" href="/github"><%= t('views.home.index.link_to_github') %></a></p>
+  <div class="container">
+    <div class="row row-spacer-20">
+      <div class="col-md-4">
+        <h2>Open and free</h2>
+        <p class="lead">Search hunreds of open-source protocols from your colleagues across all scientific disciplines.</p>
+      </div>
+      <div class="col-md-4">
+        <h2>Total administration</h2>
+        <p class="lead">Publish, edit, and track changes to your protocols in a citable and reusable format.</p>
+      </div>
+      <div class="col-md-4">
+        <h2>Modern collaboration</h2>
+        <p class="lead">Discuss and edit protocols with clear visibility into collaborator change requests and inline comments.</p>
+      </div>
     </div>
-    <div class="col-md-4">
-      <h2><%= t('views.home.index.reproducibility') %></h2>
-      <p><%= t('views.home.index.reproducibility_text') %></p>
-      <p><a class="btn btn-default" href="http://validation.scienceexchange.com/#/reproducibility-initiative"><%= t('views.home.index.link_to_reproducibility') %></a></p>
-    </div>
-    <div class="col-md-4">
-      <h2><%= t('views.home.index.github_science') %></h2>
-      <p><%= t('views.home.index.github_science_text') %></p>
-      <p><a class="btn btn-default" href="https://github.com/blog/1840-improving-github-for-science"><%= t('views.home.index.link_to_github_science') %></a></p>
-    </div>
+    <hr>
+    <p class="lead" style="padding: 30px 84px; font-size: 33px">"By sharing scientific protocols we hope to encourage transparency in research and promote reproducibility of published results." - David Iorns, Creator</p>
   </div>
 <% end %>
