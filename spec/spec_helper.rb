@@ -19,9 +19,28 @@ end
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
-require 'rspec/autorun'
 require 'factory_girl_rails'
 require_relative 'cancan_matchers'
+
+# Allow oAuth testing.
+OmniAuth.config.test_mode = true
+omniauth_hash = {
+  'provider' => 'github',
+  'uid' => '12345',
+  'info' => {
+    'name' => 'natasha',
+    'email' => 'hi@natashatherobot.com',
+    'nickname' => 'NatashaTheRobot'
+  },
+  'extra' => {
+    'raw_info' => {
+      'location' => 'San Francisco',
+      'gravatar_id' => '123456789'
+    }
+  }
+}
+
+OmniAuth.config.add_mock(:github, omniauth_hash)
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -47,8 +66,6 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = "random"
-
-  config.include Devise::TestHelpers, type: :controller
 
   # http://stackoverflow.com/a/12334380/880381
   # http://stackoverflow.com/a/6296767/880381

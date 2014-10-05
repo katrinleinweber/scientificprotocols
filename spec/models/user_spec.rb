@@ -11,4 +11,12 @@ describe User do
   describe 'scopes' do
 
   end
+  describe 'methods' do
+    let!(:user) { FactoryGirl.create(:user) }
+    describe '#from_omniauth' do
+      it 'finds a user by id and provider' do
+        expect(User.from_omniauth(user)).to eq(user)
+      end
+    end
+  end
 end

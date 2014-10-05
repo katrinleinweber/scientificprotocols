@@ -1,5 +1,8 @@
 class Protocol < ActiveRecord::Base
   extend FriendlyId
+  attr_accessor :skip_callbacks
+  include Octokitable
+  include Gistable
   include ProtocolObserver
   acts_as_taggable
   friendly_id :title, use: :slugged
@@ -49,19 +52,56 @@ class Protocol < ActiveRecord::Base
   # Get the protocol facets. A count of tags against protocols in the context of
   # the current search and/or filter.
   def self.facets(protocols)
-    facet_tags = []
-    protocols.each do |protocol|
-      facet_tags = (facet_tags + protocol.tag_list).uniq
+    # Hack - How to convert this collection better?
+    protocols = Protocol.where(id: protocols.map(&:id)) if protocols.is_a? Sunspot::Search::PaginatedCollection
+
+    # Recalculate tag count based on current result set not total result set.
+    tags = []
+    all_tags = Protocol.tag_counts.order(:name)
+    all_tags.each do |tag|
+      tag.taggings_count = protocols.tagged_with(tag).count
+      tags << tag if tag.taggings_count > 0
     end
-    facets = ActsAsTaggableOn::Tag.where(name: facet_tags).order(:name)
-    facets.each do |tag|
-      tag_count = 0
-      protocols.each do |protocol|
-        if protocol.tag_list.include?(tag.name)
-          tag_count = tag_count + 1
-        end
-      end
-      tag.taggings_count = tag_count
+    tags
+  end
+
+  # Fork a protocol. Return the forked protocol object. Note you cannot fork a gist you own.
+  # WARNING - Protocol callbacks are skipped.
+  # @param [String] gist_id The ID of the Gist we're forking.
+  # @param [User] protocol_manager The user who will manage the protocol.
+  # @return [Protocol] The new protocol that came from the fork.
+  def fork(gist_id, protocol_manager)
+    return nil if self.octokit_client.blank? || gist_id.blank? || protocol_manager.blank?
+    managed_by = self.users.first
+    managed_by_username = managed_by.username if managed_by.present?
+    new_gist = self.octokit_client.fork_gist(gist_id)
+    if new_gist.present?
+      title = format_title("[#{protocol_manager.username}] #{new_gist.description}", managed_by_username)
+      response = Net::HTTP.get_response(URI.parse(new_gist.files[PROTOCOL_FILE_NAME].raw_url))
+      description = response.code == '200' ? response.body : nil
+      protocol_manager = ProtocolManager.create(
+        user: protocol_manager,
+        protocol: Protocol.new(
+          title: title,
+          description: description,
+          gist_id: new_gist.id,
+          tag_list: self.tag_list,
+          skip_callbacks: true
+        )
+      )
+      protocol_manager.persisted? ? protocol_manager.protocol : nil
+    else
+      nil
     end
   end
+
+  private
+    # Format a protocol title. Strip the bracketed username for a forked protocol.
+    # @param [String] title The title of that we're formatting.
+    # @param [String] username The username we're stripping from the string.
+    # @return [String] The formatted title.
+    def format_title(title, username)
+      title.slice! "[#{username}]"
+      title
+    end
 end

@@ -1,0 +1,37 @@
+<%= render partial: 'shared/page_title', locals: { page_title: @protocol.title } %>
+<%= render partial: 'tagline', locals: { protocol: @protocol, fork_of: @fork_of } %>
+<div class="row">
+  <div class="col-md-10">
+    <ul class="nav nav-tabs margin-bottom-10">
+      <li><%= link_to t('views.protocols.discussion.link_to_protocol'), @protocol %></li>
+      <li class="active">
+        <%= link_to t('views.protocols.discussion.link_to_discussion'), discussion_protocol_path(@protocol) %>
+      </li>
+    </ul>
+    <% if @comments.blank? %>
+      <div class="alert alert-info" role="alert">
+        <%= t('info.protocols.no_comments') %>
+      </div>
+    <% end %>
+    <% if current_user.present? %>
+      <%= render partial: 'comment_form', locals: { protocol: @protocol } %>
+    <% else %>
+      <p class="margin-bottom-10">
+        <%= t('views.protocols.discussion.sign_in_request_html',
+              link_to_signin: link_to(t('views.protocols.discussion.link_to_signin'), signin_path)) %>
+      </p>
+    <% end %>
+    <%= render partial: 'shared/comments', locals: { comments: @comments, protocol: @protocol, protocol_manager: @protocol_manager } %>
+  </div>
+  <div class="col-md-2">
+    <%= render partial: 'options', locals: {
+      back_path: @back_path,
+      revision_url: @revision_url,
+      gist_starred: @gist_starred,
+      protocol: @protocol,
+      forkable: @forkable,
+      embed_script: @embed_script,
+      protocol_manager: @protocol_manager
+    } %>
+  </div>
+</div>

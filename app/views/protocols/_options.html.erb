@@ -1,0 +1,53 @@
+<div class="btn-group-vertical btn-block margin-bottom-10">
+  <%= link_to back_path, class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-arrow-left"></span>
+    <%= t('views.protocols.options.link_to_back') %>
+  <% end %>
+  <% if revision_url.present? %>
+    <%= link_to revision_url, class: 'btn btn-default' do %>
+      <span class="glyphicon glyphicon-tasks"></span>
+      <%= t('views.protocols.options.link_to_revisions') %>
+    <% end %>
+  <% end %>
+  <% if current_user.present? %>
+    <% if gist_starred %>
+      <%= link_to unstar_protocol_path(protocol), method: :delete, class: 'btn btn-default' do %>
+        <span class="glyphicon glyphicon-star"></span>
+        <%= t('views.protocols.options.link_to_unstar') %>
+      <% end %>
+    <% else %>
+      <%= link_to star_protocol_path(protocol), method: :put, class: 'btn btn-default' do %>
+        <span class="glyphicon glyphicon-star-empty"></span>
+        <%= t('views.protocols.options.link_to_star') %>
+      <% end %>
+    <% end %>
+  <% end %>
+  <% if forkable %>
+    <%= link_to fork_protocol_path(protocol), method: :post, class: 'btn btn-default' do %>
+      <span class="glyphicon glyphicon-random"></span>
+      <%= t('views.protocols.options.link_to_fork') %>
+    <% end %>
+  <% end %>
+</div>
+<% if embed_script.present? %>
+  <div class="input-group margin-bottom-10 btn-block">
+    <label for="embed_script"><%= t('views.protocols.options.label_embed') %></label>
+    <div class="input-group">
+      <%= text_field_tag 'embed_script', embed_script, id: 'embed_script', class:'form-control', readonly: true %>
+      <span class="input-group-btn">
+        <button id="d_clip_button" class="btn btn-default" type="button"
+          data-clipboard-target="embed_script" data-toggle="tooltip"
+          title="<%= t('views.protocols.options.title_clipboard') %>">
+          <span class="glyphicon glyphicon-share"></span>
+        </button>
+      </span>
+    </div>
+  </div>
+<% end %>
+<% if protocol_manager.present? %>
+  <div class="btn-group-vertical btn-block">
+    <%= link_to t('views.protocols.options.link_to_edit'), edit_protocol_path(protocol), class: 'btn btn-primary' %>
+    <%= link_to t('views.protocols.options.link_to_delete'), protocol_path(protocol),
+          data: { confirm: t('views.protocols.options.data_confirm') }, method: :delete, class: 'btn btn-danger' %>
+  </div>
+<% end %>

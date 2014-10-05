@@ -1,9 +1,15 @@
 defaults: &defaults
+  # Default GitHub API token. Also used in tests.
   api_github: <%= ENV["API_GITHUB"] %>
+  # Secondary GitHub API token. Used only in tests when a secondary account is needed e.g. forking.
+  api_github_2: <%= ENV["API_GITHUB_2"] %>
   api_postmark: <%= ENV["API_POSTMARK"] %>
   api_aws_access_key_id: <%= ENV["API_AWS_ACCESS_KEY_ID"] %>
   api_aws_access_key: <%= ENV["API_AWS_ACCESS_KEY"] %>
   new_relic_license_key: <%= ENV["NEW_RELIC_LICENSE_KEY"] %>
+  # GitHub application client settings.
+  github_client_id: <%= ENV["GITHUB_CLIENT_ID"] %>
+  github_client_secret: <%= ENV["GITHUB_CLIENT_SECRET"] %>
 
 development:
   <<: *defaults
@@ -17,6 +23,8 @@ staging:
   api_aws_access_key_id: <%= ENV["API_AWS_ACCESS_KEY_ID"] %>
   api_aws_access_key: <%= ENV["API_AWS_ACCESS_KEY"] %>
   new_relic_license_key: <%= ENV["NEW_RELIC_LICENSE_KEY"] %>
+  github_client_id: <%= ENV["GITHUB_CLIENT_ID"] %>
+  github_client_secret: <%= ENV["GITHUB_CLIENT_SECRET"] %>
 
 production:
   api_github: <%= ENV["API_GITHUB"] %>
@@ -24,3 +32,5 @@ production:
   api_aws_access_key_id: <%= ENV["API_AWS_ACCESS_KEY_ID"] %>
   api_aws_access_key: <%= ENV["API_AWS_ACCESS_KEY"] %>
   new_relic_license_key: <%= ENV["NEW_RELIC_LICENSE_KEY"] %>
+  github_client_id: <%= ENV["GITHUB_CLIENT_ID"] %>
+  github_client_secret: <%= ENV["GITHUB_CLIENT_SECRET"] %>

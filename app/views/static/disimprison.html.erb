@@ -1,0 +1,94 @@
+<% content_for :head_style do %>
+  <%= stylesheet_link_tag 'disimprison.css', media: 'all' %>
+<% end %>
+<section id="intro" data-speed="6" data-type="background">
+  <div class="container">
+    <h1 class="text-center">Disimprison Your Protocols</h1>
+    <p>
+      In the age of collaboration why is so much important knowledge imprisoned in Word documents?
+      Liberate your expert knowledge and promote reproducibility of experimental results.
+      By becoming a contributor to ScientificProtocols.org you are using the flexibility of markdown
+      and the power of the GitHub platform to help build the most comprehensive, traceable, peer reviewed
+      and thorough archive of scientific protocols ever assembled. This archive is entirely open source
+      and without commercial interest.
+    </p>
+    <%= link_to signin_path, class: 'btn btn-block btn-social btn-lg btn-github center-block', style: 'width: 500px' do %>
+      <i class="fa fa-github"></i> Sign up with GitHub
+    <% end %>
+  </div>
+</section>
+<section id="home" data-speed="4" data-type="background">
+  <div class="container">
+    <h1 class="text-center">Why GitHub?</h1>
+    <p>
+      GitHub is a web-based hosting service for projects that use the Git revision
+      control system. It's the logical starting point for an archive of protocols
+      thanks to its advanced collaboration features and its key involvement in the
+      <%= link_to 'open science movement', 'https://github.com/blog/1840-improving-github-for-science' %>.
+      Here's a few ways GitHub makes a fantastic foundation for the ScientificProtocols.org site.
+    </p>
+    <div class="media">
+      <%= image_tag('labtocat.png', size: '150x150', class: 'media-object pull-left') %>
+      <div class="media-body">
+        <h4 class="media-heading">Version Control</h4>
+        GitHub provides version control. Version control is a system that records changes to a file or set of files over time so that
+        you can recall specific versions later. Any type of file on a computer can be placed under version control.
+        In addition to being able to track the history of changes to a file using a version control
+        system means that if you make a mistake or lose files, you can recover them easily.
+      </div>
+    </div>
+    <div class="media">
+      <%= image_tag('droidtocat.png', size: '150x150', class: 'media-object pull-left') %>
+      <div class="media-body">
+        <h4 class="media-heading">Forking</h4>
+        GitHub provides protocol forking. A fork is a copy of a protocol. Forking a protocol allows you to
+        freely experiment with changes without affecting the original protocol. Most commonly, forks are used to either
+        propose changes to someone else's protocol or to use someone else's protocol as a starting point for your own idea.
+      </div>
+    </div>
+    <div class="media">
+      <%= image_tag('doctocat-brown.jpg', size: '150x150', class: 'media-object pull-left') %>
+      <div class="media-body">
+        <h4 class="media-heading">Collaboration</h4>
+        GitHub provides excellent collaboration features. These features allow you peer review protocols,
+        track protocol changes and follow your favorite protocol authors.
+      </div>
+    </div>
+    <h1 class="text-center">What else is on offer?</h1>
+    In addition to leveraging the power of the GitHub platform ScientificProtocols.org also utilizes markdown to ensure simplicity
+    and reusability of protocol data. Furthermore it's a part of the Reproducibility Initiative which ensures it's plugged directly into
+    the heart of the open science movement.
+    <div class="row-fluid">
+      <div class="col-md-6">
+        <h3>Markdown</h3>
+        <p>
+          Markdown is a plain text formatting syntax designed so that it optionally can be converted to
+          HTML. It's a syntax designed for the web and its power lies in its compliance with the four
+          basic principles of simplicity, readability, security and convertability.
+        </p>
+        <p><a class="btn btn-default" href="http://en.wikipedia.org/wiki/Markdown">Learn more »</a></p>
+      </div>
+      <div class="col-md-6">
+        <h3>The Reproducibility Initiative</h3>
+        <p>
+          ScientificProtocols.org is part of the Reproducibility Initiative. The aim of the Reproducibility Initiative
+          is to identify and reward high quality reproducible research via
+          independent validation of key experimental results.
+        </p>
+        <p><a class="btn btn-default" href="http://validation.scienceexchange.com/#/reproducibility-initiative">Learn more »</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="about" data-speed="2" data-type="background">
+  <div class="container">
+    <h1 class="text-center">Contribute</h1>
+    <p>
+      ScientificProtocols.org needs your help to promote reproducibility and make a meaningful contribution
+      to the open science movement. Please join us! It's free and entirely without vested commercial interest.
+    </p>
+    <%= link_to signin_path, class: 'btn btn-block btn-social btn-lg btn-github center-block', style: 'width: 500px' do %>
+      <i class="fa fa-github"></i> Sign up with GitHub
+    <% end %>
+  </div>
+</section>

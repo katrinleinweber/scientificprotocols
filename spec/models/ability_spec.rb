@@ -11,13 +11,13 @@ describe 'User' do
       context 'for guest user' do
         let(:user) { nil }
         let(:protocol) { FactoryGirl.create(:protocol) }
-        it { should have_ability(:read, for: protocol) }
+        it { should have_ability([:read, :discussion], for: protocol) }
         it { should_not have_ability(change, for: protocol) }
       end
       context 'for authenticated user' do
         let(:user) { FactoryGirl.create(:user) }
         let(:protocol) { FactoryGirl.create(:protocol) }
-        it { should have_ability([:read, :create], for: protocol) }
+        it { should have_ability([:read, :create, :star, :unstar, :fork, :discussion, :create_comment, :delete_comment], for: protocol) }
         it { should_not have_ability(change, for: protocol) }
       end
       context 'for protocol owner' do

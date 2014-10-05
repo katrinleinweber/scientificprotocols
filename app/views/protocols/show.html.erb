@@ -1,36 +1,24 @@
 <%= render partial: 'shared/page_title', locals: { page_title: @protocol.title } %>
-<% cache ['Protocol', @protocol] do %>
-  <% managed_by = @protocol.users.first %>
-  <div class="row">
-    <div class="col-md-6">
-      <% if @protocol.tag_list.present? %>
-        <% @protocol.tag_list.each do |tag| %>
-          <span class="label label-default"><%= tag %></span>
-        <% end %>
-      <% end %>
-    </div>
-    <div class="col-md-6">
-      <% if managed_by.present? %>
-        <p class="text-right">
-          <%= link_to managed_by.username, user_path(managed_by.slug) %>
-          authored <%= time_ago_in_words(@protocol.updated_at) %> ago
-        </p>
-      <% end %>
-    </div>
-  </div>
-  <%= MARKDOWN.render(@protocol.description).html_safe %>
-<% end %>
-<div class="btn-toolbar" role="toolbar">
-  <%= link_to @back_path, class: 'btn btn-default' do %>
-    <span class="glyphicon glyphicon-arrow-left"></span> Back
-  <% end %>
-  <% if @revision_url.present? %>
-    <%= link_to @revision_url, class: 'btn btn-default' do %>
-      <span class="glyphicon glyphicon-tasks"></span> Revisions
+<%= render partial: 'tagline', locals: { protocol: @protocol, fork_of: @fork_of } %>
+<div class="row">
+  <div class="col-md-10">
+    <ul class="nav nav-tabs margin-bottom-10">
+      <li class="active"><%= link_to t('views.protocols.show.link_to_protocol'), @protocol %></li>
+      <li><%= link_to t('views.protocols.discussion.link_to_discussion'), discussion_protocol_path(@protocol) %></li>
+    </ul>
+    <% cache ['Protocol', @protocol] do %>
+      <%= MARKDOWN.render(@protocol.description).html_safe %>
     <% end %>
-  <% end %>
-  <% if @protocol_manager.present? %>
-    <%= link_to 'Edit', edit_protocol_path(@protocol), class: 'btn btn-primary' %>
-    <%= link_to 'Delete', protocol_path(@protocol), data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-danger' %>
-  <% end %>
+  </div>
+  <div class="col-md-2">
+    <%= render partial: 'options', locals: {
+      back_path: @back_path,
+      revision_url: @revision_url,
+      gist_starred: @gist_starred,
+      protocol: @protocol,
+      forkable: @forkable,
+      embed_script: @embed_script,
+      protocol_manager: @protocol_manager
+    } %>
+  </div>
 </div>

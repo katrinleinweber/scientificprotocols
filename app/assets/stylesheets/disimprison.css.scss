@@ -1,0 +1,30 @@
+#intro {
+  background: asset-data-url("road.png") 50% 0 fixed;
+  height: auto;
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+  box-shadow: 0 0 50px rgba(0,0,0,0.8);
+  padding: 175px 0;
+  color: #fff;
+}
+#home {
+  background: asset-data-url("earthrise.jpg") 50% 0 fixed;
+  height: auto;
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+  box-shadow: 0 0 50px rgba(0,0,0,0.8);
+  padding: 200px 0;
+  color: #fff;
+}
+#about {
+  background: asset-data-url("destination.png") 50% 0 fixed;
+  height: auto;
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+  box-shadow: 0 0 50px rgba(0,0,0,0.8);
+  padding: 100px 0;
+  color: #fff;
+}

@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Scientific Protocols - <%= yield_or_default(:title, 'A free and easy way to share scientific protocols') %></title>
+  <title>
+    <%= t('views.layouts.application.page_title_prefix') %>
+    <%= yield_or_default(:title, t('views.layouts.application.page_title_default')) %>
+  </title>
   <%= favicon_link_tag 'favicon.ico' %>
-  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= content_for :head_style %>
   <%= javascript_include_tag 'application' %>
+  <%= content_for :head_js %>
   <meta name=viewport content="width=device-width, initial-scale=1">
   <%= csrf_meta_tags %>
 </head>

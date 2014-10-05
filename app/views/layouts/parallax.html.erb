@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>
+    <%= t('views.layouts.application.page_title_prefix') %>
+    <%= yield_or_default(:title, t('views.layouts.application.page_title_default')) %>
+  </title>
+  <%= favicon_link_tag 'favicon.ico' %>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= content_for :head_style %>
+  <%= javascript_include_tag 'application' %>
+  <%= content_for :head_js %>
+  <meta name=viewport content="width=device-width, initial-scale=1">
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div class="container">
+  <%= render partial: 'shared/masthead' %>
+  <% if notice %>
+    <p class="alert alert-success"><%= notice %></p>
+  <% end %>
+  <% if alert %>
+    <p class="alert alert-danger"><%= alert %></p>
+  <% end %>
+</div>
+<%= yield %>
+<%= javascript_include_tag 'application_footer' %>
+<%= render partial: 'shared/google_analytics' if Rails.env.production? %>
+</body>
+</html>

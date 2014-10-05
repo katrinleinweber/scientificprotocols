@@ -1,1 +1,0 @@
-OCTOKIT_CLIENT = Octokit::Client.new(access_token: Rails.configuration.api_github)

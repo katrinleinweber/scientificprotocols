@@ -23,7 +23,7 @@ module Scientificprotocols
     # Choice gem. Easy external settings.
     config.from_file 'settings.yml'
 
-    config.assets.precompile += %w( application_footer.js )
+    config.assets.precompile += %w( application_footer.js jquery-ui.js jquery-ui.css disimprison.css)
 
     # Sets the config for sending emails via Postmark.
     config.action_mailer.delivery_method = :postmark

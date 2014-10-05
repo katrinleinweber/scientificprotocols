@@ -1,10 +1,18 @@
 case Rails.env
   when 'development'
     PROTOCOL_FILE_NAME = 'protocol.md'
+    GITHUB_AUTH_PATH = '/auth/github'
+    GITHUB_AUTH_SCOPES = 'user,repo,gist,write:repo_hook,read:org'
   when 'test'
     PROTOCOL_FILE_NAME = 'protocol.md'
+    GITHUB_AUTH_PATH = '/auth/github'
+    GITHUB_AUTH_SCOPES = 'user,repo,gist,write:repo_hook,read:org'
   when 'staging'
     PROTOCOL_FILE_NAME = 'protocol.md'
+    GITHUB_AUTH_PATH = '/auth/github'
+    GITHUB_AUTH_SCOPES = 'user,repo,gist,write:repo_hook,read:org'
   when 'production'
     PROTOCOL_FILE_NAME = 'protocol.md'
+    GITHUB_AUTH_PATH = '/auth/github'
+    GITHUB_AUTH_SCOPES = 'user,repo,gist,write:repo_hook,read:org'
 end

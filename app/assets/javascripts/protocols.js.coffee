@@ -1,3 +1,4 @@
+# Setup token field for protocol tags.
 cache = {}
 $("input.tokenize").tokenfield
   autocomplete:
@@ -14,3 +15,10 @@ $("input.tokenize").tokenfield
     delay: 100
   showAutocompleteOnFocus: true
   limit: 3
+
+# Setup embed protocol button.
+$(document).ready ->
+  clip = new ZeroClipboard($("#d_clip_button"))
+  $("#d_clip_button").tooltip()
+  return
+

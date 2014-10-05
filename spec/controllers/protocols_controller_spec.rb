@@ -18,37 +18,73 @@ describe ProtocolsController do
     describe 'GET #new' do
       it 'redirects to the login page' do
         get :new
-        expect(response).to redirect_to new_user_session_url
+        expect(response).to redirect_to '/signup'
       end
     end
     describe 'POST #create' do
       it 'redirects to the login page' do
         post :create, protocol: FactoryGirl.attributes_for(:protocol)
-        expect(response).to redirect_to new_user_session_url
+        expect(response).to redirect_to '/signup'
       end
     end
     describe 'GET #edit' do
       it 'redirects to the login page' do
         get :edit, id: protocol.id
-        expect(response).to redirect_to new_user_session_url
+        expect(response).to redirect_to '/signup'
       end
     end
     describe 'PATCH #update' do
       it 'redirects to the login page' do
         patch :update, id: protocol.id, protocol: { title: Faker::Lorem.sentence(5) }
-        expect(response).to redirect_to new_user_session_url
+        expect(response).to redirect_to '/signup'
       end
     end
     describe 'DELETE #destroy' do
       it 'redirects to the login page' do
         delete :destroy, id: protocol.id
-        expect(response).to redirect_to new_user_session_url
+        expect(response).to redirect_to '/signup'
       end
     end
     describe 'GET #tags' do
-      it 'redirects to the login page' do
+      it 'allows access' do
         get :tags, format: :json
         expect(response.code).to eq('200')
+      end
+    end
+    describe 'PUT #star' do
+      it 'redirects to the login page' do
+        put :star, id: protocol.id
+        expect(response).to redirect_to '/signup'
+      end
+    end
+    describe 'DELETE #unstar' do
+      it 'redirects to the login page' do
+        delete :unstar, id: protocol.id
+        expect(response).to redirect_to '/signup'
+      end
+    end
+    describe 'POST #fork' do
+      it 'redirects to the login page' do
+        post :fork, id: protocol.id
+        expect(response).to redirect_to '/signup'
+      end
+    end
+    describe 'GET #discussion' do
+      it 'allows access' do
+        get :discussion, id: protocol.id
+        expect(response).to render_template :discussion
+      end
+    end
+    describe 'POST #create_comment' do
+      it 'redirects to the login page' do
+        post :create_comment, id: protocol.id, body: Faker::Lorem.words(20)
+        expect(response).to redirect_to '/signup'
+      end
+    end
+    describe 'DELETE #delete_comment' do
+      it 'redirects to the login page' do
+        delete :delete_comment, id: protocol.id, comment_id: 1
+        expect(response).to redirect_to '/signup'
       end
     end
   end
@@ -96,9 +132,47 @@ describe ProtocolsController do
       end
     end
     describe 'GET #tags' do
-      it 'redirects to the login page' do
+      it 'allows access' do
         get :tags, format: :json
         expect(response.code).to eq('200')
+      end
+    end
+    describe 'PUT #star' do
+      it 'redirects to the protocols page' do
+        put :star, id: protocol.id
+        expect(response).to redirect_to protocol
+      end
+    end
+    describe 'DELETE #unstar' do
+      it 'redirects to the protocols page' do
+        delete :unstar, id: protocol.id
+        expect(response).to redirect_to protocol
+      end
+    end
+    describe 'POST #fork' do
+      login_user(Rails.configuration.api_github_2)
+      it 'forks a protocol' do
+        protocol
+        expect{ post :fork, id: protocol.id, protocol: protocol }.to change{ Protocol.count }.by(1)
+      end
+    end
+    describe 'GET #discussion' do
+      it 'allows access' do
+        get :discussion, id: protocol.id
+        expect(response).to render_template :discussion
+      end
+    end
+    describe 'POST #create_comment' do
+      it 'redirects to the discussion page' do
+        post :create_comment, id: protocol.id, body: Faker::Lorem.words(20)
+        expect(response).to redirect_to discussion_protocol_path(protocol)
+      end
+    end
+    describe 'DELETE #delete_comment' do
+      it 'redirects to the login page' do
+        post :create_comment, id: protocol.id, body: Faker::Lorem.words(20)
+        delete :delete_comment, id: protocol.id
+        expect(response).to redirect_to discussion_protocol_path(protocol)
       end
     end
   end
@@ -160,9 +234,47 @@ describe ProtocolsController do
       end
     end
     describe 'GET #tags' do
-      it 'redirects to the login page' do
+      it 'allows access' do
         get :tags, format: :json
         expect(response.code).to eq('200')
+      end
+    end
+    describe 'PUT #star' do
+      it 'redirects to the protocols page' do
+        put :star, id: protocol.id
+        expect(response).to redirect_to protocol
+      end
+    end
+    describe 'DELETE #unstar' do
+      it 'redirects to the protocols page' do
+        delete :unstar, id: protocol.id
+        expect(response).to redirect_to protocol
+      end
+    end
+    describe 'POST #fork' do
+      login_user(Rails.configuration.api_github_2)
+      it 'forks a protocol' do
+        protocol
+        expect{ post :fork, id: protocol.id, protocol: protocol }.to change{ Protocol.count }.by(1)
+      end
+    end
+    describe 'GET #discussion' do
+      it 'allows access' do
+        get :discussion, id: protocol.id
+        expect(response).to render_template :discussion
+      end
+    end
+    describe 'POST #create_comment' do
+      it 'redirects to the discussion page' do
+        post :create_comment, id: protocol.id, body: Faker::Lorem.words(20)
+        expect(response).to redirect_to discussion_protocol_path(protocol)
+      end
+    end
+    describe 'DELETE #delete_comment' do
+      it 'redirects to the login page' do
+        post :create_comment, id: protocol.id, body: Faker::Lorem.words(20)
+        delete :delete_comment, id: protocol.id
+        expect(response).to redirect_to discussion_protocol_path(protocol)
       end
     end
   end
