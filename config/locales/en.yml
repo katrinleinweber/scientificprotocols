@@ -120,7 +120,7 @@ en:
         link_to_reproducibility: 'the Reproducibility Initiative'
       masthead:
         link_to_account: 'Account'
-        link_to_contributors: 'Contributors'
+        link_to_contributors: 'Contributions'
         link_to_home_brand: 'Scientific Protocols'
         link_to_home: 'Home'
         link_to_protocols: 'Protocols'
