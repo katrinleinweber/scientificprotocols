@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   extend FriendlyId
   friendly_id :username, use: :slugged
+  include Octokitable
   has_many :protocol_managers
   has_many :protocols, through: :protocol_managers
   validates :username, uniqueness: { case_sensitive: false }, format: { with: /\A[a-zA-Z0-9]+\Z/ }, length: { minimum: 5, maximum: 20 }
