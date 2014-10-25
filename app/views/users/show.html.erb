@@ -1,14 +1,23 @@
 <%= render partial: 'shared/page_title', locals: { page_title: @user.username } %>
-<% cache ['User', @user] do %>
-  <% protocol_count = @user.protocols.count %>
-  <p>
-    <%= t('views.users.show.managed_count', protocol: pluralize(protocol_count, t('views.users.show.protocol'))) %>
-    <%= link_to t('views.users.show.link_to_protocols').pluralize(protocol_count), protocols_path(u: @user.slug) %>
-  </p>
-  <p><%= t('views.users.show.member_since') %> <%= @user.created_at %></p>
-  <div class="btn-toolbar hide" role="toolbar">
-    <%= link_to '#', class: 'btn btn-default' do %>
-      <span class="glyphicon glyphicon-envelope"></span> Message
-    <% end %>
+<div class="row">
+  <div class="col-md-3">
+    <%= image_tag(@avatar_url, width: '100%', alt: @user.username, class: 'margin-bottom-10') if @avatar_url.present? %>
+    <p class="lead">
+      <%= t('views.users.show.managed_count', protocol: pluralize(@protocols.count, t('views.users.show.protocol'))) %>
+    <p>
+    <hr>
+    <span class="glyphicon glyphicon-time"></span>
+    <%= t('views.users.show.member_since') %> <%= @user.created_at.to_date %>
   </div>
-<% end %>
+  <div class="col-md-9">
+    <ul class="nav nav-tabs margin-bottom-10">
+      <li class="active"><%= link_to t('views.users.show.link_to_contributions'), @user %></li>
+    </ul>
+    <% if @protocols.blank? %>
+      <div class="alert alert-info" role="alert">
+        <%= t('info.protocols.no_contributions', contributor: @user.username) %>
+      </div>
+    <% end %>
+    <%= render partial: 'shared/protocols', locals: {protocols: @protocols} %>
+  </div>
+</div>
