@@ -61,6 +61,7 @@ gem 'activeresource'
 # SEO.
 gem 'roboto'
 gem 'friendly_id'
+gem 'meta-tags'
 
 # Email.
 gem 'postmark-rails'
