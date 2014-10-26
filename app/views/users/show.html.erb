@@ -1,7 +1,7 @@
 <%= render partial: 'shared/page_title', locals: { page_title: @user.username } %>
 <div class="row">
-  <div class="col-md-3">
-    <%= image_tag(@avatar_url, width: '100%', alt: @user.username, class: 'margin-bottom-10') if @avatar_url.present? %>
+  <div class="col-xs-12 col-sm-4 col-md-3">
+    <%= image_tag(@avatar_url, alt: @user.username, class: 'img-responsive margin-bottom-10') if @avatar_url.present? %>
     <p class="lead">
       <%= t('views.users.show.managed_count', protocol: pluralize(@protocols.count, t('views.users.show.protocol'))) %>
     <p>
@@ -9,7 +9,7 @@
     <span class="glyphicon glyphicon-time"></span>
     <%= t('views.users.show.member_since') %> <%= @user.created_at.to_date %>
   </div>
-  <div class="col-md-9">
+  <div class="col-xs-12 col-sm-8 col-md-9">
     <ul class="nav nav-tabs margin-bottom-10">
       <li class="active"><%= link_to t('views.users.show.link_to_contributions'), @user %></li>
     </ul>
