@@ -16,4 +16,5 @@
  *= require bootstrap-markdown.min
  *= require rails_bootstrap_forms
  *= require bootstrap-tokenfield
+ *= require font-awesome
  */

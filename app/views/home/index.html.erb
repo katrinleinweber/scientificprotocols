@@ -2,7 +2,7 @@
 <div class="jumbotron text-center">
   <h1><%= t('views.home.index.brand') %></h1>
   <p class="lead"><%= t('views.home.index.lead') %></p>
-    <%= link_to signin_path, class: 'btn btn-social btn-lg btn-github btn-success' do %>
+    <%= link_to signin_path, class: 'btn btn-social btn-lg btn-success' do %>
       <i class="fa fa-github"></i> <%= t('views.home.index.link_to_signup') %>
     <% end if current_user.blank? %>
 </div>
@@ -23,6 +23,11 @@
       </div>
     </div>
     <hr>
-    <p class="lead homepage-quote"><%= t('views.home.index.creator_quote') %><small><%= t('views.home.index.creator_name') %></small></p>
+    <p class="lead homepage-quote"><%= t('views.home.index.creator_quote') %>
+      <br>
+      <small>
+        - <%= t('views.home.index.creator_name') %>
+      </small>
+    </p>
   </div>
 <% end %>
