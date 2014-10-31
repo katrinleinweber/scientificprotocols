@@ -6,25 +6,30 @@
     <%= yield_or_default(:title, t('views.layouts.application.page_title_default')) %>
   </title>
   <%= favicon_link_tag 'favicon.ico' %>
+  <%= favicon_link_tag 'touch-icon-iphone.png', rel: 'apple-touch-icon', type: 'image/png' %>
+  <%= favicon_link_tag 'touch-icon-ipad.png', rel: 'apple-touch-icon', type: 'image/png', sizes: '76x76' %>
+  <%= favicon_link_tag 'touch-icon-iphone-retina.png', rel: 'apple-touch-icon', type: 'image/png', sizes: '120x120' %>
+  <%= favicon_link_tag 'touch-icon-ipad-retina.png', rel: 'apple-touch-icon', type: 'image/png', sizes: '152x152' %>
   <%= stylesheet_link_tag 'application', media: 'all' %>
   <%= content_for :head_style %>
   <%= javascript_include_tag 'application' %>
   <%= content_for :head_js %>
   <meta name=viewport content="width=device-width, initial-scale=1">
+  <%= display_meta_tags keywords: Metatags::KEYWORDS %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-<div class="container">
-  <%= render partial: 'shared/masthead' %>
-  <% if notice %>
-    <p class="alert alert-success"><%= notice %></p>
-  <% end %>
-  <% if alert %>
-    <p class="alert alert-danger"><%= alert %></p>
-  <% end %>
-</div>
-<%= yield %>
-<%= javascript_include_tag 'application_footer' %>
-<%= render partial: 'shared/google_analytics' if Rails.env.production? %>
+  <div class="container">
+    <%= render partial: 'shared/masthead' %>
+    <% if notice %>
+      <p class="alert alert-success"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p class="alert alert-danger"><%= alert %></p>
+    <% end %>
+  </div>
+  <%= yield %>
+  <%= javascript_include_tag 'application_footer' %>
+  <%= render partial: 'shared/google_analytics' if Rails.env.production? %>
 </body>
 </html>
