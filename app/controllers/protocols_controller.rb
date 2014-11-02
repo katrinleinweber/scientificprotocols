@@ -24,6 +24,7 @@ class ProtocolsController < ApplicationController
   # GET /protocols/1
   def show
     set_globals
+    set_back_path
     respond_to do |format|
       format.html
     end
@@ -125,6 +126,7 @@ class ProtocolsController < ApplicationController
   # GET /protocols/1/discussion
   def discussion
     set_globals
+    set_back_path(mode: :session)
     @comments = @protocol.octokit_client.gist_comments(@protocol.gist.id)
     respond_to do |format|
       format.html
@@ -156,14 +158,14 @@ class ProtocolsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_protocol
-      @protocol = Protocol.friendly.find(params[:id])
-    end
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def protocol_params
       params.require(:protocol).permit(:title, :description, :tag_list)
+    end
+
+    # Use callbacks to share common setup or constraints between actions.
+    def set_protocol
+      @protocol = Protocol.friendly.find(params[:id])
     end
 
     # Set the Gist associated with the protocol.
@@ -186,17 +188,30 @@ class ProtocolsController < ApplicationController
       @protocol.set_octokit_client(access_token) if access_token.present?
     end
 
+    # Set the back path for the protocol page.
+    # @param [Symbol] mode The types of ways to set the back path e.g. Referrer, Session.
+    def set_back_path(mode: :referrer)
+      @back_path = protocols_path
+      case mode
+        when :referrer
+          query_string = get_query_string_from_referrer(request)
+          if params[:controller] == 'protocols' && query_string.present?
+            @back_path << '?' + query_string
+          end
+          session[:protocol_back_path] = @back_path
+        when :session
+          if session[:protocol_back_path].present?
+            @back_path = session[:protocol_back_path]
+          end
+      end
+    end
+
     # Setup globals used by multiple actions.
     def set_globals
       set_octokit_client(true)
       set_gist
       @protocol_manager = ProtocolManager.where(protocol: @protocol, user: current_user).first if current_user.present?
       @revision_url = @protocol.gist_revision_url
-      @back_path = protocols_path
-      query_string = get_query_string_from_referrer(request)
-      if params[:controller] == 'protocols' && query_string.present?
-        @back_path << '?' + query_string
-      end
       @gist_starred = @protocol.octokit_client.gist_starred?(@protocol.gist.id)
       @forkable = current_user.present? && @protocol_manager.blank?
       @fork_of = @protocol.gist.fork_of.present? ? Protocol.find_by_gist_id(@protocol.gist.fork_of.id) : nil
