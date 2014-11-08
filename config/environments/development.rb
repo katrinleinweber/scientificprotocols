@@ -37,3 +37,7 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 end
+
+# This line shouldn't be required.
+# https://github.com/rails-api/active_model_serializers/issues/573
+Rails.application.routes.default_url_options[:host] = 'localhost:3000'

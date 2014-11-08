@@ -90,3 +90,7 @@ Rails.application.configure do
   # Sets the host for mailers.
   config.action_mailer.default_url_options = {host: 'scientificprotocols-staging.herokuapp.com', protocol: 'https'}
 end
+
+# This line shouldn't be required.
+# https://github.com/rails-api/active_model_serializers/issues/573
+Rails.application.routes.default_url_options[:host] = 'scientificprotocols-staging.herokuapp.com'
