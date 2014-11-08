@@ -1,6 +1,11 @@
 <%= render partial: 'shared/page_title', locals: { page_title: t('views.static.api.page_title') } %>
 <p><%= t('views.static.api.api_desc') %></p>
 <p><%= t('views.static.api.api_end_point_html') %></p>
+<p>
+  <%= t('views.static.api.api_data_license_html',
+    license_url: link_to(t('views.static.api.link_to_license'),
+    'http://opendatacommons.org/wp-content/uploads/2009/06/dbcl-10.txt')) %>
+</p>
 <h3><%= t('views.static.api.api_protocol_title') %></h3>
 <script src="https://gist.github.com/scientificprotocols/e7609ba2d41e58e9b10e.js"></script>
 <h3><%= t('views.static.api.api_protocols_title') %></h3>

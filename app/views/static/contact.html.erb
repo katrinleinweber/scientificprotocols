@@ -1,0 +1,14 @@
+<%= render partial: 'shared/page_title', locals: { page_title: t('views.static.contact.page_title') } %>
+<p><%= t('views.static.contact.contact_desc') %></p>
+<dl class="dl-horizontal">
+  <dt>Email</dt>
+  <dd><%= mail_to('info@scientificprotocols.org', 'info@scientificprotocols.org') %></dd>
+  <dt>GitHub</dt>
+  <dd><%= link_to('sprotocols', 'https://github.com/sprotocols') %></dd>
+  <dt>Twitter</dt>
+  <dd><%= link_to('@SProtocolsOrg', 'https://twitter.com/SProtocolsOrg') %></dd>
+  <dt>Facebook</dt>
+  <dd><%= link_to('Scientific Protocols', 'https://www.facebook.com/pages/Scientific-Protocols/356147041225928') %></dd>
+  <dt>Google Plus</dt>
+  <dd><%= link_to('+ScientificprotocolsOrganization', 'https://plus.google.com/u/2/b/109473830306609562203/+ScientificprotocolsOrganization') %></dd>
+</dl>

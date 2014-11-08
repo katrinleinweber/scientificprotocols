@@ -4,6 +4,8 @@
   <p>
     <%= t('views.shared.footer.reproducibility_html',
           link_to_reproducibility: link_to(t('views.shared.footer.link_to_reproducibility'),
-          'http://validation.scienceexchange.com/#/reproducibility-initiative')) %>
+          'http://validation.scienceexchange.com/#/reproducibility-initiative')) %> |
+    <%= link_to(t('views.shared.footer.link_to_contact'), '/contact') %> |
+    <%= link_to(t('views.shared.footer.link_to_api'), '/api_v1') %>
   </p>
 </div>

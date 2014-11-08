@@ -10,7 +10,7 @@ class ProtocolSerializer < ActiveModel::Serializer
   end
 
   def url
-    api_v1_protocol_url(object, host: 'api.scienceexchange.org', protocol: 'https')
+    api_v1_protocol_url(object)
   end
 
   def html_url

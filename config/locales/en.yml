@@ -118,6 +118,8 @@ en:
       footer:
         reproducibility_html: 'Scientific Protocols is part of %{link_to_reproducibility}'
         link_to_reproducibility: 'the Reproducibility Initiative'
+        link_to_api: 'API'
+        link_to_contact: 'Contact'
       masthead:
         link_to_account: 'Account'
         link_to_contributors: 'Contributions'
@@ -145,9 +147,14 @@ en:
       api:
         page_title: 'The Scientific Protocols API - v1'
         api_desc: 'The Scientific Protocols API allows you to integrate protocol data from the site with your own application. V1 of the API is read-only.'
-        api_end_point_html: 'The API URL is <mark>https://api.scientificprotocols.org/v1</mark>'
+        api_end_point_html: 'The API URL is <mark>https://www.scientificprotocols.org/api/v1</mark>'
         api_protocol_title: 'Get a single protocol'
         api_protocols_title: 'List protocols'
+        api_data_license_html: 'API data is free to use for any purpose. %{license_url}'
+        link_to_license: 'ODC Database Contents License'
+      contact:
+        page_title: 'Contact us'
+        contact_desc: 'The Scientific Protocols team can be contacted in any of the following ways.'
     users:
       show:
         managed_count: 'Authored %{protocol}'

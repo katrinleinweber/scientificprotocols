@@ -7,7 +7,7 @@ describe ProtocolSerializer, :timefreeze do
   it 'should serialize exposed attributes' do
     expected_data = {
       id: protocol.slug,
-      url: api_v1_protocol_url(protocol, host: 'api.scienceexchange.org', protocol: 'https'),
+      url: api_v1_protocol_url(protocol),
       title: protocol.title,
       description: protocol.description,
       gist_id: protocol.gist_id,
