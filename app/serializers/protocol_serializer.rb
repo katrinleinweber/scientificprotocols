@@ -22,7 +22,7 @@ class ProtocolSerializer < ActiveModel::Serializer
   end
 
   def tags
-    object.tags
+    object.tags.map(&:name)
   end
 
   def author

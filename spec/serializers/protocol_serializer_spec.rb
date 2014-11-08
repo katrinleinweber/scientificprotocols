@@ -13,7 +13,7 @@ describe ProtocolSerializer, :timefreeze do
       gist_id: protocol.gist_id,
       html_url: protocol_url(protocol),
       discussion_html_url: discussion_protocol_url(protocol),
-      tags: protocol.tags,
+      tags: protocol.tags.map(&:name),
       author: {
         username: protocol_manager.user.username,
         html_url: user_url(protocol_manager.user)
