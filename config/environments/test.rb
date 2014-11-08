@@ -36,4 +36,10 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 end
+
+# This line shouldn't be required.
+# https://github.com/rails-api/active_model_serializers/issues/573
+Rails.application.routes.default_url_options[:host] = 'localhost:3000'
