@@ -11,7 +11,7 @@ class Api::V1::ProtocolsController < Api::V1::BaseController
 
   # GET /api/v1/protocols
   def index
-    @protocols = Protocol.search(params)
+    @protocols = Protocol.search(params, paginate: false)
     respond_with(@protocols)
   end
 end
