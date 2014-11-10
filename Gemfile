@@ -91,6 +91,9 @@ gem 'workflow'
 # Allow copying to clipboard.
 gem 'zeroclipboard-rails'
 
+# Digital Object Identifiers (DOIs).
+gem 'zenodo', git: 'https://github.com/sprotocols/zenodo.git'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', '~> 0.4.0'

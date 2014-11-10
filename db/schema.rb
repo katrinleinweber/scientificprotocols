@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140817004045) do
+ActiveRecord::Schema.define(version: 20141109015637) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,8 +43,11 @@ ActiveRecord::Schema.define(version: 20140817004045) do
     t.datetime "updated_at"
     t.string   "slug",        null: false
     t.string   "gist_id",     null: false
+    t.string   "word_file"
+    t.string   "doi"
   end
 
+  add_index "protocols", ["doi"], name: "index_protocols_on_doi", unique: true, using: :btree
   add_index "protocols", ["gist_id"], name: "index_protocols_on_gist_id", unique: true, using: :btree
   add_index "protocols", ["slug"], name: "index_protocols_on_slug", unique: true, using: :btree
 

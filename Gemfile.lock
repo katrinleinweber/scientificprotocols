@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/sprotocols/zenodo.git
+  revision: dccc760b8aaa557b44d1edf6c9a00e89ad12e1df
+  specs:
+    zenodo (0.0.1)
+      activesupport
+      faraday
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -408,4 +416,5 @@ DEPENDENCIES
   unicorn-rails
   will_paginate
   workflow
+  zenodo!
   zeroclipboard-rails
