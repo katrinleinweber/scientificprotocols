@@ -93,6 +93,7 @@ en:
         link_to_back: 'Back'
         page_title: 'Editing protocol'
       form:
+        help_description_html: '<a href="https://help.github.com/articles/markdown-basics/" target="_blank">Learn more about writing markdown</a>'
         help_tag_list: 'Select up to three tags that categorize your protocol'
       new:
         link_to_back: 'Back'
