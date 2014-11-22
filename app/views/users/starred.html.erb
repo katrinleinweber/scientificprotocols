@@ -7,14 +7,12 @@
   </div>
   <div class="col-xs-12 col-sm-8 col-md-9">
     <ul class="nav nav-tabs margin-bottom-10">
-      <li class="active"><%= link_to t('views.users.show.link_to_contributions'), @user %></li>
-      <% if @editable %>
-        <li><%= link_to t('views.users.starred.link_to_starred'), starred_user_path(@user) %></li>
-      <% end %>
+      <li><%= link_to t('views.users.show.link_to_contributions'), @user %></li>
+      <li class="active"><%= link_to t('views.users.starred.link_to_starred'), starred_user_path(@user) %></li>
     </ul>
     <% if @protocols.blank? %>
       <div class="alert alert-info" role="alert">
-        <%= t('info.protocols.no_contributions', contributor: @user.username) %>
+        <%= t('views.users.starred.no_starred', user: @user.username) %>
       </div>
     <% end %>
     <%= render partial: 'shared/protocols', locals: {protocols: @protocols} %>

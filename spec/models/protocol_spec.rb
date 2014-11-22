@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe Protocol do
+  let(:username) { 'dior001' }
   describe 'associations' do
     it { should have_many :protocol_managers }
     it { should have_many :users }
@@ -41,6 +42,9 @@ describe Protocol do
         username = protocol_manager.user.username
         expect(protocol.send(:format_title, protocol.title, username)).to eq(protocol.title)
       end
+    end
+    describe '#fork' do
+      pending 'Implement fork tests'
     end
   end
 end

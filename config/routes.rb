@@ -17,7 +17,11 @@ Rails.application.routes.draw do
       delete :delete_comment
     end
   end
-  resources :users, except: :index
+  resources :users, except: :index do
+    member do
+      get :starred
+    end
+  end
   get 'sitemap.xml', to: redirect('https://s3.amazonaws.com/scientificprotocols/sitemaps/sitemap.xml.gz')
   get ':action' => 'static#:action'
   namespace :api, defaults: {format: :json} do
