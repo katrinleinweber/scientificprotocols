@@ -25,12 +25,14 @@ class User < ActiveRecord::Base
     params.reverse_merge!({ page: 1 })
     gists = self.octokit_client.starred_gists(per_page: GITHUB_MAX_PAGE_SIZE)
     last_response = self.octokit_client.last_response
-    number_of_pages = self.number_of_pages(last_response)
-    if number_of_pages > 1
-      page_count = 2
-      while page_count <= number_of_pages do
-        gists += self.octokit_client.starred_gists(page: page_count, per_page: GITHUB_MAX_PAGE_SIZE)
-        page_count += 1
+    if last_response.present?
+      number_of_pages = self.number_of_pages(last_response)
+      if number_of_pages > 1
+        page_count = 2
+        while page_count <= number_of_pages do
+          gists += self.octokit_client.starred_gists(page: page_count, per_page: GITHUB_MAX_PAGE_SIZE)
+          page_count += 1
+        end
       end
     end
     @protocols = Protocol.where(gist_id: gists.map(&:id)).paginate(page: params[:page])
