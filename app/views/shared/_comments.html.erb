@@ -1,6 +1,8 @@
-<div class="media">
-  <% comments.each do |comment| %>
-    <%= image_tag comment.user.avatar_url, class: 'media-object pull-left thumbnail', style: 'width: 64px; height: 64px;' %>
+<% comments.each do |comment| %>
+  <div class="media">
+    <div class="media-left">
+      <%= image_tag comment.user.avatar_url, alt: current_user.username, style: 'width: 64px; height: 64px;' %>
+    </div>
     <div class="media-body">
       <h4 class="media-heading">
         <%= comment.user.login %>
@@ -15,5 +17,5 @@
       </h4>
       <%= MARKDOWN.render(comment.body).html_safe %>
     </div>
-  <% end %>
-</div>
+  </div>
+<% end %>
