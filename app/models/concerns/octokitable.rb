@@ -13,4 +13,7 @@ module Octokitable
     access_token ||= Rails.configuration.api_github
     self.octokit_client = Octokit::Client.new(access_token: access_token)
   end
+  def number_of_pages(last_response)
+    (last_response.rels[:last].href.match(/page=(\d+)$/)[1]).to_i
+  end
 end

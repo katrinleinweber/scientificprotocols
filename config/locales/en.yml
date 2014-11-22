@@ -163,6 +163,9 @@ en:
         link_to_contributions: 'Contributions'
         protocol: 'protocol'
         member_since: 'Member since'
+      starred:
+        link_to_starred: 'Starred'
+        no_starred: '%{user} has not starred any protocols.'
   constants:
     protocols:
       template: "    Authors:\n\n### Abstract\n\n### Materials\n\n### Equipment\n\n### Procedure\n\n### Recipes\n\n### References"
