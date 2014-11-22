@@ -4,7 +4,7 @@
     <%= t('views.protocols.options.link_to_back') %>
   <% end %>
   <% if revision_url.present? %>
-    <%= link_to revision_url, class: 'btn btn-default' do %>
+    <%= link_to revision_url, class: 'btn btn-default', target: '_blank' do %>
       <span class="glyphicon glyphicon-tasks"></span>
       <%= t('views.protocols.options.link_to_revisions') %>
     <% end %>
