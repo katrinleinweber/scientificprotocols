@@ -1,0 +1,34 @@
+<%
+   # Set default classes.
+   default_class = 'btn btn-default'
+   primary_class = 'btn btn-primary'
+   if search.present?
+     relevance_link_class = primary_class
+     title_link_class = default_class
+   else
+     relevance_link_class = default_class
+     title_link_class = primary_class
+   end
+   created_at_link_class = default_class
+
+   # Set classes based on sort.
+   if sort.present?
+     case sort
+       when 'title asc', 'title desc'
+         title_link_class = primary_class
+         relevance_link_class = default_class
+         created_at_link_class = default_class
+       when 'created_at asc', 'created_at desc'
+         created_at_link_class = primary_class
+         relevance_link_class = default_class
+         title_link_class = default_class
+     end
+   end
+%>
+<div class="btn-group pull-right margin-bottom-10" role="group">
+  <% if search.present? %>
+    <%= link_to sort_relevance_url_text, sort_relevance_url, class: relevance_link_class %>
+  <% end %>
+  <%= link_to sort_title_url_text, sort_title_url, class: title_link_class %>
+  <%= link_to sort_created_at_url_text, sort_created_at_url, class: created_at_link_class %>
+</div>

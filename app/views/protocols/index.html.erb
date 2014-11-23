@@ -9,12 +9,20 @@
     <% end %>
   </div>
 <% end %>
-<div class="form-group">
-  <%= link_to 'New protocol', new_protocol_path, class: 'btn btn-success' %>
-</div>
 <div class="row">
   <% if @facets.present? %>
     <div class="col-xs-12 col-sm-6 col-md-8">
+      <%= link_to 'New protocol', new_protocol_path, class: 'btn btn-success margin-bottom-10' %>
+      <%= render partial: 'shared/sort', locals: {
+          sort_relevance_url: @sort_relevance_url,
+          sort_title_url: @sort_title_url,
+          sort_created_at_url: @sort_created_at_url,
+          sort_relevance_url_text: @sort_relevance_url_text,
+          sort_title_url_text: @sort_title_url_text,
+          sort_created_at_url_text: @sort_created_at_url_text,
+          search: @search,
+          sort: @sort
+        } %>
       <%= render partial: 'shared/protocols', locals: {protocols: @protocols} %>
     </div>
     <div class="col-xs-12 col-sm-6 col-md-4">
@@ -22,9 +30,18 @@
     </div>
   <% else %>
     <div class="col-md-12">
+      <%= link_to 'New protocol', new_protocol_path, class: 'btn btn-success margin-bottom-10' %>
+      <%= render partial: 'shared/sort', locals: {
+          sort_relevance_url: @sort_relevance_url,
+          sort_title_url: @sort_title_url,
+          sort_created_at_url: @sort_created_at_url,
+          sort_relevance_url_text: @sort_relevance_url_text,
+          sort_title_url_text: @sort_title_url_text,
+          sort_created_at_url_text: @sort_created_at_url_text,
+          search: @search,
+          sort: @sort
+        } %>
       <%= render partial: 'shared/protocols', locals: {protocols: @protocols} %>
     </div>
   <% end %>
 </div>
-
-

@@ -132,6 +132,12 @@ en:
         placeholder_search: 'Search'
         sr_toggle_nav: 'Toggle navigation'
         submit: 'Submit'
+      sort:
+        link_to_sort_relevance: 'Relevance'
+        link_to_sort_title_asc: 'A - Z'
+        link_to_sort_title_desc: 'Z - A'
+        link_to_sort_created_at_desc: 'Newest'
+        link_to_sort_created_at_asc: 'Oldest'
     static:
       github:
         page_title: 'Built on GitHub'
