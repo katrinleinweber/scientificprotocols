@@ -1,3 +1,17 @@
+<% content_for :sort do %>
+  <% if @protocols.present? %>
+    <%= render partial: 'shared/sort', locals: {
+        sort_relevance_url: @sort_relevance_url,
+        sort_title_url: @sort_title_url,
+        sort_created_at_url: @sort_created_at_url,
+        sort_relevance_url_text: @sort_relevance_url_text,
+        sort_title_url_text: @sort_title_url_text,
+        sort_created_at_url_text: @sort_created_at_url_text,
+        search: @search,
+        sort: @sort
+      } %>
+  <% end %>
+<% end %>
 <% if @protocols.blank? %>
   <div class="alert alert-info" role="alert">
     <% if @search.present? %>
@@ -9,39 +23,29 @@
     <% end %>
   </div>
 <% end %>
-<div class="row">
-  <% if @facets.present? %>
+<% if @facets.present? %>
+  <div class="row">
     <div class="col-xs-12 col-sm-6 col-md-8">
-      <%= link_to 'New protocol', new_protocol_path, class: 'btn btn-success margin-bottom-10' %>
-      <%= render partial: 'shared/sort', locals: {
-          sort_relevance_url: @sort_relevance_url,
-          sort_title_url: @sort_title_url,
-          sort_created_at_url: @sort_created_at_url,
-          sort_relevance_url_text: @sort_relevance_url_text,
-          sort_title_url_text: @sort_title_url_text,
-          sort_created_at_url_text: @sort_created_at_url_text,
-          search: @search,
-          sort: @sort
-        } %>
+      <%= link_to t('views.shared.protocols.link_to_new_protocol'), new_protocol_path, class: 'btn btn-success margin-bottom-10' %>
+      <%= yield :sort %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-8">
       <%= render partial: 'shared/protocols', locals: {protocols: @protocols} %>
     </div>
     <div class="col-xs-12 col-sm-6 col-md-4">
       <%= render partial: 'shared/facets', locals: {facets: @facets, params: @params} %>
     </div>
-  <% else %>
+  </div>
+<% else %>
+  <div class="row">
     <div class="col-md-12">
-      <%= link_to 'New protocol', new_protocol_path, class: 'btn btn-success margin-bottom-10' %>
-      <%= render partial: 'shared/sort', locals: {
-          sort_relevance_url: @sort_relevance_url,
-          sort_title_url: @sort_title_url,
-          sort_created_at_url: @sort_created_at_url,
-          sort_relevance_url_text: @sort_relevance_url_text,
-          sort_title_url_text: @sort_title_url_text,
-          sort_created_at_url_text: @sort_created_at_url_text,
-          search: @search,
-          sort: @sort
-        } %>
+      <%= link_to t('views.shared.protocols.link_to_new_protocol'), new_protocol_path, class: 'btn btn-success margin-bottom-10' %>
+      <%= yield :sort %>
+    </div>
+    <div class="col-md-12">
       <%= render partial: 'shared/protocols', locals: {protocols: @protocols} %>
     </div>
-  <% end %>
-</div>
+  </div>
+<% end %>

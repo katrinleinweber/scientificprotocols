@@ -121,6 +121,8 @@ en:
         link_to_reproducibility: 'the Reproducibility Initiative'
         link_to_api: 'API'
         link_to_contact: 'Contact'
+      protocols:
+        link_to_new_protocol: 'New protocol'
       masthead:
         link_to_account: 'Account'
         link_to_contributors: 'Contributions'

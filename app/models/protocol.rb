@@ -8,7 +8,7 @@ class Protocol < ActiveRecord::Base
   friendly_id :title, use: :slugged
   has_many :protocol_managers
   has_many :users, through: :protocol_managers
-  default_scope { order('LOWER(title)') }
+  default_scope { order('LOWER(title)::bytea') }
   scope :managed_by, -> (user) { joins(:protocol_managers).where(protocol_managers: { user: user }) }
   validates :title, presence: true
   validates :description, presence: true
@@ -139,6 +139,6 @@ class Protocol < ActiveRecord::Base
       ) : Protocol.all
       protocols = protocols.tagged_with(options[:tags]) if options[:tags].present?
       protocols = protocols.managed_by(User.find_by_username(options[:u])) if options[:u].present?
-      options[:sort].present? ? protocols.reorder(options[:sort]) : protocols
+      options[:sort].present? ? protocols.reorder(options[:sort].sub('title', 'LOWER(title)::bytea')) : protocols
     end
 end
