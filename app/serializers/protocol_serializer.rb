@@ -10,15 +10,15 @@ class ProtocolSerializer < ActiveModel::Serializer
   end
 
   def url
-    api_v1_protocol_url(object)
+    api_v1_protocol_url(object, protocol: :https)
   end
 
   def html_url
-    protocol_url(object)
+    protocol_url(object, protocol: :https)
   end
 
   def discussion_html_url
-    discussion_protocol_url(object)
+    discussion_protocol_url(object, protocol: :https)
   end
 
   def tags
@@ -34,7 +34,7 @@ class ProtocolSerializer < ActiveModel::Serializer
     if author.present?
       {
         username: author.username,
-        html_url: user_url(author)
+        html_url: user_url(author, protocol: :https)
       }
     else
       nil
