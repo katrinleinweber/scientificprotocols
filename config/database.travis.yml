@@ -1,6 +1,6 @@
 test:
-  adapter: sqlite3
+  adapter: postgresql
   encoding: unicode
-  database: db/test.sqlite3
-  username:
+  database: scientificprotocols_test
+  username: postgres
   password:

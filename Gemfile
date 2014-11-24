@@ -92,6 +92,9 @@ gem 'workflow'
 # Allow copying to clipboard.
 gem 'zeroclipboard-rails'
 
+# Use PostgreSQL as the database for Active Record.
+gem 'pg'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', '~> 0.4.0'
@@ -120,8 +123,6 @@ group :test, :development do
   gem 'faker'
   # Custom matchers for rspec.
   gem 'shoulda'
-  # Use sql light in development and test.
-  gem 'sqlite3'
 end
 
 group :production, :staging do
@@ -131,6 +132,4 @@ group :production, :staging do
   gem 'rails_12factor'
   # Use compressed asset versions.
   gem 'heroku_rails_deflate'
-  # Use PostgreSQL as the database for Active Record.
-  gem 'pg'
 end

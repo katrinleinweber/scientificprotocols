@@ -14,8 +14,10 @@ class ProtocolsController < ApplicationController
 
   # GET /protocols
   def index
-    @protocols = Protocol.search(params)
-    @facets = Protocol.facets(Protocol.search(params, paginate: false))
+    @search_options = @params.deep_dup.symbolize_keys
+    @protocols = Protocol.search(@search_options)
+    @facets = Protocol.facets(Protocol.search(@search_options.merge!(paginate: false)))
+    set_sort_attributes
     respond_to do |format|
       format.html
     end
@@ -175,9 +177,10 @@ class ProtocolsController < ApplicationController
 
     # Get a hash of approved query string params.
     def set_params
-      @params = params.slice(:page, :u, :search, :utf8, :tags)
+      @params = params.slice(:page, :u, :search, :utf8, :tags, :sort)
       @contributor = User.find_by_username(params[:u]) if params[:u].present?
       @search = params[:search] if params[:search].present?
+      @sort = params[:sort] if params[:sort].present?
     end
 
     # Setup the Octokit client for the protocol.
@@ -216,5 +219,44 @@ class ProtocolsController < ApplicationController
       @forkable = current_user.present? && @protocol_manager.blank?
       @fork_of = @protocol.gist.fork_of.present? ? Protocol.find_by_gist_id(@protocol.gist.fork_of.id) : nil
       @embed_script = @protocol.gist_embed_script
+    end
+
+    def set_sort_attributes
+      @sort_relevance_url = protocols_path(@params.except(:sort))
+      @sort_relevance_url_text = t('views.shared.sort.link_to_sort_relevance')
+
+      if @sort.present?
+        case @sort
+          when 'title asc'
+            @sort_title_url = protocols_path(@params.merge(sort: 'title desc'))
+            @sort_title_url_text = t('views.shared.sort.link_to_sort_title_asc')
+            @sort_created_at_url = protocols_path(@params.merge(sort: 'created_at desc'))
+            @sort_created_at_url_text = t('views.shared.sort.link_to_sort_created_at_desc')
+          when 'title desc'
+            @sort_title_url = protocols_path(@params.merge(sort: 'title asc'))
+            @sort_title_url_text = t('views.shared.sort.link_to_sort_title_desc')
+            @sort_created_at_url = protocols_path(@params.merge(sort: 'created_at desc'))
+            @sort_created_at_url_text = t('views.shared.sort.link_to_sort_created_at_desc')
+          when 'created_at asc'
+            @sort_created_at_url = protocols_path(@params.merge(sort: 'created_at desc'))
+            @sort_created_at_url_text = t('views.shared.sort.link_to_sort_created_at_asc')
+            @sort_title_url = protocols_path(@params.merge(sort: 'title asc'))
+            @sort_title_url_text = t('views.shared.sort.link_to_sort_title_asc')
+          when 'created_at desc'
+            @sort_created_at_url = protocols_path(@params.merge(sort: 'created_at asc'))
+            @sort_created_at_url_text = t('views.shared.sort.link_to_sort_created_at_desc')
+            @sort_title_url = protocols_path(@params.merge(sort: 'title asc'))
+            @sort_title_url_text = t('views.shared.sort.link_to_sort_title_asc')
+        end
+      else
+        if @search.present?
+          @sort_title_url = protocols_path(@params.merge(sort: 'title asc'))
+        else
+          @sort_title_url = protocols_path(@params.merge(sort: 'title desc'))
+        end
+        @sort_title_url_text = t('views.shared.sort.link_to_sort_title_asc')
+        @sort_created_at_url = protocols_path(@params.merge(sort: 'created_at desc'))
+        @sort_created_at_url_text = t('views.shared.sort.link_to_sort_created_at_desc')
+      end
     end
 end
