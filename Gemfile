@@ -28,6 +28,7 @@ gem 'bootstrap-sass'
 gem 'bootstrap_form'
 gem 'bootstrap_tokenfield_rails'
 gem 'autoprefixer-rails'
+gem 'will_paginate-bootstrap'
 
 # Font awesome
 gem 'font-awesome-rails'
