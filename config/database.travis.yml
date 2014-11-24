@@ -2,5 +2,5 @@ test:
   adapter: postgresql
   encoding: unicode
   database: scientificprotocols_test
-  username:
+  username: postgres
   password:
