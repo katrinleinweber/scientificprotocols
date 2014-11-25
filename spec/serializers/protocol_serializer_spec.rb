@@ -7,16 +7,16 @@ describe ProtocolSerializer, :timefreeze do
   it 'should serialize exposed attributes' do
     expected_data = {
       id: protocol.slug,
-      url: api_v1_protocol_url(protocol),
+      url: api_v1_protocol_url(protocol, protocol: :https),
       title: protocol.title,
       description: protocol.description,
       gist_id: protocol.gist_id,
-      html_url: protocol_url(protocol),
-      discussion_html_url: discussion_protocol_url(protocol),
+      html_url: protocol_url(protocol, protocol: :https),
+      discussion_html_url: discussion_protocol_url(protocol, protocol: :https),
       tags: protocol.tags.map(&:name),
       author: {
         username: protocol_manager.user.username,
-        html_url: user_url(protocol_manager.user)
+        html_url: user_url(protocol_manager.user, protocol: :https)
       },
       created_at: protocol.created_at,
       updated_at: protocol.updated_at
