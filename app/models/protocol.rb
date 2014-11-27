@@ -4,6 +4,7 @@ class Protocol < ActiveRecord::Base
   include Octokitable
   include Gistable
   include ProtocolObserver
+  include Workflow
   acts_as_taggable
   friendly_id :title, use: :slugged
   has_many :protocol_managers
@@ -16,6 +17,7 @@ class Protocol < ActiveRecord::Base
     text :title, boost: 5
     text :description
     time :created_at
+    string :workflow_state
     string :tag_list, multiple: true
     string :sort_title do
       title.downcase.gsub(/^(an?|the)\b/, '')
@@ -29,6 +31,15 @@ class Protocol < ActiveRecord::Base
     'title asc',
     'title desc'
   ]
+
+  workflow do
+    state :draft do
+      event :publish, transitions_to: :published
+    end
+    state :published do
+      event :unpublish, transitions_to: :draft
+    end
+  end
 
   # Search the database or solr index for protocols.
   # @param [Hash] options The options of the search.
@@ -93,6 +104,16 @@ class Protocol < ActiveRecord::Base
     end
   end
 
+  def publish
+    self.workflow_state = :published
+    self.save
+  end
+
+  def unpublish
+    self.workflow_state = :draft
+    self.save
+  end
+
   private
     # Format a protocol title. Strip the bracketed username for a forked protocol.
     # @param [String] title The title of that we're formatting.
@@ -114,6 +135,7 @@ class Protocol < ActiveRecord::Base
       search = solr_search do
         fulltext options[:search]
         facet :tag_list
+        facet :workflow_state
         if sort.present?
           order_by *sort
         end
@@ -125,6 +147,7 @@ class Protocol < ActiveRecord::Base
           paginate(page: 1, per_page: Protocol.count)
         end
         options[:tags].each {|tag| with(:tag_list, tag)} if options[:tags].present?
+        with(:workflow_state, 'published')
       end
       search.results
     end
@@ -133,10 +156,10 @@ class Protocol < ActiveRecord::Base
     # @param [Hash] options The options of the search.
     # @return [ActiveRecord::Relation, Array] The search results collection.
     def self.standard_search(options)
-      protocols = options[:paginate] ? Protocol.paginate(
+      protocols = options[:paginate] ? Protocol.with_published_state.paginate(
         page: options[:page] || 1,
         per_page: Protocol.per_page
-      ) : Protocol.all
+      ) : Protocol.with_published_state
       protocols = protocols.tagged_with(options[:tags]) if options[:tags].present?
       protocols = protocols.managed_by(User.find_by_username(options[:u])) if options[:u].present?
       options[:sort].present? ? protocols.reorder(options[:sort].sub('title', 'LOWER(title)::bytea')) : protocols

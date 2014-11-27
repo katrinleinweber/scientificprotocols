@@ -1,2 +1,7 @@
-<% title local_assigns[:page_title] %>
-<div class="page-header"><h1><%= yield(:title) %></h1></div>
+<%
+   title local_assigns[:page_title]
+   subtitle ||= nil
+%>
+<div class="page-header">
+  <h1><%= yield(:title) %><% if subtitle.present? %><small><%= subtitle %></small><% end %></h1>
+</div>

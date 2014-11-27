@@ -46,6 +46,17 @@
 <% end %>
 <% if protocol_manager.present? %>
   <div class="btn-group-vertical btn-block">
+    <% if publishable %>
+      <%= link_to publish_protocol_path(protocol), method: :patch, class: 'btn btn-success' do %>
+        <span class="glyphicon glyphicon-book"></span>
+        <%= t('views.protocols.options.link_to_publish') %>
+      <% end %>
+    <% else %>
+      <%= link_to unpublish_protocol_path(protocol), method: :patch, class: 'btn btn-default' do %>
+        <span class="glyphicon glyphicon-book"></span>
+        <%= t('views.protocols.options.link_to_unpublish') %>
+      <% end %>
+    <% end %>
     <%= link_to t('views.protocols.options.link_to_edit'), edit_protocol_path(protocol), class: 'btn btn-primary' %>
     <%= link_to t('views.protocols.options.link_to_delete'), protocol_path(protocol),
           data: { confirm: t('views.protocols.options.data_confirm') }, method: :delete, class: 'btn btn-danger' %>

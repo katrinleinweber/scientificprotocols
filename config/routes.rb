@@ -9,6 +9,8 @@ Rails.application.routes.draw do
       get :tags
     end
     member do
+      patch :publish
+      patch :unpublish
       put :star
       delete :unstar
       post :fork
