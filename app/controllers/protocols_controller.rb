@@ -271,6 +271,11 @@ class ProtocolsController < ApplicationController
             @sort_created_at_url_text = t('views.shared.sort.link_to_sort_created_at_desc')
             @sort_title_url = protocols_path(@params.merge(sort: 'title asc'))
             @sort_title_url_text = t('views.shared.sort.link_to_sort_title_asc')
+          else
+            @sort_title_url = protocols_path(@params.merge(sort: 'title desc'))
+            @sort_title_url_text = t('views.shared.sort.link_to_sort_title_asc')
+            @sort_created_at_url = protocols_path(@params.merge(sort: 'created_at desc'))
+            @sort_created_at_url_text = t('views.shared.sort.link_to_sort_created_at_desc')
         end
       else
         if @search.present?
