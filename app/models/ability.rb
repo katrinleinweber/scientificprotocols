@@ -14,6 +14,7 @@ class Ability
   def define_guest_abilities(user)
     can :read, User
     can [:read, :discussion], Protocol
+    cannot [:show, :discussion], Protocol, workflow_state: 'draft'
   end
   def define_user_abilities(user)
     can :read, User
@@ -21,8 +22,11 @@ class Ability
     cannot :create, User, id: user.id
   end
   def define_protocol_abilities(user)
-    can [:read, :create, :star, :unstar, :fork, :discussion, :create_comment, :delete_comment], Protocol
-    can :manage, Protocol, users: {id: user.id}
+    options = [:read, :create, :star, :unstar, :fork, :discussion, :create_comment, :delete_comment]
+    workflow = [:publish, :unpublish]
+    can options, Protocol
+    cannot options - [:create, :index], Protocol, workflow_state: 'draft'
+    can [:manage] + workflow + options, Protocol, users: {id: user.id}
   end
   def define_protocol_manager_abilities(user)
     can :manage, ProtocolManager, user_id: user.id

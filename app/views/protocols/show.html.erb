@@ -1,4 +1,4 @@
-<%= render partial: 'shared/page_title', locals: { page_title: @protocol.title } %>
+<%= render partial: 'shared/page_title', locals: { page_title: @protocol.title, subtitle: @subtitle } %>
 <%= render partial: 'tagline', locals: { protocol: @protocol, fork_of: @fork_of } %>
 <div class="row">
   <div class="col-md-10">
@@ -18,7 +18,8 @@
       protocol: @protocol,
       forkable: @forkable,
       embed_script: @embed_script,
-      protocol_manager: @protocol_manager
+      protocol_manager: @protocol_manager,
+      publishable: @publishable
     } %>
   </div>
 </div>

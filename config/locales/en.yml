@@ -20,6 +20,15 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  activerecord:
+    models:
+      protocol:
+      protocol_manager:
+      user:
+    attributes:
+      protocol:
+      protocol_manager:
+      user:
   errors:
     messages:
       not_saved: 'Please fix the following errors:'
@@ -37,6 +46,8 @@ en:
       forked: 'Protocol was forked successfully.'
       comment: 'Comment created successfully.'
       delete_comment: 'Comment was successfully deleted.'
+      publish: 'Protocol was successfully published.'
+      unpublish: 'Protocol was successfully unpublished.'
   alerts:
     sessions:
       authentication_failed: 'Your sign in was not successful. %{error}'
@@ -47,6 +58,8 @@ en:
       forked_failed: 'Protocol forking attempt failed.'
       comment_failed: 'Comment creation attempt failed.'
       delete_comment_failed: 'Comment deletion failed.'
+      publish_failed: 'Protocol publishing failed.'
+      unpublish_failed: 'Protocol unpublishing failed.'
   info:
     protocols:
       no_contributions: '%{contributor} has not contributed any protocols.'
@@ -106,6 +119,8 @@ en:
         link_to_fork: 'Fork'
         link_to_edit: 'Edit'
         link_to_delete: 'Delete'
+        link_to_publish: 'Publish'
+        link_to_unpublish: 'Unpublish'
         label_embed: 'Embed URL'
         title_clipboard: 'Copy to clipboard'
         data_confirm: 'Are you sure?'
@@ -123,6 +138,7 @@ en:
         link_to_contact: 'Contact'
       protocols:
         link_to_new_protocol: 'New protocol'
+        badge_draft: 'Draft'
       masthead:
         link_to_account: 'Account'
         link_to_contributors: 'Contributions'
@@ -177,4 +193,7 @@ en:
   constants:
     protocols:
       template: "    Authors:\n\n### Abstract\n\n### Materials\n\n### Equipment\n\n### Procedure\n\n### Recipes\n\n### References"
+  workflow:
+    protocols:
+      draft_workflow_state: 'Draft'
 

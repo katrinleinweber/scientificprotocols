@@ -6,8 +6,12 @@ class UsersController < ApplicationController
   # GET /users/1
   def show
     set_octokit_client(true)
-    @protocols = @user.protocols.paginate(page: params[:page])
     set_globals
+    if @editable
+      @protocols = @user.protocols.paginate(page: params[:page])
+    else
+      @protocols = @user.protocols.with_published_state.paginate(page: params[:page])
+    end
   end
 
   # GET /users/1/starred
@@ -35,5 +39,6 @@ class UsersController < ApplicationController
       @github_user = @user.octokit_client.user(@user.username)
       @avatar_url = @github_user.avatar_url
       @editable = (current_user == @user)
+      @contributions = @user.protocols.with_published_state.count
     end
 end
