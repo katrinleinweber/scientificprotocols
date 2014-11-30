@@ -147,6 +147,7 @@ en:
         link_to_protocols: 'Protocols'
         link_to_signin: 'Sign in'
         link_to_signout: 'Sign out'
+        link_to_help: 'Help'
         placeholder_search: 'Search'
         sr_toggle_nav: 'Toggle navigation'
         submit: 'Submit'
@@ -156,6 +157,10 @@ en:
         link_to_sort_title_desc: 'Z - A'
         link_to_sort_created_at_desc: 'Newest'
         link_to_sort_created_at_asc: 'Oldest'
+      wiki_menu:
+        menu_title: 'Pages'
+        link_to_wiki_home: 'Home'
+        link_to_api: 'API'
     static:
       github:
         page_title: 'Built on GitHub'
@@ -180,6 +185,165 @@ en:
       contact:
         page_title: 'Contact us'
         contact_desc: 'The Scientific Protocols team can be contacted in any of the following ways.'
+      wiki_home:
+        page_title: 'Scientific Protocols Wiki'
+        page_content_html: "Welcome to the Scientific Protocols wiki. The purpose of this wiki is to explain the features offered by
+        the site and how to use those features.
+        <h2 id='getting-started'>Getting started</h2>
+        <h4>GitHub</h4>
+        <p>The first thing you need to do in order to use all of the features of the site is to create a free GitHub account. Please read
+        the <a href='/wiki_github'>GitHub page</a> to learn more about why a free GitHub account is required and how to go about
+        creating one.</p>
+        <h4>Protocol management</h4>
+        <p>Once you're up an running with your GitHub account we'll cover the basics of protocol management such as protocol creation and editing.
+        Please read the <a href='/wiki_protocol_management'>protocol management page</a> to learn more about basic protocol management.</p>
+        <h2 id='advanced-features'>Advanced features</h2>
+        <h4>Forking</h4>
+        <p>Now that you're more familiar with the site fundamentals let's cover some more advanced concepts. The first advanced concept to
+        discuss is protocol forking. Forking is the process of using another protocol as the starting point of your own new protocol.
+        Please read the <a href='/wiki_forking'>forking page</a> to learn more about how to fork protocols and why it's useful.</p>
+        <h4>Markdown</h4>
+        <p>Another advanced feature to discuss is markdown. The purpose of markdown is to allow you to write using an easy-to-read,
+        easy-to-write plain text format that converts to structurally valid HTML. If you're unfamiliar with writing markdown it can
+        be confusing at first glance but in reality it's very quick to learn. Please read the
+        <a href='https://help.github.com/articles/markdown-basics/' target='_blank'>markdown page</a>
+        to learn more about markdown.</p>
+        <h4>Revisions</h4>
+        <p>Thanks to GitHub all changes to protocols on the site are recorded. It's easy to view changes to a protocol over time and
+        to understand what, when and why protocol changes are made. Please read the <a href='/wiki_revisions'>revisions page</a> to
+        learn more about protocol revisions.</p>
+        <h4>Starring</h4>
+        <p>Protocol starring is simply a way of bookmarking protocols so that you easily refer to them in the future. Please read
+        the <a href='/wiki_starring'>starring page</a> to learn more about protocol starring.</p>
+        <h2 id='external-integration'>External integration</h2>
+        <p>Scientific Protocols believes in true open access and encourages you to share protocols outside of our site. There are two
+        main ways to easily use our protocols on another site. The two ways are 1. protocol embedding and 2. via the API.</p>
+        <h4>Embedding protocols</h4>
+        <p>If you have your own site and you'd like to display your protocol on it you can embed the protocol. Embedding is a simple
+        copy and paste process but a rudimentary knowledge of HTML is required. Please read the <a href='/wiki_embedding'>embedding page</a>
+        to learn more about embedding protocols.</p>
+        <h4>The Scientific Protocols API</h4>
+        <p>Scientific Protocols exposes all of its protocol data via an application programming interface (API). This allows you to
+        programmatically use all of our data. Basic computer programming knowledge is required to work with the API. To read more about
+        the API please see the <a href='/api_v1'>API page</a>.</p>
+        <h2 id='contact-us'>Contact us</h2>
+        If you're still unable to find the information you're looking for or have additional enquiries of any kind please feel free to
+        <a href='/contact'>contact us</a>."
+      wiki_github:
+        page_title: 'GitHub'
+        page_content_html: "<p>Scientific Protocols is built on top of the GitHub platform. This allows the site to have advanced features.
+        In order to use features of GitHub you need to have a free GitHub account.</p>
+        <h4>What is GitHub?</h4>
+        <p>GitHub is a web-based hosting service for projects that use the Git revision control system.
+        <a href='https://github.com/about'>Learn more about GitHub</a>.</p>
+        <h4>Creating a GitHub account</h4>
+        <p>If you already have a GitHub account you simply need to authorize Scientific Protocols to have access to it.
+        Authorization will occur when you click either sign in or sign up.</p> %{image_authorize}
+        <p>If you do not have a GitHub account you can easily create one. Click sign in or sign up on the Scientific Protocols site.
+        When presented with the GitHub login page click the sign up button.</p> %{image_github_signup}
+        <p>Complete the GitHub signup process. You will be redirected to the Scientific Protocols site upon completion.
+        Now that you have successfully signed up you're ready to <a href='/wiki_protocol_management'>create a protocol</a>.</p>"
+      wiki_forking:
+        page_title: 'Forking'
+        page_content_html: "<p>Forking might sound exotic and strange but it is actually a simple yet powerful concept.
+        Forking is essentially copying an existing protocol and using it as a starting point for your own. The reason this is
+        powerful is that you retain all of the revision history from the original protocol giving an unbroken chain of revisions
+        reaching all the way back to the time of the original protocols creation. As a tool for ensuring the quality and reliability of protocols
+        forking is invaluable.</p>
+        <h4>How to fork a protocol</h4>
+        <p>To fork a protocol click the fork button found in the right column of options when
+        viewing the protocol. You can only fork a protocol authored by someone else. You cannot fork a protocol you have created.</p>
+        %{image_fork_protocol_button}
+        <h4>Forking on GitHub</h4>
+        <p>Forking is a GitHub concept. To learn more about how it is applied outside of the Scientific Protocols website please
+        read the <a href='https://help.github.com/articles/fork-a-repo/' target='_blank'>GitHub forking page</a>.</p>"
+      wiki_protocol_management:
+        page_title: 'Protocol Management'
+        page_content_html: "<h4>Protocol creation</h4>
+        <p>Click the new protocol button to create a protocol. If you have not yet signed in you will be prompted to sign in.</p> %{image_new_protocol_button}
+        <p>Fill out the title and description of the protocol.</p> %{image_protocol_form}
+        <p>The description field should contain the main body of the protocol. It is pre-populated with recommended sections to complete. These
+        sections are only a guide. Feel free to structure your protocol in a way that works for you. You can preview your progress by
+        clicking the preview button. This will show you your protocol as it will appear when published. Click the preview button again
+        to return to the protocol editing mode.</p>
+        <h5>Writing markdown</h5>
+        <p>The description field should be written in markdown. The purpose of markdown is to allow you to write using
+        an easy-to-read, easy-to-write plain text format that converts to structurally valid HTML.
+        <a href='https://help.github.com/articles/markdown-basics/' target='_blank'>Learn more about markdown</a>.</p>
+        <h5>Adding images to protocols</h5>
+        <p>You can add an image to your protocol by linking to it. You can link to any image publicly available on the internet.
+        If your image is stored locally on your computer we recommend <a href='http://imgur.com/' target='_blank'>Imgur</a>.
+        <a href='http://imgur.com' target='_blank'>Imgur</a> is free to use. Simply create an account, upload your image and
+        then copy the direct link to that image.</p> %{image_imgur}
+        <p>Once you have copied the direct link to the image click the image button on the protocol form and paste the
+        copied link into the text box that pops up.</p>
+        %{image_image_button}<br>
+        %{image_image_popup}
+        <h5>Tagging protocols</h5>
+        <p>You may select up to three tags that categorize your protocol. Search for an existing tag by typing some or all of
+        the letters that make up the tag. If your tag doesn't exist yet you can create it by typing the full tag name and pressing
+        tab.</p>
+        %{image_tags}
+        <h5>Saving your protocol</h5>
+        <p>You can save the progress of your protocol by clicking the save button. The first time you save a protocol it will be
+        saved in a draft state. This allows you to save the progress of your protocol as you go. When you are satisfied that your
+        protocol is complete you can publish it. This will make the protocol publicly available. See the protocol publishing section
+        for more details of the publishing process.</p>
+        <h4>Protocol editing</h4>
+        <p>Editing a protocol is much the same as creating one. You can only edit protocols that you are the author of. If you
+        would like to use a protocol that another researcher has authored as the template for your protocol you can fork
+        the protocol. See the <a href='/wiki_forking'>forking page</a> for more information on protocol forking. To edit a protocol
+        simply view the protocol and click the edit button.</p>
+        %{image_edit_protocol_button}
+        <h4>Protocol publishing</h4>
+        <p>When a protocol is first created it is in a draft state. When you're satisfied the protocol is ready to be publicly
+        visible you can publish it. If for any reason you wish to take the protocol down temporarily you can also unpublish the
+        protocol. The publish/unpublish button is found in the right column of options when viewing the protocol. Only the protocol
+        author will see these buttons.</p>
+        %{image_publish_protocol_button}
+        <h4>Protocol deletion</h4>
+        <p>If you wish to delete a protocol you can do so by clicking the delete button found in the right column of options when
+        viewing the protocol. Only the author of a protocol can delete it. Once you have deleted a protocol it cannot be recovered.</p>
+        %{image_delete_protocol_button}"
+      wiki_markdown:
+        page_title: 'Markdown'
+      wiki_starring:
+        page_title: 'Starring'
+        page_content_html: "<p>Starring a protocol is simply a way of bookmarking a protocol so that you can easily find it later. To star
+        a protocol click the star button found in the right column of options when viewing the protocol. Once starred you can unstar
+        the protocol if you no longer wish to track it.</p>
+        %{image_star_protocol_button}
+        <p>To view protocols you have starred click the account menu item and select the starred tab on the account page.</p>
+        %{image_starred_tab}"
+      wiki_revisions:
+        page_title: 'Revisions'
+        page_content_html: "<p>Thanks to the power of the
+        <a href='http://git-scm.com/book/en/v2/Getting-Started-About-Version-Control' target='_blank'>Git version control system</a>
+        every change made to a protocol is tracked and can be viewed. To view changes to a protocol click the revisions button
+        found in the right column of options when viewing the protocol.</p>
+        %{image_revisions_button}
+        <h4>Interpreting revisions</h4>
+        <p>Each time a change to a protocol occurs it is stored as a revision. A revision includes a date/time stamp that the
+        change occurred and a summary of the number of additions and deletions that happened as part of the change.</p>
+        %{image_revisions}
+        <p>In addition to the revision summary a detailed breakdown of the changes is displayed. The red line shows you
+        what the line contained before the change was made. The green line indicates what the new contents are.
+        If there is only red it means the line is now deleted. If there is only green it means the line
+        is new and has just been added.</p>
+        <p>It's also possible to view the entire protocol as it was at the moment a particular revision was made.
+        In other words you can see snapshots of entire protocols throughout their lifetime rather than just the
+        changes. To do this simply click the view gist button next to the revision you wish to view.</p>
+        %{image_view_gist_button}"
+      wiki_embedding:
+        page_title: 'Embedding'
+        page_content_html: "<p>If you would like to display a protocol on your website you can achieve this by embedding the protocol.
+        In order to embed a protocol you need to be able to change the HTML of the page you wish to embed the protocol in.
+        Content management systems such as WordPress allow you to do this easily.</p>
+        <p>To embed the protocol copy the embed url script from the protocol by clicking the copy to clipboard button.</p>
+        %{image_embed_protocol_button}
+        <p>Once copied paste the script tags into the body of the HTML page. If successful you will see the protocol in
+        its entirety on the page.</p>
+        %{image_embed_script}"
     users:
       show:
         managed_count: 'Authored %{protocol}'

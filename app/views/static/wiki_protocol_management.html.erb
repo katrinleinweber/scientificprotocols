@@ -1,0 +1,19 @@
+<%= render partial: 'shared/page_title', locals: { page_title: t('views.static.wiki_protocol_management.page_title') } %>
+<div class="row">
+  <div class="col-xs-12 col-sm-7 col-md-8">
+    <%= t('views.static.wiki_protocol_management.page_content_html',
+          image_new_protocol_button: image_tag('wiki-new-protocol-button.png', width: '100'),
+          image_protocol_form: image_tag('wiki-protocol-form.png', width: '500'),
+          image_imgur: image_tag('wiki-imgur.png', width: '250'),
+          image_image_button: image_tag('wiki-image-button.png', width: '250'),
+          image_image_popup: image_tag('wiki-image-popup.png', width: '250'),
+          image_tags: image_tag('wiki-tags.png', width: '250'),
+          image_edit_protocol_button: image_tag('wiki-edit-protocol-button.png', width: '250'),
+          image_publish_protocol_button: image_tag('wiki-publish-protocol-button.png', width: '250'),
+          image_delete_protocol_button: image_tag('wiki-delete-protocol-button.png', width: '250'),
+        ) %>
+  </div>
+  <div class="col-xs-12 col-sm-5 col-md-4">
+    <%= render partial: 'shared/wiki_menu', locals: { path: '/wiki_protocol_management' } %>
+  </div>
+</div>
