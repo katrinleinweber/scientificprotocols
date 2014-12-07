@@ -1,0 +1,34 @@
+<% path ||= '' %>
+<div class="list-group">
+  <li class="list-group-item">
+    <h4 class="list-group-item-heading"><%= t('views.shared.wiki_menu.menu_title') %></h4>
+  </li>
+  <%= link_to t('views.shared.wiki_menu.link_to_wiki_home'),
+        '/wiki_home',
+        class: wiki_menu_class(current_path: path, wiki_page: '/wiki_home') %>
+  <%= link_to t('views.static.wiki_github.page_title'),
+        '/wiki_github',
+        class: wiki_menu_class(current_path: path, wiki_page: '/wiki_github') %>
+  <%= link_to t('views.static.wiki_protocol_management.page_title'),
+        '/wiki_protocol_management',
+        class: wiki_menu_class(current_path: path, wiki_page: '/wiki_protocol_management') %>
+  <%= link_to t('views.static.wiki_forking.page_title'),
+        '/wiki_forking',
+        class: wiki_menu_class(current_path: path, wiki_page: '/wiki_forking') %>
+  <%= link_to t('views.static.wiki_markdown.page_title'),
+        'https://help.github.com/articles/markdown-basics/',
+        class: wiki_menu_class(current_path: path, wiki_page: '/wiki_markdown'),
+        target: '_blank' %>
+  <%= link_to t('views.static.wiki_revisions.page_title'),
+        '/wiki_revisions',
+        class: wiki_menu_class(current_path: path, wiki_page: '/wiki_revisions') %>
+  <%= link_to t('views.static.wiki_starring.page_title'),
+        '/wiki_starring',
+        class: wiki_menu_class(current_path: path, wiki_page: '/wiki_starring') %>
+  <%= link_to t('views.static.wiki_embedding.page_title'),
+        '/wiki_embedding',
+        class: wiki_menu_class(current_path: path, wiki_page: '/wiki_embedding') %>
+  <%= link_to t('views.shared.wiki_menu.link_to_api'),
+        '/api_v1',
+        class: wiki_menu_class(current_path: path, wiki_page: '/api_v1') %>
+</div>

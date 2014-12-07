@@ -1,0 +1,13 @@
+<%= render partial: 'shared/page_title', locals: { page_title: t('views.static.wiki_revisions.page_title') } %>
+<div class="row">
+  <div class="col-xs-12 col-sm-7 col-md-8">
+    <%= t('views.static.wiki_revisions.page_content_html',
+          image_revisions_button: image_tag('wiki-revisions-button.png', class: 'img-responsive'),
+          image_revisions: image_tag('wiki-revisions.png', class: 'img-responsive'),
+          image_view_gist_button: image_tag('wiki-view-gist-button.png', class: 'img-responsive')
+        ) %>
+  </div>
+  <div class="col-xs-12 col-sm-5 col-md-4">
+    <%= render partial: 'shared/wiki_menu', locals: { path: '/wiki_revisions' } %>
+  </div>
+</div>

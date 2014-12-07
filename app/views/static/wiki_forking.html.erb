@@ -1,0 +1,11 @@
+<%= render partial: 'shared/page_title', locals: { page_title: t('views.static.wiki_forking.page_title') } %>
+<div class="row">
+  <div class="col-xs-12 col-sm-7 col-md-8">
+    <%= t('views.static.wiki_forking.page_content_html',
+          image_fork_protocol_button: image_tag('wiki-fork-protocol-button.png', class: 'img-responsive')
+        ) %>
+  </div>
+  <div class="col-xs-12 col-sm-5 col-md-4">
+    <%= render partial: 'shared/wiki_menu', locals: { path: '/wiki_forking' } %>
+  </div>
+</div>
