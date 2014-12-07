@@ -217,7 +217,7 @@ en:
         the <a href='/wiki_starring'>starring page</a> to learn more about protocol starring.</p>
         <h2 id='external-integration'>External integration</h2>
         <p>Scientific Protocols believes in true open access and encourages you to share protocols outside of our site. There are two
-        main ways to easily use our protocols on another site. The two ways are 1. protocol embedding and 2. via the API.</p>
+        main ways to easily use our protocols on another site. The two ways are protocol embedding and via the API.</p>
         <h4>Embedding protocols</h4>
         <p>If you have your own site and you'd like to display your protocol on it you can embed the protocol. Embedding is a simple
         copy and paste process but a rudimentary knowledge of HTML is required. Please read the <a href='/wiki_embedding'>embedding page</a>
@@ -336,10 +336,16 @@ en:
         %{image_view_gist_button}"
       wiki_embedding:
         page_title: 'Embedding'
-        page_content_html: "<p>If you would like to display a protocol on your website you can achieve this by embedding the protocol.
-        In order to embed a protocol you need to be able to change the HTML of the page you wish to embed the protocol in.
-        Content management systems such as WordPress allow you to do this easily.</p>
-        <p>To embed the protocol copy the embed url script from the protocol by clicking the copy to clipboard button.</p>
+        page_content_html: "<p>If you would like to display a protocol on your website you can achieve this by embedding the protocol.</p>
+        <h4>What is embedding?</h4>
+        <p>Embedding is the process of adding HTML from an external source to your web page. This is typically achieved by adding
+        a snippet of JavaScript to your page that makes a call to an external web service to obtain the HTML. Typical examples of
+        embedding include social media buttons such as Facebook and Twitter.</p>
+        <h4>How to embed your protocol</h4>
+        <p>In order to embed a protocol you need to be able to change the HTML of the page you wish to embed the protocol in.
+        Content management systems (CMS) such as WordPress allow you to do this easily. If you don't use a CMS you'll need
+        some basic knowledge of HTML and access to the codebase for the page you want to add the protocol to.
+        To embed the protocol copy the embed url script from the protocol by clicking the copy to clipboard button.</p>
         %{image_embed_protocol_button}
         <p>Once copied paste the script tags into the body of the HTML page. If successful you will see the protocol in
         its entirety on the page.</p>
