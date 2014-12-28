@@ -28,6 +28,7 @@ gem 'bootstrap-sass'
 gem 'bootstrap_form'
 gem 'bootstrap_tokenfield_rails'
 gem 'autoprefixer-rails'
+gem 'will_paginate-bootstrap'
 
 # Font awesome
 gem 'font-awesome-rails'
@@ -53,7 +54,11 @@ gem 'sunspot_rails'
 gem 'will_paginate'
 
 # GitHub.
-gem 'octokit'
+# TODO - Pinned at 3.5.2 until following resolved.
+# Failure/Error: patch :update, id: protocol.id, protocol: { title: Faker::Lorem.sentence(5) }
+# Octokit::BadRequest:
+# PATCH https://api.github.com/gists/0dd5f33a1db45bfc6b40: 400 - Problems parsing JSON // See: https://developer.github.com/v3
+gem 'octokit', '3.5.2'
 
 # Treat API objects in similar way to ActiveRecord.
 gem 'activeresource'
@@ -94,6 +99,9 @@ gem 'zeroclipboard-rails'
 # Digital Object Identifiers (DOIs).
 gem 'zenodo', git: 'https://github.com/sprotocols/zenodo.git'
 
+# Use PostgreSQL as the database for Active Record.
+gem 'pg'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', '~> 0.4.0'
@@ -122,8 +130,6 @@ group :test, :development do
   gem 'faker'
   # Custom matchers for rspec.
   gem 'shoulda'
-  # Use sql light in development and test.
-  gem 'sqlite3'
 end
 
 group :production, :staging do
@@ -133,6 +139,4 @@ group :production, :staging do
   gem 'rails_12factor'
   # Use compressed asset versions.
   gem 'heroku_rails_deflate'
-  # Use PostgreSQL as the database for Active Record.
-  gem 'pg'
 end

@@ -1,0 +1,20 @@
+<%= render partial: 'shared/page_title', locals: { page_title: @user.username } %>
+<div class="row">
+  <div class="col-xs-12 col-sm-4 col-md-3">
+    <%= render partial: 'users/user_info', locals: {
+          protocols: @contributions, avatar_url: @avatar_url, user: @user
+      } %>
+  </div>
+  <div class="col-xs-12 col-sm-8 col-md-9">
+    <ul class="nav nav-tabs margin-bottom-10">
+      <li><%= link_to t('views.users.show.link_to_contributions'), @user %></li>
+      <li class="active"><%= link_to t('views.users.starred.link_to_starred'), starred_user_path(@user) %></li>
+    </ul>
+    <% if @protocols.blank? %>
+      <div class="alert alert-info" role="alert">
+        <%= t('views.users.starred.no_starred', user: @user.username) %>
+      </div>
+    <% end %>
+    <%= render partial: 'shared/protocols', locals: {protocols: @protocols} %>
+  </div>
+</div>

@@ -2,7 +2,8 @@ require 'spec_helper'
 
 describe ProtocolsController do
   context 'Guest Access' do
-    let(:protocol) { FactoryGirl.create(:protocol) }
+    let(:protocol) { FactoryGirl.create(:protocol, :published) }
+    let(:draft_protocol) { FactoryGirl.create(:protocol) }
     describe 'GET #index' do
       it 'renders the :index template' do
         get :index
@@ -10,9 +11,16 @@ describe ProtocolsController do
       end
     end
     describe 'GET #show' do
-      it 'renders the :show template' do
-        get :show, id: protocol.id
-        expect(response).to render_template :show
+      context 'Published Protocol' do
+        it 'renders the :show template' do
+          get :show, id: protocol.id
+          expect(response).to render_template :show
+        end
+      end
+      context 'Draft Protocol' do
+        it 'forbids access' do
+          expect{ get :show, id: draft_protocol.id }.to raise_error(CanCan::AccessDenied)
+        end
       end
     end
     describe 'GET #new' do
@@ -70,9 +78,16 @@ describe ProtocolsController do
       end
     end
     describe 'GET #discussion' do
-      it 'allows access' do
-        get :discussion, id: protocol.id
-        expect(response).to render_template :discussion
+      context 'Published Protocol' do
+        it 'allows access' do
+          get :discussion, id: protocol.id
+          expect(response).to render_template :discussion
+        end
+      end
+      context 'Draft Protocol' do
+        it 'forbids access' do
+          expect{ get :discussion, id: draft_protocol.id }.to raise_error(CanCan::AccessDenied)
+        end
       end
     end
     describe 'POST #create_comment' do
@@ -87,10 +102,23 @@ describe ProtocolsController do
         expect(response).to redirect_to '/signup'
       end
     end
+    describe 'PATCH #publish' do
+      it 'redirects to the login page' do
+        patch :publish, id: protocol.id
+        expect(response).to redirect_to '/signup'
+      end
+    end
+    describe 'PATCH #unpublish' do
+      it 'redirects to the login page' do
+        patch :unpublish, id: protocol.id
+        expect(response).to redirect_to '/signup'
+      end
+    end
   end
   context 'Authenticated User' do
     login_user
-    let(:protocol) { FactoryGirl.create(:protocol) }
+    let(:protocol) { FactoryGirl.create(:protocol, :published) }
+    let(:draft_protocol) { FactoryGirl.create(:protocol) }
     describe 'GET #index' do
       it 'renders the :index template' do
         get :index
@@ -98,9 +126,16 @@ describe ProtocolsController do
       end
     end
     describe 'GET #show' do
-      it 'renders the :show template' do
-        get :show, id: protocol.id
-        expect(response).to render_template :show
+      context 'Published Protocol' do
+        it 'renders the :show template' do
+          get :show, id: protocol.id
+          expect(response).to render_template :show
+        end
+      end
+      context 'Draft Protocol' do
+        it 'forbids access' do
+          expect{ get :show, id: draft_protocol.id }.to raise_error(CanCan::AccessDenied)
+        end
       end
     end
     describe 'GET #new' do
@@ -115,20 +150,43 @@ describe ProtocolsController do
       end
     end
     describe 'GET #edit' do
-      it 'forbids access' do
-        expect{ get :edit, id: protocol.id }.to raise_error(CanCan::AccessDenied)
+      context 'Published Protocol' do
+        it 'forbids access' do
+          expect{ get :edit, id: protocol.id }.to raise_error(CanCan::AccessDenied)
+        end
+      end
+      context 'Draft Protocol' do
+        it 'forbids access' do
+          expect{ get :edit, id: draft_protocol.id }.to raise_error(CanCan::AccessDenied)
+        end
       end
     end
     describe 'PATCH #update' do
-      it 'forbids access' do
-        expect{
-          patch :update, id: protocol.id, protocol: { title: Faker::Lorem.sentence(5) }
-        }.to raise_error(CanCan::AccessDenied)
+      context 'Published Protocol' do
+        it 'forbids access' do
+          expect{
+            patch :update, id: protocol.id, protocol: { title: Faker::Lorem.sentence(5) }
+          }.to raise_error(CanCan::AccessDenied)
+        end
+      end
+      context 'Draft Protocol' do
+        it 'forbids access' do
+          expect{
+            patch :update, id: draft_protocol.id, protocol: { title: Faker::Lorem.sentence(5) }
+          }.to raise_error(CanCan::AccessDenied)
+        end
       end
     end
     describe 'DELETE #destroy' do
-      it 'forbids access' do
-        expect{ delete :destroy, id: protocol.id }.to raise_error(CanCan::AccessDenied)
+      context 'Published Protocol' do
+        it 'forbids access' do
+          expect{ delete :destroy, id: protocol.id }.to raise_error(CanCan::AccessDenied)
+        end
+      end
+      context 'Draft Protocol' do
+        it 'forbids access' do
+          expect{ delete :destroy, id: draft_protocol.id }.to raise_error(CanCan::AccessDenied)
+        end
       end
     end
     describe 'GET #tags' do
@@ -138,47 +196,105 @@ describe ProtocolsController do
       end
     end
     describe 'PUT #star' do
-      it 'redirects to the protocols page' do
-        put :star, id: protocol.id
-        expect(response).to redirect_to protocol
+      context 'Published Protocol' do
+        it 'redirects to the protocols page' do
+          put :star, id: protocol.id
+          expect(response).to redirect_to protocol
+        end
+      end
+      context 'Draft Protocol' do
+        it 'forbids access' do
+          expect{ put :star, id: draft_protocol.id }.to raise_error(CanCan::AccessDenied)
+        end
       end
     end
     describe 'DELETE #unstar' do
-      it 'redirects to the protocols page' do
-        delete :unstar, id: protocol.id
-        expect(response).to redirect_to protocol
+      context 'Published Protocol' do
+        it 'redirects to the protocols page' do
+          delete :unstar, id: protocol.id
+          expect(response).to redirect_to protocol
+        end
+      end
+      context 'Draft Protocol' do
+        it 'forbids access' do
+          expect{ delete :unstar, id: draft_protocol.id }.to raise_error(CanCan::AccessDenied)
+        end
       end
     end
     describe 'POST #fork' do
       login_user(Rails.configuration.api_github_2)
-      it 'forks a protocol' do
-        protocol
-        expect{ post :fork, id: protocol.id, protocol: protocol }.to change{ Protocol.count }.by(1)
+      context 'Published Protocol' do
+        it 'forks a protocol' do
+          protocol
+          expect{ post :fork, id: protocol.id, protocol: protocol }.to change{ Protocol.count }.by(1)
+        end
+      end
+      context 'Draft Protocol' do
+        it 'forbids access' do
+          expect{ post :fork, id: draft_protocol.id, protocol: draft_protocol }.to raise_error(CanCan::AccessDenied)
+        end
       end
     end
     describe 'GET #discussion' do
-      it 'allows access' do
-        get :discussion, id: protocol.id
-        expect(response).to render_template :discussion
+      context 'Published Protocol' do
+        it 'allows access' do
+          get :discussion, id: protocol.id
+          expect(response).to render_template :discussion
+        end
+      end
+      context 'Draft Protocol' do
+        it 'forbids access' do
+          expect{ get :discussion, id: draft_protocol.id }.to raise_error(CanCan::AccessDenied)
+        end
       end
     end
     describe 'POST #create_comment' do
-      it 'redirects to the discussion page' do
-        post :create_comment, id: protocol.id, body: Faker::Lorem.words(20)
-        expect(response).to redirect_to discussion_protocol_path(protocol)
+      context 'Published Protocol' do
+        it 'redirects to the discussion page' do
+          post :create_comment, id: protocol.id, body: Faker::Lorem.words(20)
+          expect(response).to redirect_to discussion_protocol_path(protocol)
+        end
+      end
+      context 'Draft Protocol' do
+        it 'forbids access' do
+          expect{
+            post :create_comment, id: draft_protocol.id, body: Faker::Lorem.words(20)
+          }.to raise_error(CanCan::AccessDenied)
+        end
       end
     end
     describe 'DELETE #delete_comment' do
-      it 'redirects to the login page' do
-        post :create_comment, id: protocol.id, body: Faker::Lorem.words(20)
-        delete :delete_comment, id: protocol.id
-        expect(response).to redirect_to discussion_protocol_path(protocol)
+      context 'Published Protocol' do
+        it 'redirects to the discussion page' do
+          post :create_comment, id: protocol.id, body: Faker::Lorem.words(20)
+          delete :delete_comment, id: protocol.id
+          expect(response).to redirect_to discussion_protocol_path(protocol)
+        end
+      end
+      context 'Draft Protocol' do
+        it 'forbids access' do
+          expect{ delete :delete_comment, id: draft_protocol.id }.to raise_error(CanCan::AccessDenied)
+        end
+      end
+    end
+    describe 'PATCH #publish' do
+      it 'forbids access' do
+        expect{ patch :publish, id: protocol.id }.to raise_error(CanCan::AccessDenied)
+        expect{ patch :publish, id: draft_protocol.id }.to raise_error(CanCan::AccessDenied)
+      end
+    end
+    describe 'PATCH #unpublish' do
+      it 'forbids access' do
+        expect{ patch :unpublish, id: protocol.id }.to raise_error(CanCan::AccessDenied)
+        expect{ patch :unpublish, id: draft_protocol.id }.to raise_error(CanCan::AccessDenied)
       end
     end
   end
   context 'Protocol Manager' do
     login_user
-    let(:protocol_manager) { FactoryGirl.create(:protocol_manager, user: @current_user) }
+    let(:protocol_manager) do
+      FactoryGirl.create(:protocol_manager, user: @current_user, protocol: create(:protocol, :published))
+    end
     let(:protocol) { protocol_manager.protocol }
     describe 'GET #index' do
       it 'renders the :index template' do

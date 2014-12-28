@@ -2,8 +2,12 @@
   <% protocols.each do |protocol| %>
     <%= link_to(protocol, class: 'list-group-item') do %>
       <h4 class="list-group-item-heading"><%= protocol.title %></h4>
-      <p class="list-group-item-text">...</p>
+      <p class="list-group-item-text">...
+        <% if protocol.workflow_state == 'draft' %>
+          <span class="badge pull-right"><%= t('views.shared.protocols.badge_draft') %></span>
+        <% end %>
+      </p>
     <% end %>
   <% end %>
 </div>
-<%= will_paginate protocols %>
+<%= will_paginate(protocols, renderer: BootstrapPagination::Rails) %>

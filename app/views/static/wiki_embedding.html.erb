@@ -1,0 +1,12 @@
+<%= render partial: 'shared/page_title', locals: { page_title: t('views.static.wiki_embedding.page_title') } %>
+<div class="row">
+  <div class="col-xs-12 col-sm-7 col-md-8">
+    <%= t('views.static.wiki_embedding.page_content_html',
+          image_embed_protocol_button: image_tag('wiki-embed-protocol-button.png', class: 'img-responsive'),
+          image_embed_script: image_tag('wiki-embed-script.png', class: 'img-responsive'),
+        ) %>
+  </div>
+  <div class="col-xs-12 col-sm-5 col-md-4">
+    <%= render partial: 'shared/wiki_menu', locals: { path: '/wiki_embedding' } %>
+  </div>
+</div>

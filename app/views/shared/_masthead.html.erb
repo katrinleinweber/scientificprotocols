@@ -27,11 +27,11 @@
       <% end %>
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
-          <li>
-            <%= link_to t('views.shared.masthead.link_to_account'), user_path(current_user) %>
-          </li>
+          <li><%= link_to t('views.shared.masthead.link_to_account'), user_path(current_user) %></li>
+          <li><%= link_to t('views.shared.masthead.link_to_help'), '/wiki_home' %></li>
           <li><%= link_to t('views.shared.masthead.link_to_signout'), signout_path %></li>
         <% else %>
+          <li><%= link_to t('views.shared.masthead.link_to_help'), '/wiki_home' %></li>
           <li><%= link_to t('views.shared.masthead.link_to_signin'), signin_path %></li>
         <% end %>
       </ul>

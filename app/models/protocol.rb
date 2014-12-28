@@ -4,11 +4,12 @@ class Protocol < ActiveRecord::Base
   include Octokitable
   include Gistable
   include ProtocolObserver
+  include Workflow
   acts_as_taggable
   friendly_id :title, use: :slugged
   has_many :protocol_managers
   has_many :users, through: :protocol_managers
-  default_scope { order('LOWER(title)') }
+  default_scope { order('LOWER(title)::bytea') }
   scope :managed_by, -> (user) { joins(:protocol_managers).where(protocol_managers: { user: user }) }
   validates :title, presence: true
   validates :description, presence: true
@@ -16,6 +17,7 @@ class Protocol < ActiveRecord::Base
     text :title, boost: 5
     text :description
     time :created_at
+    string :workflow_state
     string :tag_list, multiple: true
     string :sort_title do
       title.downcase.gsub(/^(an?|the)\b/, '')
@@ -23,28 +25,35 @@ class Protocol < ActiveRecord::Base
   end
   self.per_page = 10
 
-  def self.search(params = {}, options = {})
-    options.reverse_merge!({paginate: true})
-    tags = params[:tags].present? ? params[:tags].split('-') : nil
-    if params[:search].present?
-      search = solr_search do
-        fulltext params[:search]
-        facet :tag_list
-        if options[:paginate]
-          paginate(page: params[:page] || 1, per_page: Protocol.per_page)
-        else
-          # Solr has no disable pagination so you have to return a single page with all results.
-          paginate(page: 1, per_page: Protocol.count)
-        end
-        tags.each {|tag| with(:tag_list, tag)} if tags.present?
-      end
-      protocols = search.results
+  APPROVED_SORT = [
+    'created_at asc',
+    'created_at desc',
+    'title asc',
+    'title desc'
+  ]
+
+  workflow do
+    state :draft do
+      event :publish, transitions_to: :published
+    end
+    state :published do
+      event :unpublish, transitions_to: :draft
+    end
+  end
+
+  # Search the database or solr index for protocols.
+  # @param [Hash] options The options of the search.
+  # @return [Sunspot::Search::PaginatedCollection, ActiveRecord::Relation] The search results collection.
+  def self.search(options = {})
+    options.reverse_merge!(paginate: true)
+    options.merge!(tags: options[:tags].present? ? options[:tags].split('-') : nil)
+    sort = (options[:sort].present? && APPROVED_SORT.include?(options[:sort])) ? options[:sort] : nil
+    sort.sub!('title', 'sort_title') if sort.present? && options[:search].present?
+    options.merge!(sort: sort)
+    if options[:search].present?
+      protocols = solr_index_search(options)
     else
-      protocols = options[:paginate] ? Protocol.paginate(
-        page: params[:page] || 1, per_page: Protocol.per_page
-      ) : Protocol.all
-      protocols = protocols.tagged_with(tags) if tags.present?
-      protocols = protocols.managed_by(User.find_by_username(params[:u])) if params[:u].present?
+      protocols = standard_search(options)
     end
     return protocols
   end
@@ -95,6 +104,16 @@ class Protocol < ActiveRecord::Base
     end
   end
 
+  def publish
+    self.workflow_state = :published
+    self.save
+  end
+
+  def unpublish
+    self.workflow_state = :draft
+    self.save
+  end
+
   private
     # Format a protocol title. Strip the bracketed username for a forked protocol.
     # @param [String] title The title of that we're formatting.
@@ -103,5 +122,46 @@ class Protocol < ActiveRecord::Base
     def format_title(title, username)
       title.slice! "[#{username}]"
       title
+    end
+
+    # Perform a search for protocols against the Solr index.
+    # @param [Hash] options The options of the search.
+    # @return [Sunspot::Search::PaginatedCollection] The search results collection.
+    def self.solr_index_search(options)
+      sort = nil
+      if options[:sort].present?
+        sort = options[:sort].split(' ').map { |x| x.to_sym }
+      end
+      search = solr_search do
+        fulltext options[:search]
+        facet :tag_list
+        facet :workflow_state
+        if sort.present?
+          order_by *sort
+        end
+        if options[:paginate]
+          paginate(page: options[:page] || 1, per_page: Protocol.per_page)
+        else
+          # Solr has no disable pagination so you have to return
+          # a single page with all results.
+          paginate(page: 1, per_page: Protocol.count)
+        end
+        options[:tags].each {|tag| with(:tag_list, tag)} if options[:tags].present?
+        with(:workflow_state, 'published')
+      end
+      search.results
+    end
+
+    # Perform a search for protocols against the database.
+    # @param [Hash] options The options of the search.
+    # @return [ActiveRecord::Relation, Array] The search results collection.
+    def self.standard_search(options)
+      protocols = options[:paginate] ? Protocol.with_published_state.paginate(
+        page: options[:page] || 1,
+        per_page: Protocol.per_page
+      ) : Protocol.with_published_state
+      protocols = protocols.tagged_with(options[:tags]) if options[:tags].present?
+      protocols = protocols.managed_by(User.find_by_username(options[:u])) if options[:u].present?
+      options[:sort].present? ? protocols.reorder(options[:sort].sub('title', 'LOWER(title)::bytea')) : protocols
     end
 end

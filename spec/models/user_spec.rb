@@ -18,5 +18,8 @@ describe User do
         expect(User.from_omniauth(user)).to eq(user)
       end
     end
+    describe '#starred_protocols' do
+      pending 'Implement starred tests'
+    end
   end
 end

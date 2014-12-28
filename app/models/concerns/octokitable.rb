@@ -13,4 +13,13 @@ module Octokitable
     access_token ||= Rails.configuration.api_github
     self.octokit_client = Octokit::Client.new(access_token: access_token)
   end
+  # Get the number of pages for a GitHub response.
+  # @raise [ArgumentError] If the supplied params are empty.
+  # @param [Response] last_response The previous response from a GitHub request.
+  # @return [Fixnum] The number of pages.
+  def number_of_pages(last_response)
+    raise ArgumentError, 'Last response cannot be blank' if last_response.blank?
+    rels_last = last_response.rels[:last]
+    rels_last.present? ? (rels_last.href.match(/page=(\d+)$/)[1]).to_i : 0
+  end
 end

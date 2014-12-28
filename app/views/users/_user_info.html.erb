@@ -1,0 +1,7 @@
+<%= image_tag(avatar_url, alt: user.username, class: 'img-responsive margin-bottom-10') if avatar_url.present? %>
+<p class="lead">
+  <%= t('views.users.show.managed_count', protocol: pluralize(protocols, t('views.users.show.protocol'))) %>
+<p>
+<hr>
+<span class="glyphicon glyphicon-time"></span>
+<%= t('views.users.show.member_since') %> <%= user.created_at.to_date %>
