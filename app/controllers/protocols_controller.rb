@@ -85,7 +85,8 @@ class ProtocolsController < ApplicationController
 
   # GET /protocols/tags
   def tags
-    @tokens = params[:term].present? ? ActsAsTaggableOn::Tag.named_like(params[:term]).map(&:name) : ActsAsTaggableOn::Tag.all.map(&:name)
+    @tokens = params[:term].present? ? ActsAsTaggableOn::Tag.named_like(params[:term]).order(:name).map(&:name) :
+      ActsAsTaggableOn::Tag.all.order(:name).map(&:name)
     respond_to do |format|
       format.json { render json: @tokens, root: false }
     end
