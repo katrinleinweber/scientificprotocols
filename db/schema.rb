@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141126052400) do
+ActiveRecord::Schema.define(version: 20141228200733) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,12 +43,9 @@ ActiveRecord::Schema.define(version: 20141126052400) do
     t.datetime "updated_at"
     t.string   "slug",           null: false
     t.string   "gist_id",        null: false
-    t.string   "word_file"
-    t.string   "doi"
     t.string   "workflow_state"
   end
 
-  add_index "protocols", ["doi"], name: "index_protocols_on_doi", unique: true, using: :btree
   add_index "protocols", ["gist_id"], name: "index_protocols_on_gist_id", unique: true, using: :btree
   add_index "protocols", ["slug"], name: "index_protocols_on_slug", unique: true, using: :btree
 
@@ -63,6 +60,7 @@ ActiveRecord::Schema.define(version: 20141126052400) do
   end
 
   add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true, using: :btree
+  add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context", using: :btree
 
   create_table "tags", force: true do |t|
     t.string  "name"

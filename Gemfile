@@ -54,7 +54,11 @@ gem 'sunspot_rails'
 gem 'will_paginate'
 
 # GitHub.
-gem 'octokit'
+# TODO - Pinned at 3.5.2 until following resolved.
+# Failure/Error: patch :update, id: protocol.id, protocol: { title: Faker::Lorem.sentence(5) }
+# Octokit::BadRequest:
+# PATCH https://api.github.com/gists/0dd5f33a1db45bfc6b40: 400 - Problems parsing JSON // See: https://developer.github.com/v3
+gem 'octokit', '3.5.2'
 
 # Treat API objects in similar way to ActiveRecord.
 gem 'activeresource'
