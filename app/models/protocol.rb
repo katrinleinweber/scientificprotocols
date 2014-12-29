@@ -1,3 +1,5 @@
+require 'open-uri'
+
 class Protocol < ActiveRecord::Base
   extend FriendlyId
   attr_accessor :skip_callbacks
@@ -104,14 +106,73 @@ class Protocol < ActiveRecord::Base
     end
   end
 
+  # Publish a protocol.
   def publish
     self.workflow_state = :published
     self.save
   end
 
+  # Unpublish a protocol.
   def unpublish
     self.workflow_state = :draft
     self.save
+  end
+
+  # Create a GitHub Gist from a protocol.
+  def create_gist
+    gist = {
+      description: self.title,
+      public: true,
+      files: {
+        PROTOCOL_FILE_NAME => {
+          content: self.description
+        }
+      }
+    }
+    gist = self.octokit_client.create_gist(gist)
+    self.gist_id = gist.id
+  end
+
+  # Update a GitHub Gist from a protocol.
+  def update_gist
+    gist = self.octokit_client.gist(self.gist_id)
+    gist.description = self.title
+    gist.files[PROTOCOL_FILE_NAME].content = self.description
+    self.octokit_client.edit_gist(self.gist_id, gist)
+  end
+
+  # Destroy a GitHub Gist from a protocol.
+  def destroy_gist
+    self.octokit_client.delete_gist(self.gist_id)
+  end
+
+  # Create a Zenodo deposition and publish it.
+  def create_and_publish_deposition
+    # Get the file to publish from the Gist.
+    gist = self.octokit_client.gist(self.gist_id)
+    file = gist.files[PROTOCOL_FILE_NAME].raw_url
+    io = open(file)
+
+    # Create the deposition.
+    deposition_attributes = ZenodoProtocolSerializer.new(protocol: self).as_json
+    deposition = Service::DepositionManager.create_deposition(deposition: deposition_attributes)
+    self.deposition_id = deposition['id'] unless deposition.blank?
+
+    if deposition.present?
+      # Add the deposition file.
+      deposition_file = Service::DepositionManager.create_deposition_file(
+        deposition_id: self.deposition_id,
+        file_or_io: io,
+        filename: PROTOCOL_FILE_NAME,
+        content_type: Mime::Type.lookup_by_extension(:markdown)
+      )
+
+      if deposition_file.present?
+        # Publish the deposition.
+        deposition = Service::DepositionManager.publish_deposition(deposition_id: deposition['id'])
+        self.doi = deposition['doi'] unless deposition.blank?
+      end
+    end
   end
 
   private

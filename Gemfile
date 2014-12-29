@@ -97,7 +97,7 @@ gem 'workflow'
 gem 'zeroclipboard-rails'
 
 # Digital Object Identifiers (DOIs).
-gem 'zenodo', git: 'https://github.com/sprotocols/zenodo.git'
+gem 'zenodo'
 
 # Use PostgreSQL as the database for Active Record.
 gem 'pg'
