@@ -5,6 +5,7 @@ class Protocol < ActiveRecord::Base
   attr_accessor :skip_callbacks
   include Octokitable
   include Gistable
+  include Citeable
   include ProtocolObserver
   include Workflow
   acts_as_taggable
