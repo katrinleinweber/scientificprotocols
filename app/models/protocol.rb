@@ -171,8 +171,13 @@ class Protocol < ActiveRecord::Base
         # Publish the deposition.
         publish_deposition if deposition_file.present?
 
-        # Cleanup unless fully published.
-        self.deposition_id = nil if self.doi.blank?
+        if self.doi.present?
+          # Add the DOI badge to the markdown.
+          self.description += self.doi_badge
+        else
+          # Cleanup unless fully published.
+          self.deposition_id = nil
+        end
       end
     end
   end
