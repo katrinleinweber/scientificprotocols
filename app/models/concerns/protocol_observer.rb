@@ -9,11 +9,11 @@ module ProtocolObserver
   private
   def before_create
     create_gist
-    create_and_publish_deposition
   end
 
   def before_update
     update_gist
+    create_and_publish_deposition
   end
 
   def before_destroy

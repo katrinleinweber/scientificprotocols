@@ -148,29 +148,30 @@ class Protocol < ActiveRecord::Base
 
   # Create a Zenodo deposition and publish it.
   def create_and_publish_deposition
+    return if !self.workflow_state == 'draft' || self.deposition_id.present?
+
     # Get the file to publish from the Gist.
-    gist = self.octokit_client.gist(self.gist_id)
-    file = gist.files[PROTOCOL_FILE_NAME].raw_url
-    io = open(file)
+    file = gist_file_raw_url
+    if file.present?
 
-    # Create the deposition.
-    deposition_attributes = ZenodoProtocolSerializer.new(protocol: self).as_json
-    deposition = Service::DepositionManager.create_deposition(deposition: deposition_attributes)
-    self.deposition_id = deposition['id'] unless deposition.blank?
+      # Create the deposition.
+      deposition = create_deposition
 
-    if deposition.present?
-      # Add the deposition file.
-      deposition_file = Service::DepositionManager.create_deposition_file(
-        deposition_id: self.deposition_id,
-        file_or_io: io,
-        filename: PROTOCOL_FILE_NAME,
-        content_type: Mime::Type.lookup_by_extension(:markdown)
-      )
+      if deposition.present?
 
-      if deposition_file.present?
+        # Add the deposition file.
+        deposition_file = Service::DepositionManager.create_deposition_file(
+          deposition_id: self.deposition_id,
+          file_or_io: open(file),
+          filename: PROTOCOL_FILE_NAME,
+          content_type: Mime::Type.lookup_by_extension(:markdown)
+        )
+
         # Publish the deposition.
-        deposition = Service::DepositionManager.publish_deposition(deposition_id: deposition['id'])
-        self.doi = deposition['doi'] unless deposition.blank?
+        publish_deposition if deposition_file.present?
+
+        # Cleanup unless fully published.
+        self.deposition_id = nil if self.doi.blank?
       end
     end
   end
@@ -183,6 +184,28 @@ class Protocol < ActiveRecord::Base
     def format_title(title, username)
       title.slice! "[#{username}]"
       title
+    end
+
+    # Get the file to publish from the Gist.
+    # @return [String, nil] The URL of the raw Gist file.
+    def gist_file_raw_url
+      gist = self.octokit_client.gist(self.gist_id)
+      gist.present? ? gist.files[PROTOCOL_FILE_NAME].raw_url : nil
+    end
+
+    # Create a Zenodo deposition.
+    def create_deposition
+      deposition_attributes = ZenodoProtocolSerializer.new(protocol: self).as_json
+      deposition = Service::DepositionManager.create_deposition(deposition: deposition_attributes)
+      self.deposition_id = deposition['id'] unless deposition.blank?
+      deposition
+    end
+
+    # Publish a Zenodo deposition.
+    def publish_deposition
+      deposition = Service::DepositionManager.publish_deposition(deposition_id: self.deposition_id)
+      self.doi = deposition['doi'] unless deposition.blank?
+      deposition
     end
 
     # Perform a search for protocols against the Solr index.
