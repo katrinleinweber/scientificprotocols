@@ -350,6 +350,19 @@ en:
         <p>Once copied paste the script tags into the body of the HTML page. If successful you will see the protocol in
         its entirety on the page.</p>
         %{image_embed_script}"
+      wiki_dois:
+        page_title: 'Digital Object Identifiers'
+        page_content_html: "<p>A digital object identifier (DOI) is a character string used to
+        uniquely identify an object such as an electronic document.
+        <a href='http://en.wikipedia.org/wiki/Digital_object_identifier' target='_blank'>Learn more about digital object identifiers</a>.</p>
+        <p>Thanks to Scientific Protocols integration with
+        <a href='https://zenodo.org/about' target='_blank'>Zenodo</a> when you publish your protocol you will automatically receive a DOI.
+        The DOI will be added as a markdown compatible button at the end of your protocol.</p>
+        %{image_doi_button}
+        <p>Because the button is part of your protocols markdown you can move it to a different location
+        in your protocol or remove it entirely if you want to. Simply edit your protocol and move the buttons markdown
+        snippet to a new location in your protocol. The following is a sample of the DOI buttons markdown snippet.</p>
+        %{image_doi_markdown}"
     users:
       show:
         managed_count: 'Authored %{protocol}'
