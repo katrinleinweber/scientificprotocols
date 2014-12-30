@@ -9,6 +9,6 @@ module Citeable
 
   def doi_badge
     return nil if self.doi.blank?
-    "\n[![DOI](https://zenodo.org/badge/doi/#{self.doi}.svg)](#{self.citation_url})"
+    "\n\n[![DOI](https://zenodo.org/badge/doi/#{self.doi}.svg)](#{self.citation_url})"
   end
 end
