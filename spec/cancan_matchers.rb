@@ -18,7 +18,7 @@ RSpec::Matchers.define :have_ability do |ability_hash, options = {}|
     ability_hash == @ability_result
   end
 
-  failure_message_for_should do |user|
+  failure_message do |user|
     ability_hash,options = expected
     ability_hash = {ability_hash => true} if ability_hash.is_a? Symbol
     ability_hash = ability_hash.inject({}){|_, i| _.merge({i=>true}) } if ability_hash.is_a? Array

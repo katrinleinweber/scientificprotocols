@@ -14,6 +14,8 @@ describe ProtocolSerializer, :timefreeze do
       html_url: protocol_url(protocol, protocol: :https),
       discussion_html_url: discussion_protocol_url(protocol, protocol: :https),
       tags: protocol.tags.map(&:name),
+      doi: protocol.doi,
+      citation_url: protocol.citation_url,
       author: {
         username: protocol_manager.user.username,
         html_url: user_url(protocol_manager.user, protocol: :https)
