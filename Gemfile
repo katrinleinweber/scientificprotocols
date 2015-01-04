@@ -97,6 +97,9 @@ gem 'workflow'
 # Allow copying to clipboard.
 gem 'zeroclipboard-rails'
 
+# Digital Object Identifiers (DOIs).
+gem 'zenodo'
+
 # Use PostgreSQL as the database for Active Record.
 gem 'pg'
 

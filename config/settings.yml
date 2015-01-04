@@ -6,6 +6,7 @@ defaults: &defaults
   api_postmark: <%= ENV["API_POSTMARK"] %>
   api_aws_access_key_id: <%= ENV["API_AWS_ACCESS_KEY_ID"] %>
   api_aws_access_key: <%= ENV["API_AWS_ACCESS_KEY"] %>
+  api_zenodo: <%= ENV["API_ZENODO"] %>
   new_relic_license_key: <%= ENV["NEW_RELIC_LICENSE_KEY"] %>
   # GitHub application client settings.
   github_client_id: <%= ENV["GITHUB_CLIENT_ID"] %>
@@ -22,6 +23,7 @@ staging:
   api_postmark: <%= ENV["API_POSTMARK"] %>
   api_aws_access_key_id: <%= ENV["API_AWS_ACCESS_KEY_ID"] %>
   api_aws_access_key: <%= ENV["API_AWS_ACCESS_KEY"] %>
+  api_zenodo: <%= ENV["API_ZENODO"] %>
   new_relic_license_key: <%= ENV["NEW_RELIC_LICENSE_KEY"] %>
   github_client_id: <%= ENV["GITHUB_CLIENT_ID"] %>
   github_client_secret: <%= ENV["GITHUB_CLIENT_SECRET"] %>
@@ -31,6 +33,7 @@ production:
   api_postmark: <%= ENV["API_POSTMARK"] %>
   api_aws_access_key_id: <%= ENV["API_AWS_ACCESS_KEY_ID"] %>
   api_aws_access_key: <%= ENV["API_AWS_ACCESS_KEY"] %>
+  api_zenodo: <%= ENV["API_ZENODO"] %>
   new_relic_license_key: <%= ENV["NEW_RELIC_LICENSE_KEY"] %>
   github_client_id: <%= ENV["GITHUB_CLIENT_ID"] %>
   github_client_secret: <%= ENV["GITHUB_CLIENT_SECRET"] %>

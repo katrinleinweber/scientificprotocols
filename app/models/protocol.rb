@@ -1,8 +1,11 @@
+require 'open-uri'
+
 class Protocol < ActiveRecord::Base
   extend FriendlyId
   attr_accessor :skip_callbacks
   include Octokitable
   include Gistable
+  include Citeable
   include ProtocolObserver
   include Workflow
   acts_as_taggable
@@ -104,14 +107,79 @@ class Protocol < ActiveRecord::Base
     end
   end
 
+  # Publish a protocol.
   def publish
     self.workflow_state = :published
     self.save
   end
 
+  # Unpublish a protocol.
   def unpublish
     self.workflow_state = :draft
     self.save
+  end
+
+  # Create a GitHub Gist from a protocol.
+  def create_gist
+    gist = {
+      description: self.title,
+      public: true,
+      files: {
+        PROTOCOL_FILE_NAME => {
+          content: self.description
+        }
+      }
+    }
+    gist = self.octokit_client.create_gist(gist)
+    self.gist_id = gist.id
+  end
+
+  # Update a GitHub Gist from a protocol.
+  def update_gist
+    gist = self.octokit_client.gist(self.gist_id)
+    gist.description = self.title
+    gist.files[PROTOCOL_FILE_NAME].content = self.description
+    self.octokit_client.edit_gist(self.gist_id, gist)
+  end
+
+  # Destroy a GitHub Gist from a protocol.
+  def destroy_gist
+    self.octokit_client.delete_gist(self.gist_id)
+  end
+
+  # Create a Zenodo deposition and publish it.
+  def create_and_publish_deposition
+    return if !self.workflow_state == 'draft' || self.deposition_id.present?
+
+    # Get the file to publish from the Gist.
+    file = gist_file_raw_url
+    if file.present?
+
+      # Create the deposition.
+      deposition = create_deposition
+
+      if deposition.present?
+
+        # Add the deposition file.
+        deposition_file = Service::DepositionManager.create_deposition_file(
+          deposition_id: self.deposition_id,
+          file_or_io: open(file),
+          filename: PROTOCOL_FILE_NAME,
+          content_type: Mime::Type.lookup_by_extension(:markdown)
+        )
+
+        # Publish the deposition.
+        publish_deposition if deposition_file.present?
+
+        if self.doi.present?
+          # Add the DOI badge to the markdown.
+          self.description += self.doi_badge
+        else
+          # Cleanup unless fully published.
+          self.deposition_id = nil
+        end
+      end
+    end
   end
 
   private
@@ -122,6 +190,28 @@ class Protocol < ActiveRecord::Base
     def format_title(title, username)
       title.slice! "[#{username}]"
       title
+    end
+
+    # Get the file to publish from the Gist.
+    # @return [String, nil] The URL of the raw Gist file.
+    def gist_file_raw_url
+      gist = self.octokit_client.gist(self.gist_id)
+      gist.present? ? gist.files[PROTOCOL_FILE_NAME].raw_url : nil
+    end
+
+    # Create a Zenodo deposition.
+    def create_deposition
+      deposition_attributes = ZenodoProtocolSerializer.new(protocol: self).as_json
+      deposition = Service::DepositionManager.create_deposition(deposition: deposition_attributes)
+      self.deposition_id = deposition['id'] unless deposition.blank?
+      deposition
+    end
+
+    # Publish a Zenodo deposition.
+    def publish_deposition
+      deposition = Service::DepositionManager.publish_deposition(deposition_id: self.deposition_id)
+      self.doi = deposition['doi'] unless deposition.blank?
+      deposition
     end
 
     # Perform a search for protocols against the Solr index.

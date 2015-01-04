@@ -407,6 +407,10 @@ GEM
     will_paginate-bootstrap (1.0.1)
       will_paginate (>= 3.0.3)
     workflow (1.2.0)
+    zenodo (0.0.6)
+      activesupport (~> 4.1)
+      faraday (~> 0.9)
+      mime-types (~> 1.2)
     zeroclipboard-rails (0.1.0)
       railties (>= 3.1)
 
@@ -468,4 +472,5 @@ DEPENDENCIES
   will_paginate
   will_paginate-bootstrap
   workflow
+  zenodo
   zeroclipboard-rails

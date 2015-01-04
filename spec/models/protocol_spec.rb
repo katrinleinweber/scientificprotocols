@@ -20,7 +20,13 @@ describe Protocol do
   end
   describe 'class methods' do
     describe '#search' do
-      pending 'Implement search tests'
+      pending 'Implement'
+    end
+    describe '#standard_search' do
+      pending 'Implement'
+    end
+    describe '#solr_index_search' do
+      pending 'Implement'
     end
     describe '#facets' do
       let!(:protocol) { create(:protocol) }
@@ -44,7 +50,34 @@ describe Protocol do
       end
     end
     describe '#fork' do
-      pending 'Implement fork tests'
+      pending 'Implement'
+    end
+    describe '#publish' do
+      pending 'Implement'
+    end
+    describe '#unpublish' do
+      pending 'Implement'
+    end
+    describe '#create_gist' do
+      pending 'Implement'
+    end
+    describe '#update_gist' do
+      pending 'Implement'
+    end
+    describe '#destroy_gist' do
+      pending 'Implement'
+    end
+    describe '#create_and_publish_deposition' do
+      pending 'Implement'
+    end
+    describe '#create_deposition' do
+      pending 'Implement'
+    end
+    describe '#publish_deposition' do
+      pending 'Implement'
+    end
+    describe '#gist_file_raw_url' do
+      pending 'Implement'
     end
   end
 end
