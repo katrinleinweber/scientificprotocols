@@ -180,12 +180,13 @@ en:
         api_end_point_html: 'The API URL is <mark>https://www.scientificprotocols.org/api/v1</mark>.'
         api_protocol_title: 'Get a single protocol'
         api_protocols_title: 'List protocols'
-        api_data_license_html: 'API data is free to use for any purpose. %{license_url}.'
+        api_data_license_html: 'API data is free to use for any purpose. See the %{license_url}.'
         link_to_license: 'ODC Database Contents License'
         api_markdown_html: "Note the main body of the protocol is in the description field. This field is markdown which you will need to parse if you intend to display it on your website. There are a variety of parsers available. If you're using Ruby we recommend %{markdown_parser_url}."
         link_to_markdown_parser: 'Redcarpet'
-        api_ruby_client_html: "If you're using Ruby we have a client available to make communicating with the API more simple. See the %{ruby_client_url}."
+        api_ruby_client_html: "If you're using Ruby we also have a client available to make communicating with the API more simple. See the %{ruby_client_url}."
         link_to_ruby_client: 'Scientific Protocols Ruby Client'
+        api_wrapper_contributions_html: "Interested in contributing an API wrapper in your favorite programming language? We'd love to here from you! Please <a href='/contact'>contact us</a>."
       contact:
         page_title: 'Contact us'
         contact_desc: 'The Scientific Protocols team can be contacted in any of the following ways.'
