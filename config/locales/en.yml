@@ -186,7 +186,7 @@ en:
         link_to_markdown_parser: 'Redcarpet'
         api_ruby_client_html: "If you're using Ruby we also have a client available to make communicating with the API more simple. See the %{ruby_client_url}."
         link_to_ruby_client: 'Scientific Protocols Ruby Client'
-        api_wrapper_contributions_html: "Interested in contributing an API wrapper in your favorite programming language? We'd love to here from you! Please <a href='/contact'>contact us</a>."
+        api_wrapper_contributions_html: "Interested in contributing an API wrapper in your favorite programming language? We'd love to hear from you! Please <a href='/contact'>contact us</a>."
       contact:
         page_title: 'Contact us'
         contact_desc: 'The Scientific Protocols team can be contacted in any of the following ways.'
