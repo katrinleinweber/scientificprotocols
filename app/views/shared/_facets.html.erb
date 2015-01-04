@@ -3,20 +3,33 @@
   params.except!(:page) if params[:page].present?
   params.except!(:tags) if params[:tags].present?
 %>
-<div class="list-group">
-  <% facets.each do |facet| %>
-    <%
-      active = existing_tag_facets.include? facet.name
-      list_class = active ? 'list-group-item active' : 'list-group-item'
-      icon_class = active ? 'glyphicon glyphicon-minus-sign' : 'glyphicon glyphicon-plus-sign'
-      tag_facets = active ? (existing_tag_facets - [facet.name]).join('-') : (existing_tag_facets + [facet.name]).join('-')
-      new_params = tag_facets.present? ? params.merge(tags: tag_facets) : params
-    %>
-    <%= link_to params.merge(new_params), class: list_class do -%>
-      <span class="<%= icon_class %>"></span>
-      <%= facet.name -%>
-      <span class="badge pull-right"><%= facet.taggings_count %></span>
-    <% end %>
-  <% end %>
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingOne">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Collapsible Group Item #1
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+        <div class="list-group">
+          <% facets.each do |facet| %>
+            <%
+              active = existing_tag_facets.include? facet.name
+              list_class = active ? 'list-group-item active' : 'list-group-item'
+              icon_class = active ? 'glyphicon glyphicon-minus-sign' : 'glyphicon glyphicon-plus-sign'
+              tag_facets = active ? (existing_tag_facets - [facet.name]).join('-') : (existing_tag_facets + [facet.name]).join('-')
+              new_params = tag_facets.present? ? params.merge(tags: tag_facets) : params
+            %>
+            <%= link_to params.merge(new_params), class: list_class do -%>
+              <span class="<%= icon_class %>"></span>
+              <%= facet.name -%>
+              <span class="badge pull-right"><%= facet.taggings_count %></span>
+            <% end %>
+          <% end %>
+        </div>
+    </div>
+  </div>
 </div>
 
