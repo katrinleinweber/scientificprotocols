@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   # Find an existing user using credentials obtained from oAuth. Create the user if they don't exist.
   # @param [Hash] auth The authentication settings returned from GitHub.
   def self.from_omniauth(auth)
-    where(auth.slice(:provider, :uid)).first_or_create do |user|
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
       user.username = auth.info.nickname
       user.provider = auth.provider
