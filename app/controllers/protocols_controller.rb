@@ -17,6 +17,7 @@ class ProtocolsController < ApplicationController
     @search_options = @params.deep_dup.symbolize_keys
     @protocols = Protocol.search(@search_options)
     @facets = Protocol.facets(Protocol.search(@search_options.merge!(paginate: false)))
+    @tag_categories = TagCategory.all
     set_sort_attributes
     respond_to do |format|
       format.html
