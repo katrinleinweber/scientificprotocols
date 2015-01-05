@@ -63,17 +63,28 @@ class Protocol < ActiveRecord::Base
 
   # Get the protocol facets. A count of tags against protocols in the context of
   # the current search and/or filter.
-  def self.facets(protocols)
+  # @param [ActiveRecord_Relation, Sunspot::Search::PaginatedCollection] protocols The protocols to get the facets for.
+  # @param [Hash] options The options of the facets.
+  def self.facets(protocols, options = {})
+    options.reverse_merge!(exclude_zero_count: true, exclude_uncategorized: true)
+
     # Hack - How to convert this collection better?
     protocols = Protocol.where(id: protocols.map(&:id)) if protocols.is_a? Sunspot::Search::PaginatedCollection
 
     # Recalculate tag count based on current result set not total result set.
     tags = []
-    all_tags = Protocol.tag_counts.order(:name)
+    all_tags = Protocol.tag_counts
     all_tags.each do |tag|
       tag.taggings_count = protocols.tagged_with(tag).count
-      tags << tag if tag.taggings_count > 0
+      tag = tag.becomes(Tag)
+      if (!options[:exclude_zero_count] || tag.taggings_count > 0) &&
+        (!options[:exclude_uncategorized] || tag.tag_category.present?)
+        tags << tag
+      end
     end
+    parts = tags.partition { |tag| tag.tag_category.nil? }
+    tags = parts.last.sort_by { |tag| [tag.tag_category.name, tag.name] }
+    tags = tags + parts.first if !options[:exclude_uncategorized]
     tags
   end
 
