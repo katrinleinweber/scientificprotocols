@@ -17,10 +17,10 @@ ActiveRecord::Schema.define(version: 20141228230407) do
   enable_extension "plpgsql"
 
   create_table "friendly_id_slugs", force: true do |t|
-    t.string   "slug",                      null: false
-    t.integer  "sluggable_id",              null: false
+    t.string   "slug",           limit: nil, null: false
+    t.integer  "sluggable_id",               null: false
     t.string   "sluggable_type", limit: 50
-    t.string   "scope"
+    t.string   "scope",          limit: nil
     t.datetime "created_at"
   end
 
@@ -37,15 +37,15 @@ ActiveRecord::Schema.define(version: 20141228230407) do
   end
 
   create_table "protocols", force: true do |t|
-    t.string   "title"
+    t.string   "title",          limit: nil
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "slug",           null: false
-    t.string   "gist_id",        null: false
-    t.string   "workflow_state"
-    t.string   "doi"
-    t.string   "deposition_id"
+    t.string   "slug",           limit: nil, null: false
+    t.string   "gist_id",        limit: nil, null: false
+    t.string   "doi",            limit: nil
+    t.string   "workflow_state", limit: nil
+    t.string   "deposition_id",  limit: nil
   end
 
   add_index "protocols", ["deposition_id"], name: "index_protocols_on_deposition_id", unique: true, using: :btree
@@ -56,9 +56,9 @@ ActiveRecord::Schema.define(version: 20141228230407) do
   create_table "taggings", force: true do |t|
     t.integer  "tag_id"
     t.integer  "taggable_id"
-    t.string   "taggable_type"
+    t.string   "taggable_type", limit: nil
     t.integer  "tagger_id"
-    t.string   "tagger_type"
+    t.string   "tagger_type",   limit: nil
     t.string   "context",       limit: 128
     t.datetime "created_at"
   end
@@ -67,20 +67,20 @@ ActiveRecord::Schema.define(version: 20141228230407) do
   add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context", using: :btree
 
   create_table "tags", force: true do |t|
-    t.string  "name"
-    t.integer "taggings_count", default: 0
+    t.string  "name",           limit: nil
+    t.integer "taggings_count",             default: 0
   end
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
   create_table "users", force: true do |t|
-    t.string   "email",      default: "", null: false
+    t.string   "email",      limit: nil, default: "", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "username",   default: "", null: false
-    t.string   "slug",                    null: false
-    t.string   "provider"
-    t.string   "uid"
+    t.string   "username",   limit: nil, default: "", null: false
+    t.string   "slug",       limit: nil,              null: false
+    t.string   "provider",   limit: nil
+    t.string   "uid",        limit: nil
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
