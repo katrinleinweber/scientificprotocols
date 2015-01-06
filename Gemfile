@@ -3,6 +3,7 @@ source 'https://rails-assets.org'
 ruby '2.2.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'.
+# TODO - Don't update to Rails 4.2 yet. Issue with tags on protool edit.
 gem 'rails', '4.1.8'
 gem 'responders'
 
