@@ -1,8 +1,10 @@
 source 'https://rubygems.org'
+source 'https://rails-assets.org'
 ruby '2.2.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'.
-gem 'rails', '4.2'
+# TODO - Don't update to Rails 4.2 yet. Issue with tags on protocol edit.
+gem 'rails', '4.1.8'
 gem 'responders'
 
 # Use SCSS for stylesheets.
