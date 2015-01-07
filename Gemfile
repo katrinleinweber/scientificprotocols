@@ -81,7 +81,8 @@ gem 'carrierwave'
 gem 'fog'
 
 # Tagging.
-gem 'acts-as-taggable-on'
+# TODO - Pinned at 3.4.2. Issue with count query.
+gem 'acts-as-taggable-on', '3.4.2'
 
 # Caching.
 gem 'memcachier'
