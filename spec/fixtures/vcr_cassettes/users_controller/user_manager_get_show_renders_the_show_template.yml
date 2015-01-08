@@ -1,0 +1,83 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.github.com/users/dior001
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/vnd.github.v3+json
+      User-Agent:
+      - Octokit Ruby Gem 3.5.2
+      Content-Type:
+      - application/json
+      Authorization:
+      - token <GITHUB_API_KEY>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Thu, 08 Jan 2015 04:55:01 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Status:
+      - 200 OK
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4644'
+      X-Ratelimit-Reset:
+      - '1420695119'
+      Cache-Control:
+      - private, max-age=60, s-maxage=60
+      Last-Modified:
+      - Thu, 08 Jan 2015 02:08:34 GMT
+      Etag:
+      - '"c300bac169facefe1d6545ec03a68cba"'
+      X-Oauth-Scopes:
+      - gist
+      X-Accepted-Oauth-Scopes:
+      - user
+      Vary:
+      - Accept, Authorization, Cookie, X-GitHub-OTP
+      - Accept-Encoding
+      X-Github-Media-Type:
+      - github.v3; format=json
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - deny
+      Content-Security-Policy:
+      - default-src 'none'
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
+        X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Github-Request-Id:
+      - 45B5E518:0328:5905F2:54AE0DA4
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Content-Type-Options:
+      - nosniff
+      X-Served-By:
+      - 07ff1c8a09e44b62e277fae50a1b1dc4
+    body:
+      encoding: ASCII-8BIT
+      string: '{"login":"dior001","id":474680,"avatar_url":"https://avatars.githubusercontent.com/u/474680?v=3","gravatar_id":"","url":"https://api.github.com/users/dior001","html_url":"https://github.com/dior001","followers_url":"https://api.github.com/users/dior001/followers","following_url":"https://api.github.com/users/dior001/following{/other_user}","gists_url":"https://api.github.com/users/dior001/gists{/gist_id}","starred_url":"https://api.github.com/users/dior001/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/dior001/subscriptions","organizations_url":"https://api.github.com/users/dior001/orgs","repos_url":"https://api.github.com/users/dior001/repos","events_url":"https://api.github.com/users/dior001/events{/privacy}","received_events_url":"https://api.github.com/users/dior001/received_events","type":"User","site_admin":false,"name":"David
+        Iorns","company":null,"blog":null,"location":null,"email":null,"hireable":false,"bio":null,"public_repos":0,"public_gists":12541,"followers":2,"following":13,"created_at":"2010-11-09T20:40:50Z","updated_at":"2015-01-08T02:08:34Z"}'
+    http_version: 
+  recorded_at: Thu, 08 Jan 2015 04:55:00 GMT
+recorded_with: VCR 2.9.3

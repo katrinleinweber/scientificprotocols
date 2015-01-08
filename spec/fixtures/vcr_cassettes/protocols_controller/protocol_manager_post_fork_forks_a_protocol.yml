@@ -1,0 +1,379 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.github.com/gists
+    body:
+      encoding: UTF-8
+      string: '{"description":"Sed quo tempora fuga non distinctio soluta sint et
+        repellendus.","public":true,"files":{"protocol.md":{"content":"Adipisci similique
+        ea blanditiis aut. Quaerat alias et et qui tenetur commodi. Illum est perspiciatis
+        voluptates."}}}'
+    headers:
+      Accept:
+      - application/vnd.github.v3+json
+      User-Agent:
+      - Octokit Ruby Gem 3.5.2
+      Content-Type:
+      - application/json
+      Authorization:
+      - token <GITHUB_API_KEY>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Thu, 08 Jan 2015 04:54:54 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Status:
+      - 201 Created
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4654'
+      X-Ratelimit-Reset:
+      - '1420695119'
+      Cache-Control:
+      - private, max-age=60, s-maxage=60
+      Etag:
+      - '"ff8e56f4fa205d9e1c8d77857bdc5847"'
+      X-Oauth-Scopes:
+      - gist
+      X-Accepted-Oauth-Scopes:
+      - ''
+      Location:
+      - https://api.github.com/gists/e83df83502a0045213d1
+      Vary:
+      - Accept, Authorization, Cookie, X-GitHub-OTP
+      X-Github-Media-Type:
+      - github.v3; format=json
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - deny
+      Content-Security-Policy:
+      - default-src 'none'
+      Content-Length:
+      - '3073'
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
+        X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Github-Request-Id:
+      - 45B5E518:37BC:13C72D:54AE0D9E
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Content-Type-Options:
+      - nosniff
+    body:
+      encoding: UTF-8
+      string: '{"url":"https://api.github.com/gists/e83df83502a0045213d1","forks_url":"https://api.github.com/gists/e83df83502a0045213d1/forks","commits_url":"https://api.github.com/gists/e83df83502a0045213d1/commits","id":"e83df83502a0045213d1","git_pull_url":"https://gist.github.com/e83df83502a0045213d1.git","git_push_url":"https://gist.github.com/e83df83502a0045213d1.git","html_url":"https://gist.github.com/e83df83502a0045213d1","files":{"protocol.md":{"filename":"protocol.md","type":"text/plain","language":"Markdown","raw_url":"https://gist.githubusercontent.com/dior001/e83df83502a0045213d1/raw/436e4ef27edd0fe339d33e72baed5b407cc8d1a7/protocol.md","size":113,"truncated":false,"content":"Adipisci
+        similique ea blanditiis aut. Quaerat alias et et qui tenetur commodi. Illum
+        est perspiciatis voluptates."}},"public":true,"created_at":"2015-01-08T04:54:54Z","updated_at":"2015-01-08T04:54:54Z","description":"Sed
+        quo tempora fuga non distinctio soluta sint et repellendus.","comments":0,"user":null,"comments_url":"https://api.github.com/gists/e83df83502a0045213d1/comments","owner":{"login":"dior001","id":474680,"avatar_url":"https://avatars.githubusercontent.com/u/474680?v=3","gravatar_id":"","url":"https://api.github.com/users/dior001","html_url":"https://github.com/dior001","followers_url":"https://api.github.com/users/dior001/followers","following_url":"https://api.github.com/users/dior001/following{/other_user}","gists_url":"https://api.github.com/users/dior001/gists{/gist_id}","starred_url":"https://api.github.com/users/dior001/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/dior001/subscriptions","organizations_url":"https://api.github.com/users/dior001/orgs","repos_url":"https://api.github.com/users/dior001/repos","events_url":"https://api.github.com/users/dior001/events{/privacy}","received_events_url":"https://api.github.com/users/dior001/received_events","type":"User","site_admin":false},"forks":[],"history":[{"user":{"login":"dior001","id":474680,"avatar_url":"https://avatars.githubusercontent.com/u/474680?v=3","gravatar_id":"","url":"https://api.github.com/users/dior001","html_url":"https://github.com/dior001","followers_url":"https://api.github.com/users/dior001/followers","following_url":"https://api.github.com/users/dior001/following{/other_user}","gists_url":"https://api.github.com/users/dior001/gists{/gist_id}","starred_url":"https://api.github.com/users/dior001/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/dior001/subscriptions","organizations_url":"https://api.github.com/users/dior001/orgs","repos_url":"https://api.github.com/users/dior001/repos","events_url":"https://api.github.com/users/dior001/events{/privacy}","received_events_url":"https://api.github.com/users/dior001/received_events","type":"User","site_admin":false},"version":"eec5081245d951b4e11d0e3a8040437bb10d624b","committed_at":"2015-01-08T04:54:54Z","change_status":{"total":1,"additions":1,"deletions":0},"url":"https://api.github.com/gists/e83df83502a0045213d1/eec5081245d951b4e11d0e3a8040437bb10d624b"}]}'
+    http_version: 
+  recorded_at: Thu, 08 Jan 2015 04:54:53 GMT
+- request:
+    method: get
+    uri: https://api.github.com/gists/e83df83502a0045213d1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/vnd.github.v3+json
+      User-Agent:
+      - Octokit Ruby Gem 3.5.2
+      Content-Type:
+      - application/json
+      Authorization:
+      - token <GITHUB_API_KEY>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Thu, 08 Jan 2015 04:54:55 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Status:
+      - 200 OK
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4986'
+      X-Ratelimit-Reset:
+      - '1420695136'
+      Cache-Control:
+      - private, max-age=60, s-maxage=60
+      Last-Modified:
+      - Thu, 08 Jan 2015 04:54:54 GMT
+      Etag:
+      - '"93f33842b4a1369686bb5c309d7ca801"'
+      X-Oauth-Scopes:
+      - gist, repo, user
+      X-Accepted-Oauth-Scopes:
+      - ''
+      Vary:
+      - Accept, Authorization, Cookie, X-GitHub-OTP
+      - Accept-Encoding
+      X-Github-Media-Type:
+      - github.v3; format=json
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - deny
+      Content-Security-Policy:
+      - default-src 'none'
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
+        X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Github-Request-Id:
+      - 45B5E518:37B5:4A51A:54AE0D9E
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Content-Type-Options:
+      - nosniff
+      X-Served-By:
+      - 01d096e6cfe28f8aea352e988c332cd3
+    body:
+      encoding: ASCII-8BIT
+      string: '{"url":"https://api.github.com/gists/e83df83502a0045213d1","forks_url":"https://api.github.com/gists/e83df83502a0045213d1/forks","commits_url":"https://api.github.com/gists/e83df83502a0045213d1/commits","id":"e83df83502a0045213d1","git_pull_url":"https://gist.github.com/e83df83502a0045213d1.git","git_push_url":"https://gist.github.com/e83df83502a0045213d1.git","html_url":"https://gist.github.com/e83df83502a0045213d1","files":{"protocol.md":{"filename":"protocol.md","type":"text/plain","language":"Markdown","raw_url":"https://gist.githubusercontent.com/dior001/e83df83502a0045213d1/raw/436e4ef27edd0fe339d33e72baed5b407cc8d1a7/protocol.md","size":113,"truncated":false,"content":"Adipisci
+        similique ea blanditiis aut. Quaerat alias et et qui tenetur commodi. Illum
+        est perspiciatis voluptates."}},"public":true,"created_at":"2015-01-08T04:54:54Z","updated_at":"2015-01-08T04:54:54Z","description":"Sed
+        quo tempora fuga non distinctio soluta sint et repellendus.","comments":0,"user":null,"comments_url":"https://api.github.com/gists/e83df83502a0045213d1/comments","owner":{"login":"dior001","id":474680,"avatar_url":"https://avatars.githubusercontent.com/u/474680?v=3","gravatar_id":"","url":"https://api.github.com/users/dior001","html_url":"https://github.com/dior001","followers_url":"https://api.github.com/users/dior001/followers","following_url":"https://api.github.com/users/dior001/following{/other_user}","gists_url":"https://api.github.com/users/dior001/gists{/gist_id}","starred_url":"https://api.github.com/users/dior001/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/dior001/subscriptions","organizations_url":"https://api.github.com/users/dior001/orgs","repos_url":"https://api.github.com/users/dior001/repos","events_url":"https://api.github.com/users/dior001/events{/privacy}","received_events_url":"https://api.github.com/users/dior001/received_events","type":"User","site_admin":false},"forks":[],"history":[{"user":{"login":"dior001","id":474680,"avatar_url":"https://avatars.githubusercontent.com/u/474680?v=3","gravatar_id":"","url":"https://api.github.com/users/dior001","html_url":"https://github.com/dior001","followers_url":"https://api.github.com/users/dior001/followers","following_url":"https://api.github.com/users/dior001/following{/other_user}","gists_url":"https://api.github.com/users/dior001/gists{/gist_id}","starred_url":"https://api.github.com/users/dior001/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/dior001/subscriptions","organizations_url":"https://api.github.com/users/dior001/orgs","repos_url":"https://api.github.com/users/dior001/repos","events_url":"https://api.github.com/users/dior001/events{/privacy}","received_events_url":"https://api.github.com/users/dior001/received_events","type":"User","site_admin":false},"version":"eec5081245d951b4e11d0e3a8040437bb10d624b","committed_at":"2015-01-08T04:54:54Z","change_status":{"total":1,"additions":1,"deletions":0},"url":"https://api.github.com/gists/e83df83502a0045213d1/eec5081245d951b4e11d0e3a8040437bb10d624b"}]}'
+    http_version: 
+  recorded_at: Thu, 08 Jan 2015 04:54:54 GMT
+- request:
+    method: post
+    uri: https://api.github.com/gists/e83df83502a0045213d1/forks
+    body:
+      encoding: UTF-8
+      string: "{}"
+    headers:
+      Accept:
+      - application/vnd.github.v3+json
+      User-Agent:
+      - Octokit Ruby Gem 3.5.2
+      Content-Type:
+      - application/json
+      Authorization:
+      - token <GITHUB_API_KEY>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Thu, 08 Jan 2015 04:54:55 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Status:
+      - 201 Created
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4985'
+      X-Ratelimit-Reset:
+      - '1420695136'
+      Cache-Control:
+      - private, max-age=60, s-maxage=60
+      Etag:
+      - '"5a3bf66f5fb4de3f6b765375e9f12752"'
+      X-Oauth-Scopes:
+      - gist, repo, user
+      X-Accepted-Oauth-Scopes:
+      - ''
+      Location:
+      - https://api.github.com/gists/5a39e810df16b0fb131c
+      Vary:
+      - Accept, Authorization, Cookie, X-GitHub-OTP
+      X-Github-Media-Type:
+      - github.v3; format=json
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - deny
+      Content-Security-Policy:
+      - default-src 'none'
+      Content-Length:
+      - '1781'
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
+        X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Github-Request-Id:
+      - 45B5E518:37BA:2A1BBC:54AE0D9F
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Content-Type-Options:
+      - nosniff
+    body:
+      encoding: UTF-8
+      string: '{"url":"https://api.github.com/gists/5a39e810df16b0fb131c","forks_url":"https://api.github.com/gists/5a39e810df16b0fb131c/forks","commits_url":"https://api.github.com/gists/5a39e810df16b0fb131c/commits","id":"5a39e810df16b0fb131c","git_pull_url":"https://gist.github.com/5a39e810df16b0fb131c.git","git_push_url":"https://gist.github.com/5a39e810df16b0fb131c.git","html_url":"https://gist.github.com/5a39e810df16b0fb131c","files":{"protocol.md":{"filename":"protocol.md","type":"text/plain","language":"Markdown","raw_url":"https://gist.githubusercontent.com/scipro/5a39e810df16b0fb131c/raw/436e4ef27edd0fe339d33e72baed5b407cc8d1a7/protocol.md","size":113}},"public":true,"created_at":"2015-01-08T04:54:55Z","updated_at":"2015-01-08T04:54:55Z","description":"Sed
+        quo tempora fuga non distinctio soluta sint et repellendus.","comments":0,"user":null,"comments_url":"https://api.github.com/gists/5a39e810df16b0fb131c/comments","owner":{"login":"scipro","id":8239770,"avatar_url":"https://avatars.githubusercontent.com/u/8239770?v=3","gravatar_id":"","url":"https://api.github.com/users/scipro","html_url":"https://github.com/scipro","followers_url":"https://api.github.com/users/scipro/followers","following_url":"https://api.github.com/users/scipro/following{/other_user}","gists_url":"https://api.github.com/users/scipro/gists{/gist_id}","starred_url":"https://api.github.com/users/scipro/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/scipro/subscriptions","organizations_url":"https://api.github.com/users/scipro/orgs","repos_url":"https://api.github.com/users/scipro/repos","events_url":"https://api.github.com/users/scipro/events{/privacy}","received_events_url":"https://api.github.com/users/scipro/received_events","type":"User","site_admin":false}}'
+    http_version: 
+  recorded_at: Thu, 08 Jan 2015 04:54:54 GMT
+- request:
+    method: get
+    uri: https://gist.githubusercontent.com/scipro/5a39e810df16b0fb131c/raw/436e4ef27edd0fe339d33e72baed5b407cc8d1a7/protocol.md
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Date:
+      - Thu, 08 Jan 2015 04:54:56 GMT
+      Server:
+      - GitHub.com
+      Content-Type:
+      - text/html; charset=utf-8
+      Status:
+      - 404 Not Found
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Frame-Options:
+      - deny
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Content-Security-Policy:
+      - default-src *; script-src 'self' https://gist-assets.github.com *.google-analytics.com
+        https://collector-cdn.github.com; frame-src 'self' render.githubusercontent.com
+        https://gist-assets.github.com *.google-analytics.com https://collector-cdn.github.com;
+        style-src 'self' 'unsafe-inline' https://gist-assets.github.com; object-src
+        https://gist-assets.github.com; report-uri /_/csp_reports
+      Cache-Control:
+      - no-cache
+      X-Request-Id:
+      - 9a93a6bf-4b0f-41c6-8e12-8f67cf150b3d
+      X-Runtime:
+      - '0.009127'
+      X-Github-Request-Id:
+      - C71B4C1E:37BA:2A1C97:54AE0D9F
+      Content-Length:
+      - '2120'
+      Accept-Ranges:
+      - bytes
+      Via:
+      - 1.1 varnish
+      X-Served-By:
+      - cache-jfk1021-JFK
+      X-Cache:
+      - MISS
+      X-Cache-Hits:
+      - '0'
+      Expires:
+      - Thu, 08 Jan 2015 04:59:56 GMT
+      Source-Age:
+      - '0'
+      Vary:
+      - AuthorizationAccept-Encoding
+      Set-Cookie:
+      - _gist_session=BAh7B0kiD3Nlc3Npb25faWQGOgZFVEkiJWRkMDkzYWNmOThiNjVhNGY0ZDM4YmQ0MDhmNTUyZTI4BjsAVEkiEF9jc3JmX3Rva2VuBjsARkkiMUV1OUJIVjdCT0M1Nnd2MlhUVEpQTHFESDRMUDRvejdVRUo2c2hyeTJEZmc9BjsARg%3D%3D--177308ff385e6b84424d4874c462248d225416cc;
+        path=/; secure; HttpOnly
+    body:
+      encoding: ASCII-8BIT
+      string: "<!DOCTYPE html>\n<html class=\"  \">\n<head prefix=\"og: http://ogp.me/ns#
+        fb: http://ogp.me/ns/fb# githubog: http://ogp.me/ns/fb/githubog#\">\n  <meta
+        charset=\"utf-8\">\n  <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge,chrome=1\">\n\n
+        \ <title>Gists</title>\n\n  <meta content=\"authenticity_token\" name=\"csrf-param\"
+        />\n<meta content=\"HcIFNd4Y1UJk5qywX1DI2LvPLTe0uRffLCWiey1Ro0gPLUQogNntbB4kUScSYof2GwjNhEwaKQs8uw79keeusA==\"
+        name=\"csrf-token\" />\n  <meta name=\"viewport\" content=\"width=960\">\n\n\n
+        \   <link type=\"text/plain\" rel=\"author\" href=\"https://github.com/humans.txt\"
+        />\n    <meta content=\"gist\" name=\"octolytics-app-id\" /><meta content=\"collector.githubapp.com\"
+        name=\"octolytics-host\" /><meta content=\"collector-cdn.github.com\" name=\"octolytics-script-host\"
+        /><meta content=\"C71B4C1E:37BA:2A1C97:54AE0D9F\" name=\"octolytics-dimension-request_id\"
+        />\n  <link rel=\"assets\" href=\"https://gist-assets.github.com/\">\n  <link
+        rel=\"zeroclipboard-assets\" href=\"https://gist-assets.github.com/assets/zeroclipboard/dist/ZeroClipboard-aeb54c213f0d09883fed5a0947132da9.swf\">\n
+        \ <link rel=\"editor-assets\" href=\"https://gist-assets.github.com/assets/editor-13d24800389a141228c85d10358c061f.js\">\n
+        \ <link rel=\"mount-point\" href=\"/\">\n\n\n  <link href=\"https://gist-assets.github.com/assets/application-24aacbb0b4eca97914d098a286798ad8.css\"
+        media=\"screen, print\" rel=\"stylesheet\" />\n  <script src=\"https://gist-assets.github.com/assets/application-9441728a90e54c65c8d4079bfabcbff5.js\"></script>\n\n
+        \ \n</head>\n\n<body class=\" \"\n  data-plan=\"\">\n\n  <div id=\"wrapper\">\n
+        \   \n\n    <div id=\"header\" class=\"header header-logged-out\">\n      <div
+        class=\"container\" class=\"clearfix\">\n        <a class=\"header-logo-wordmark\"
+        href=\"https://gist.githubusercontent.com/\">\n          <span class=\"octicon
+        octicon-logo-github\"></span>\n          <span class=\"octicon-logo octicon-logo-gist\"></span>\n
+        \       </a>\n\n        <div class=\"header-actions\">\n          <a class=\"button
+        primary\" href=\"https://github.com/signup?return_to=gist\">Sign up for a
+        GitHub account</a>\n          <a class=\"button\" href=\"https://gist.githubusercontent.com/login?return_to=%2Fscipro%2F5a39e810df16b0fb131c%2Fraw%2F436e4ef27edd0fe339d33e72baed5b407cc8d1a7%2Fprotocol.md\"
+        data-skip-pjax>Sign in</a>\n        </div>\n        <div class=\"divider-vertical\"></div>\n
+        \       <div class=\"topsearch\">\n  <form id=\"top_search_form\" action=\"/search\"
+        data-pjax-remote=push accept-charset=\"UTF-8\">\n    <div class=\"search\">\n
+        \     <input type=\"text\" class=\"search js-search js-navigation-enable \"
+        name=\"q\" placeholder=\"Search&#x2026;\" data-hotkey=\"/\" autocomplete=off
+        autocorrect=off value=\"\" >\n\n    </div>\n    <div class=\"divider-vertical\"></div>\n
+        \ </form>\n  <ul class=\"top-nav\">\n    <li class=\"explore\"><a href=\"/discover\">All
+        Gists</a></li>\n  </ul>\n</div>\n\n      </div>\n    </div>\n\n    <div class=\"site-content\"
+        id=\"js-pjax-container\" data-pjax-container>\n      <div id=\"js-flash-container\"
+        class=\"site-container js-site-container\" data-url=\"/scipro/5a39e810df16b0fb131c/raw/436e4ef27edd0fe339d33e72baed5b407cc8d1a7/protocol.md\">\n
+        \ \n  <div class=\"i-am-error container\">\n  <h1>Whoops.</h1>\n  <p>We seem
+        to have missed the <em>gist</em> of that <em>gist</em> you were looking for.</p>\n</div>\n\n
+        \ <div class=\"context-overlay\"></div>\n</div>\n\n    </div>\n    <div class=\"slow-loading-overlay\"></div>\n
+        \ </div>\n\n  <div id=\"ajax-error-message\" class=\"flash flash-error\">\n
+        \   <div class=\"container\">\n      <span class=\"octicon octicon-alert\"></span>\n
+        \     Something went wrong with that request. Please try again.\n      <a
+        href=\"#\" class=\"octicon octicon-x ajax-error-dismiss\"></a>\n    </div>\n
+        \ </div>\n\n\n  <footer>\n    <div class=\"container\">\n  <div class=\"site-footer\">\n
+        \   <ul class=\"site-footer-links right\">\n      <li><a href=\"https://status.github.com/\">Status</a></li>\n
+        \     <li><a href=\"http://developer.github.com\">API</a></li>\n      <li><a
+        href=\"https://github.com/blog\">Blog</a></li>\n      <li><a href=\"https://github.com/about\">About</a></li>\n\n
+        \   </ul>\n\n    <a href=\"/\">\n      <span class=\"mega-octicon octicon-mark-github\"
+        title=\"GitHub \"></span>\n    </a>\n\n    <ul class=\"site-footer-links\">\n
+        \     <li>&copy; 2015 <span title=\"0.00851s from github-fe102-cp1-prd.iad.github.net\">GitHub</span>,
+        Inc.</li>\n        <li><a href=\"https://github.com/site/terms\">Terms</a></li>\n
+        \       <li><a href=\"https://github.com/site/privacy\">Privacy</a></li>\n
+        \       <li><a href=\"https://github.com/security\">Security</a></li>\n        <li><a
+        href=\"https://github.com/contact\">Contact</a></li>\n    </ul>\n  </div><!--
+        /.site-footer -->\n</div><!-- /.container -->\n\n  </footer>\n\n  <div class=\"fullscreen-overlay
+        js-fullscreen-overlay\" id=\"fullscreen_overlay\">\n  <div class=\"fullscreen-container
+        js-fullscreen-container\">\n    <div class=\"textarea-wrap\">\n      <textarea
+        name=\"fullscreen-contents\" id=\"fullscreen-contents\" class=\"fullscreen-contents
+        js-fullscreen-contents\" placeholder=\"\" data-suggester=\"fullscreen_suggester\"></textarea>\n
+        \   </div>\n  </div>\n  <div class=\"fullscreen-sidebar\">\n    <a href=\"#\"
+        class=\"exit-fullscreen js-exit-fullscreen tooltipped tooltipped-w\" aria-label=\"Exit
+        Zen Mode\">\n      <span class=\"mega-octicon octicon-screen-normal\"></span>\n
+        \   </a>\n    <a href=\"#\" class=\"theme-switcher js-theme-switcher tooltipped
+        tooltipped-w\"\n      aria-label=\"Switch themes\">\n      <span class=\"octicon
+        octicon-color-mode\"></span>\n    </a>\n  </div>\n</div>\n\n\n</body>\n</html>\n"
+    http_version: 
+  recorded_at: Thu, 08 Jan 2015 04:54:55 GMT
+recorded_with: VCR 2.9.3
