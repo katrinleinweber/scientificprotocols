@@ -118,6 +118,7 @@ group :development do
 end
 
 group :test, :development do
+  # Use thin as the app server in dev and test.
   gem 'thin'
   # Our testing framework.
   gem 'rspec-rails'
@@ -133,6 +134,10 @@ group :test, :development do
   gem 'faker'
   # Custom matchers for rspec.
   gem 'shoulda'
+  # For mocking HTTP responses
+  gem 'webmock'
+  # Allow auto mocking and fixture generation.
+  gem 'vcr'
 end
 
 group :production, :staging do

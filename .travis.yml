@@ -1,7 +1,7 @@
 language: ruby
 cache: bundler
 rvm:
-  - 2.1.3
+  - 2.2.0
 before_script:
   - psql -c 'create database scientificprotocols_test;' -U postgres
   - cp config/database.travis.yml config/database.yml
@@ -17,3 +17,4 @@ env:
     - secure: S3VOcZ14cG7SyGgBGJzcktAyst2b9qyUXOnfekdVTiYbSze0IflFxSIqzZ9XtGxUYw0yn+vvckztT+bwci+aaARY9K65MCdSOKgw4lrKhsZ3+5fx6mB9YcWShV2UPMt5x4VNqTdynmjBer/oRIw0/SFT6HYFG0BxCbNacNbbb5E=
     - secure: ZAMRhiGqEZz0krlBPLgDucyrHgtJwXcjuobjpkt0Sdx49Pl3wjFKhezgF6Yisyc5fDfWObrB4FxJZ+JJ1oFZNU9jF/p3AHn641YuZuQc2Kyzc6qrmLqvh2uW3KVCnqaUK7ewNvSfPXlhpfILf56N7aXCUjYlJ7seXR3l4TRvmcA=
     - secure: "JR4A44CVZ+lWDT/gCfgQAYN/81uqe4Dt8u0UT1E2DiW4n5IVSLnbuvYu2I4d7sSNR/4uxjde3qx17CWPvkrZUkSNtDIAanHeGJ5fK8aDuTCOes8Ft6eRLxcZSmnGEAbWxDT63YGDoidVlaf29Wo99zt0M07E2mYUOntlO9X1VuY="
+    - secure: "g0+/OvfV863/VrfiEJAvHYXeJhBe/be9wRImBrjNcGzvZkHH1u2eb48rp45+LdYDH2aagIgxEGg3NRS3EGg2YbiTdUNysFBfhbxzOm3OnZR2xw0e3FqCFP8IFcgUxxvXLlSvbgLfvkPVDc62sQKDdAOLEs+PBRkrm26N8gHCMTk="

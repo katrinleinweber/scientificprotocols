@@ -1,4 +1,6 @@
 require 'rubygems'
+require 'webmock/rspec'
+require 'vcr'
 require 'spork'
 #uncomment the following line to use spork with the debugger
 #require 'spork/ext/ruby-debug'
@@ -50,6 +52,13 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.maintain_test_schema!
 
+VCR.configure do |c|
+  c.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
+  c.hook_into :webmock
+  c.filter_sensitive_data('<GITHUB_API_KEY>') { Rails.configuration.api_github }
+  c.filter_sensitive_data('<GITHUB_API_KEY>') { Rails.configuration.api_github_2 }
+end
+
 RSpec.configure do |config|
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
@@ -75,4 +84,15 @@ RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
 
   config.include Rails.application.routes.url_helpers
+
+  # Add VCR to all tests.
+  config.around(:each) do |example|
+    options = example.metadata[:vcr] || {}
+    if options[:record] == :skip
+      VCR.turned_off(&example)
+    else
+      name = example.metadata[:full_description].split(/\s+/, 2).join("/").underscore.gsub(/[^\w\/]+/, "_")
+      VCR.use_cassette(name, options, &example)
+    end
+  end
 end
