@@ -25,7 +25,7 @@ http_interactions:
       Server:
       - GitHub.com
       Date:
-      - Thu, 08 Jan 2015 04:55:00 GMT
+      - Fri, 09 Jan 2015 03:45:32 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -35,15 +35,15 @@ http_interactions:
       X-Ratelimit-Limit:
       - '5000'
       X-Ratelimit-Remaining:
-      - '4645'
+      - '4881'
       X-Ratelimit-Reset:
-      - '1420695119'
+      - '1420778661'
       Cache-Control:
       - private, max-age=60, s-maxage=60
       Last-Modified:
-      - Thu, 08 Jan 2015 02:08:34 GMT
+      - Thu, 08 Jan 2015 18:26:16 GMT
       Etag:
-      - '"c300bac169facefe1d6545ec03a68cba"'
+      - '"4dd366ee4abba5c698a625549c39bc89"'
       X-Oauth-Scopes:
       - gist
       X-Accepted-Oauth-Scopes:
@@ -67,17 +67,17 @@ http_interactions:
       Access-Control-Allow-Origin:
       - "*"
       X-Github-Request-Id:
-      - 45B5E518:0326:36EFC8:54AE0DA4
+      - 45B5E518:37BB:28CDD94:54AF4EDC
       Strict-Transport-Security:
       - max-age=31536000; includeSubdomains; preload
       X-Content-Type-Options:
       - nosniff
       X-Served-By:
-      - dc1ce2bfb41810a06c705e83b388572d
+      - 07ff1c8a09e44b62e277fae50a1b1dc4
     body:
       encoding: ASCII-8BIT
       string: '{"login":"dior001","id":474680,"avatar_url":"https://avatars.githubusercontent.com/u/474680?v=3","gravatar_id":"","url":"https://api.github.com/users/dior001","html_url":"https://github.com/dior001","followers_url":"https://api.github.com/users/dior001/followers","following_url":"https://api.github.com/users/dior001/following{/other_user}","gists_url":"https://api.github.com/users/dior001/gists{/gist_id}","starred_url":"https://api.github.com/users/dior001/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/dior001/subscriptions","organizations_url":"https://api.github.com/users/dior001/orgs","repos_url":"https://api.github.com/users/dior001/repos","events_url":"https://api.github.com/users/dior001/events{/privacy}","received_events_url":"https://api.github.com/users/dior001/received_events","type":"User","site_admin":false,"name":"David
-        Iorns","company":null,"blog":null,"location":null,"email":null,"hireable":false,"bio":null,"public_repos":0,"public_gists":12541,"followers":2,"following":13,"created_at":"2010-11-09T20:40:50Z","updated_at":"2015-01-08T02:08:34Z"}'
+        Iorns","company":null,"blog":null,"location":null,"email":null,"hireable":false,"bio":null,"public_repos":0,"public_gists":12619,"followers":2,"following":13,"created_at":"2010-11-09T20:40:50Z","updated_at":"2015-01-08T18:26:16Z"}'
     http_version: 
-  recorded_at: Thu, 08 Jan 2015 04:54:59 GMT
+  recorded_at: Fri, 09 Jan 2015 03:45:32 GMT
 recorded_with: VCR 2.9.3

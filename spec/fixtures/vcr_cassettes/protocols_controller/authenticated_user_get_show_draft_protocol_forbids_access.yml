@@ -5,9 +5,10 @@ http_interactions:
     uri: https://api.github.com/gists
     body:
       encoding: UTF-8
-      string: '{"description":"Omnis molestiae est ea at nihil porro totam adipisci.","public":true,"files":{"protocol.md":{"content":"Quibusdam
-        quia laborum. Repellat nemo est error labore. Sit repudiandae sapiente aliquam
-        soluta sit quae sunt. Qui debitis consectetur qui eius error."}}}'
+      string: '{"description":"Odio sed ratione in nemo dolores placeat incidunt qui.","public":true,"files":{"protocol.md":{"content":"Qui
+        ullam sed iusto eius quam velit voluptatem. Qui explicabo odit iste nihil.
+        Aliquid fugit sit quo earum. Maxime ea labore nesciunt. Laboriosam sunt recusandae
+        reprehenderit."}}}'
     headers:
       Accept:
       - application/vnd.github.v3+json
@@ -27,7 +28,7 @@ http_interactions:
       Server:
       - GitHub.com
       Date:
-      - Thu, 08 Jan 2015 04:54:14 GMT
+      - Fri, 09 Jan 2015 03:44:46 GMT
       Content-Type:
       - application/json; charset=utf-8
       Status:
@@ -35,19 +36,19 @@ http_interactions:
       X-Ratelimit-Limit:
       - '5000'
       X-Ratelimit-Remaining:
-      - '4720'
+      - '4953'
       X-Ratelimit-Reset:
-      - '1420695119'
+      - '1420778661'
       Cache-Control:
       - private, max-age=60, s-maxage=60
       Etag:
-      - '"77cc241166824870542f238aa708cc04"'
+      - '"324f4d89f90bf0cfca185d8cbf59728a"'
       X-Oauth-Scopes:
       - gist
       X-Accepted-Oauth-Scopes:
       - ''
       Location:
-      - https://api.github.com/gists/d9fd20b4031012ffad86
+      - https://api.github.com/gists/c69061c1f2a7ff0db174
       Vary:
       - Accept, Authorization, Cookie, X-GitHub-OTP
       X-Github-Media-Type:
@@ -59,7 +60,7 @@ http_interactions:
       Content-Security-Policy:
       - default-src 'none'
       Content-Length:
-      - '3100'
+      - '3127'
       Access-Control-Allow-Credentials:
       - 'true'
       Access-Control-Expose-Headers:
@@ -68,17 +69,18 @@ http_interactions:
       Access-Control-Allow-Origin:
       - "*"
       X-Github-Request-Id:
-      - 45B5E518:37B9:21CC10:54AE0D76
+      - 45B5E518:37BB:28C856B:54AF4EAD
       Strict-Transport-Security:
       - max-age=31536000; includeSubdomains; preload
       X-Content-Type-Options:
       - nosniff
     body:
       encoding: UTF-8
-      string: '{"url":"https://api.github.com/gists/d9fd20b4031012ffad86","forks_url":"https://api.github.com/gists/d9fd20b4031012ffad86/forks","commits_url":"https://api.github.com/gists/d9fd20b4031012ffad86/commits","id":"d9fd20b4031012ffad86","git_pull_url":"https://gist.github.com/d9fd20b4031012ffad86.git","git_push_url":"https://gist.github.com/d9fd20b4031012ffad86.git","html_url":"https://gist.github.com/d9fd20b4031012ffad86","files":{"protocol.md":{"filename":"protocol.md","type":"text/plain","language":"Markdown","raw_url":"https://gist.githubusercontent.com/dior001/d9fd20b4031012ffad86/raw/952c6d6210b153b9f8c079b151d0ccba653eb63a/protocol.md","size":150,"truncated":false,"content":"Quibusdam
-        quia laborum. Repellat nemo est error labore. Sit repudiandae sapiente aliquam
-        soluta sit quae sunt. Qui debitis consectetur qui eius error."}},"public":true,"created_at":"2015-01-08T04:54:14Z","updated_at":"2015-01-08T04:54:14Z","description":"Omnis
-        molestiae est ea at nihil porro totam adipisci.","comments":0,"user":null,"comments_url":"https://api.github.com/gists/d9fd20b4031012ffad86/comments","owner":{"login":"dior001","id":474680,"avatar_url":"https://avatars.githubusercontent.com/u/474680?v=3","gravatar_id":"","url":"https://api.github.com/users/dior001","html_url":"https://github.com/dior001","followers_url":"https://api.github.com/users/dior001/followers","following_url":"https://api.github.com/users/dior001/following{/other_user}","gists_url":"https://api.github.com/users/dior001/gists{/gist_id}","starred_url":"https://api.github.com/users/dior001/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/dior001/subscriptions","organizations_url":"https://api.github.com/users/dior001/orgs","repos_url":"https://api.github.com/users/dior001/repos","events_url":"https://api.github.com/users/dior001/events{/privacy}","received_events_url":"https://api.github.com/users/dior001/received_events","type":"User","site_admin":false},"forks":[],"history":[{"user":{"login":"dior001","id":474680,"avatar_url":"https://avatars.githubusercontent.com/u/474680?v=3","gravatar_id":"","url":"https://api.github.com/users/dior001","html_url":"https://github.com/dior001","followers_url":"https://api.github.com/users/dior001/followers","following_url":"https://api.github.com/users/dior001/following{/other_user}","gists_url":"https://api.github.com/users/dior001/gists{/gist_id}","starred_url":"https://api.github.com/users/dior001/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/dior001/subscriptions","organizations_url":"https://api.github.com/users/dior001/orgs","repos_url":"https://api.github.com/users/dior001/repos","events_url":"https://api.github.com/users/dior001/events{/privacy}","received_events_url":"https://api.github.com/users/dior001/received_events","type":"User","site_admin":false},"version":"2893bd11f0e712ce79428f8d2b6096af18413b7c","committed_at":"2015-01-08T04:54:14Z","change_status":{"total":1,"additions":1,"deletions":0},"url":"https://api.github.com/gists/d9fd20b4031012ffad86/2893bd11f0e712ce79428f8d2b6096af18413b7c"}]}'
+      string: '{"url":"https://api.github.com/gists/c69061c1f2a7ff0db174","forks_url":"https://api.github.com/gists/c69061c1f2a7ff0db174/forks","commits_url":"https://api.github.com/gists/c69061c1f2a7ff0db174/commits","id":"c69061c1f2a7ff0db174","git_pull_url":"https://gist.github.com/c69061c1f2a7ff0db174.git","git_push_url":"https://gist.github.com/c69061c1f2a7ff0db174.git","html_url":"https://gist.github.com/c69061c1f2a7ff0db174","files":{"protocol.md":{"filename":"protocol.md","type":"text/plain","language":"Markdown","raw_url":"https://gist.githubusercontent.com/dior001/c69061c1f2a7ff0db174/raw/c6bc7650ff64f33b26be6b26d500d43016837bb6/protocol.md","size":176,"truncated":false,"content":"Qui
+        ullam sed iusto eius quam velit voluptatem. Qui explicabo odit iste nihil.
+        Aliquid fugit sit quo earum. Maxime ea labore nesciunt. Laboriosam sunt recusandae
+        reprehenderit."}},"public":true,"created_at":"2015-01-09T03:44:46Z","updated_at":"2015-01-09T03:44:46Z","description":"Odio
+        sed ratione in nemo dolores placeat incidunt qui.","comments":0,"user":null,"comments_url":"https://api.github.com/gists/c69061c1f2a7ff0db174/comments","owner":{"login":"dior001","id":474680,"avatar_url":"https://avatars.githubusercontent.com/u/474680?v=3","gravatar_id":"","url":"https://api.github.com/users/dior001","html_url":"https://github.com/dior001","followers_url":"https://api.github.com/users/dior001/followers","following_url":"https://api.github.com/users/dior001/following{/other_user}","gists_url":"https://api.github.com/users/dior001/gists{/gist_id}","starred_url":"https://api.github.com/users/dior001/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/dior001/subscriptions","organizations_url":"https://api.github.com/users/dior001/orgs","repos_url":"https://api.github.com/users/dior001/repos","events_url":"https://api.github.com/users/dior001/events{/privacy}","received_events_url":"https://api.github.com/users/dior001/received_events","type":"User","site_admin":false},"forks":[],"history":[{"user":{"login":"dior001","id":474680,"avatar_url":"https://avatars.githubusercontent.com/u/474680?v=3","gravatar_id":"","url":"https://api.github.com/users/dior001","html_url":"https://github.com/dior001","followers_url":"https://api.github.com/users/dior001/followers","following_url":"https://api.github.com/users/dior001/following{/other_user}","gists_url":"https://api.github.com/users/dior001/gists{/gist_id}","starred_url":"https://api.github.com/users/dior001/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/dior001/subscriptions","organizations_url":"https://api.github.com/users/dior001/orgs","repos_url":"https://api.github.com/users/dior001/repos","events_url":"https://api.github.com/users/dior001/events{/privacy}","received_events_url":"https://api.github.com/users/dior001/received_events","type":"User","site_admin":false},"version":"1c0478b27192721cd754dba4e6708ac64aaa04a8","committed_at":"2015-01-09T03:44:46Z","change_status":{"total":1,"additions":1,"deletions":0},"url":"https://api.github.com/gists/c69061c1f2a7ff0db174/1c0478b27192721cd754dba4e6708ac64aaa04a8"}]}'
     http_version: 
-  recorded_at: Thu, 08 Jan 2015 04:54:13 GMT
+  recorded_at: Fri, 09 Jan 2015 03:44:46 GMT
 recorded_with: VCR 2.9.3
