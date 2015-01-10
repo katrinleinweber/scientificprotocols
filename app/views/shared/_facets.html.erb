@@ -21,9 +21,7 @@
         <div class="panel panel-default">
           <div class="panel-heading" data-toggle="collapse" data-target="#<%= param_cat_name %>">
             <h4 class="panel-title">
-              <a href="#<%= param_cat_name %>">
-                <%= facet_category.name %>
-              </a>
+              <%= facet_category.name %>
               <span class="badge pull-right"><%= category_facets.map(&:taggings_count).inject(0, &:+) %></span>
             </h4>
           </div>
