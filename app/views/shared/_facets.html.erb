@@ -3,20 +3,50 @@
   params.except!(:page) if params[:page].present?
   params.except!(:tags) if params[:tags].present?
 %>
-<div class="list-group">
-  <% facets.each do |facet| %>
-    <%
-      active = existing_tag_facets.include? facet.name
-      list_class = active ? 'list-group-item active' : 'list-group-item'
-      icon_class = active ? 'glyphicon glyphicon-minus-sign' : 'glyphicon glyphicon-plus-sign'
-      tag_facets = active ? (existing_tag_facets - [facet.name]).join('-') : (existing_tag_facets + [facet.name]).join('-')
-      new_params = tag_facets.present? ? params.merge(tags: tag_facets) : params
-    %>
-    <%= link_to params.merge(new_params), class: list_class do -%>
-      <span class="<%= icon_class %>"></span>
-      <%= facet.name -%>
-      <span class="badge pull-right"><%= facet.taggings_count %></span>
+<% if facets.present? %>
+  <div class="panel-group" id="accordion">
+    <% tag_categories.each do |facet_category|
+      category_facets = facets.select {|tag| tag.tag_category == facet_category}
+      param_cat_name = facet_category.name.parameterize %>
+      <% if category_facets.present? %>
+        <%
+          collapsed = ''
+          category_facets.each do |facet|
+            if existing_tag_facets.include? facet.name
+              collapsed = ' in'
+              break
+            end
+          end
+        %>
+        <div class="panel panel-default">
+          <div class="panel-heading" data-toggle="collapse" data-target="#<%= param_cat_name %>">
+            <h4 class="panel-title">
+              <%= facet_category.name %>
+              <span class="badge pull-right"><%= category_facets.map(&:taggings_count).inject(0, &:+) %></span>
+            </h4>
+          </div>
+          <div id="<%= param_cat_name %>" class="panel-collapse collapse<%= collapsed %>">
+            <div class="list-group">
+              <% category_facets.each do |facet| %>
+                <%
+                  active = existing_tag_facets.include? facet.name
+                  list_class = active ? 'list-group-item active' : 'list-group-item'
+                  icon_class = active ? 'glyphicon glyphicon-minus-sign' : 'glyphicon glyphicon-plus-sign'
+                  tag_facets = active ? (existing_tag_facets - [facet.name]).join('-') : (existing_tag_facets + [facet.name]).join('-')
+                  new_params = tag_facets.present? ? params.merge(tags: tag_facets) : params
+                %>
+                <%= link_to params.merge(new_params), class: list_class do -%>
+                  <span class="<%= icon_class %>"></span>
+                    <%= facet.name -%>
+                  <span class="badge pull-right"><%= facet.taggings_count %></span>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
     <% end %>
-  <% end %>
-</div>
+  </div>
+<% end %>
+
 

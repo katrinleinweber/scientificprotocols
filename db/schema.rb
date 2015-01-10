@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141228230407) do
+ActiveRecord::Schema.define(version: 20150104222554) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,12 @@ ActiveRecord::Schema.define(version: 20141228230407) do
   add_index "protocols", ["gist_id"], name: "index_protocols_on_gist_id", unique: true, using: :btree
   add_index "protocols", ["slug"], name: "index_protocols_on_slug", unique: true, using: :btree
 
+  create_table "tag_categories", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "taggings", force: true do |t|
     t.integer  "tag_id"
     t.integer  "taggable_id"
@@ -67,8 +73,9 @@ ActiveRecord::Schema.define(version: 20141228230407) do
   add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context", using: :btree
 
   create_table "tags", force: true do |t|
-    t.string  "name",           limit: nil
-    t.integer "taggings_count",             default: 0
+    t.string  "name",            limit: nil
+    t.integer "taggings_count",              default: 0
+    t.integer "tag_category_id"
   end
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
