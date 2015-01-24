@@ -5,6 +5,7 @@ describe Protocol do
   describe 'associations' do
     it { should have_many :protocol_managers }
     it { should have_many :users }
+    it { should have_many :ratings }
   end
   describe 'validations' do
     it { should validate_presence_of :title }
@@ -76,8 +77,22 @@ describe Protocol do
     describe '#publish_deposition' do
       pending 'Implement'
     end
+    describe '#create_deposition_file' do
+      pending 'Implement'
+    end
     describe '#gist_file_raw_url' do
       pending 'Implement'
+    end
+    describe 'average_rating' do
+      it 'returns an average rating' do
+        protocol = create(:protocol)
+        create(:rating, protocol: protocol, score: 1)
+        expect(protocol.average_rating).to eq(1)
+      end
+      it 'returns zero when no ratings' do
+        protocol = create(:protocol)
+        expect(protocol.average_rating).to eq(0)
+      end
     end
   end
 end

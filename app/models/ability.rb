@@ -10,6 +10,7 @@ class Ability
     define_user_abilities user
     define_protocol_abilities user
     define_protocol_manager_abilities user
+    define_rating_abilities user
   end
   def define_guest_abilities(user)
     can :read, User
@@ -31,5 +32,9 @@ class Ability
   def define_protocol_manager_abilities(user)
     can :manage, ProtocolManager, user_id: user.id
     cannot :create, ProtocolManager, user_id: user.id
+  end
+  def define_rating_abilities(user)
+    can :create, Rating
+    can :update, Rating, user_id: user.id
   end
 end

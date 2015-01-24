@@ -1,0 +1,10 @@
+$('#protocol-ratings').html("<%=j render partial: 'protocols/ratings',
+  locals: {
+    average_rating_score: @average_rating_score,
+    user_rating_score: @user_rating_score,
+    rating_count: @rating_count,
+    rating_path: @rating_path,
+    rating_result: @rating_result,
+  }
+%>");
+bindRaty();

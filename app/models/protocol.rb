@@ -12,6 +12,7 @@ class Protocol < ActiveRecord::Base
   friendly_id :title, use: :slugged
   has_many :protocol_managers
   has_many :users, through: :protocol_managers
+  has_many :ratings
   default_scope { order('LOWER(title)::bytea') }
   scope :managed_by, -> (user) { joins(:protocol_managers).where(protocol_managers: { user: user }) }
   validates :title, presence: true
@@ -210,6 +211,13 @@ class Protocol < ActiveRecord::Base
     deposition = Service::DepositionManager.publish_deposition(deposition_id: self.deposition_id)
     self.doi = deposition['doi'] unless deposition.blank?
     deposition
+  end
+
+  # Calculate the average rating for this protocol.
+  # @return [Float, nil] The average rating for the protocol.
+  def average_rating
+    return 0 if ratings.size == 0
+    ratings.sum(:score) / ratings.size
   end
 
   private

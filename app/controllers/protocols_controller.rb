@@ -245,6 +245,14 @@ class ProtocolsController < ApplicationController
       @publishable = @protocol.workflow_state == 'draft'
       @embed_script = @protocol.gist_embed_script
       @subtitle = t('workflow.protocols.draft_workflow_state') if @protocol.workflow_state == 'draft'
+      @user_rating = @protocol.ratings.where(user: current_user).first if current_user.present?
+      @user_rating_score = @user_rating.try(:score)
+      @average_rating_score = @protocol.average_rating
+      @rating_count = @protocol.ratings.size
+      @rating_path = @user_rating.present? ?
+        protocol_rating_path(protocol_id: @protocol.slug, id: @user_rating.id) :
+        protocol_ratings_path(protocol_id: @protocol.slug)
+      @rating_result = true
     end
 
     def set_sort_attributes
