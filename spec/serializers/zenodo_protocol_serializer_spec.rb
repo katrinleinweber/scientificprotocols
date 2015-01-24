@@ -5,12 +5,15 @@ describe ZenodoProtocolSerializer, :timefreeze do
   let(:protocol) { protocol_manager.protocol }
   let(:serializer) { ZenodoProtocolSerializer.new(protocol: protocol) }
   it 'should serialize exposed attributes' do
+    html = MARKDOWN.render(protocol.description).html_safe
+    fragment = Nokogiri::HTML.fragment(html, encoding = nil)
+    description = fragment.css('p').first.to_html
     expected_data = {
       'metadata' => {
         'title' => protocol.title,
         'upload_type' => 'publication',
         'publication_type' => 'article',
-        'description' => protocol.description,
+        'description' => description,
         'creators' => [{'name' => 'sprotocols', 'affiliation' => 'ScientificProtocols.org'}]
       }
     }

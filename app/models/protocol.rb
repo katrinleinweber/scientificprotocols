@@ -120,6 +120,8 @@ class Protocol < ActiveRecord::Base
 
   # Publish a protocol.
   def publish
+    create_and_publish_deposition
+
     self.workflow_state = :published
     self.save
   end
@@ -160,37 +162,54 @@ class Protocol < ActiveRecord::Base
 
   # Create a Zenodo deposition and publish it.
   def create_and_publish_deposition
-    return if !self.workflow_state == 'draft' || self.deposition_id.present?
+    return if self.deposition_id.present?
 
-    # Get the file to publish from the Gist.
-    file = gist_file_raw_url
-    if file.present?
+    # Create the deposition.
+    deposition = create_deposition
 
-      # Create the deposition.
-      deposition = create_deposition
+    if deposition.present?
+      # Add the deposition file.
+      deposition_file = create_deposition_file
 
-      if deposition.present?
+      # Publish the deposition.
+      publish_deposition if deposition_file.present?
 
-        # Add the deposition file.
-        deposition_file = Service::DepositionManager.create_deposition_file(
-          deposition_id: self.deposition_id,
-          file_or_io: open(file),
-          filename: PROTOCOL_FILE_NAME,
-          content_type: Mime::Type.lookup_by_extension(:markdown)
-        )
-
-        # Publish the deposition.
-        publish_deposition if deposition_file.present?
-
-        if self.doi.present?
-          # Add the DOI badge to the markdown.
-          self.description += self.doi_badge
-        else
-          # Cleanup unless fully published.
-          self.deposition_id = nil
-        end
+      if self.doi.present?
+        # Add the DOI badge to the markdown.
+        self.description += self.doi_badge
+      else
+        # Cleanup unless fully published.
+        self.deposition_id = nil
       end
     end
+  end
+
+  # Create a Zenodo deposition.
+  def create_deposition
+    deposition_attributes = ZenodoProtocolSerializer.new(protocol: self).as_json
+    deposition = Service::DepositionManager.create_deposition(deposition: deposition_attributes)
+    self.deposition_id = deposition['id'] unless deposition.blank?
+    deposition
+  end
+
+  # Add a file to a Zenodo deposition.
+  def create_deposition_file
+    file = gist_file_raw_url
+    if file.present?
+      Service::DepositionManager.create_deposition_file(
+        deposition_id: self.deposition_id,
+        file_or_io: open(file),
+        filename: PROTOCOL_FILE_NAME,
+        content_type: Mime::Type.lookup_by_extension(:markdown)
+      )
+    end
+  end
+
+  # Publish a Zenodo deposition.
+  def publish_deposition
+    deposition = Service::DepositionManager.publish_deposition(deposition_id: self.deposition_id)
+    self.doi = deposition['doi'] unless deposition.blank?
+    deposition
   end
 
   private
@@ -208,21 +227,6 @@ class Protocol < ActiveRecord::Base
     def gist_file_raw_url
       gist = self.octokit_client.gist(self.gist_id)
       gist.present? ? gist.files[PROTOCOL_FILE_NAME].raw_url : nil
-    end
-
-    # Create a Zenodo deposition.
-    def create_deposition
-      deposition_attributes = ZenodoProtocolSerializer.new(protocol: self).as_json
-      deposition = Service::DepositionManager.create_deposition(deposition: deposition_attributes)
-      self.deposition_id = deposition['id'] unless deposition.blank?
-      deposition
-    end
-
-    # Publish a Zenodo deposition.
-    def publish_deposition
-      deposition = Service::DepositionManager.publish_deposition(deposition_id: self.deposition_id)
-      self.doi = deposition['doi'] unless deposition.blank?
-      deposition
     end
 
     # Perform a search for protocols against the Solr index.

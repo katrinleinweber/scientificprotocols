@@ -19,9 +19,17 @@ class ZenodoProtocolSerializer
         'title' => @protocol.title,
         'upload_type' => 'publication',
         'publication_type' => 'article',
-        'description' => @protocol.description,
+        'description' => description,
         'creators' =>[{'name' => 'sprotocols', 'affiliation' => 'ScientificProtocols.org'}]
       }
     }
+  end
+
+  private
+  def description
+    html = MARKDOWN.render(@protocol.description).html_safe
+    fragment = Nokogiri::HTML.fragment(html, encoding = nil)
+    description = fragment.css('p').first
+    description.present? ? description.to_html : nil
   end
 end
