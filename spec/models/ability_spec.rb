@@ -69,6 +69,25 @@ describe 'User' do
         it { should_not have_ability(:create, for: target_user) }
       end
     end
+    describe 'on Ratings' do
+      context 'for guest user' do
+        let(:user) { nil }
+        let(:rating) { FactoryGirl.create(:rating) }
+        it { should_not have_ability(any, for: rating) }
+      end
+      context 'for authenticated user' do
+        let(:user) { FactoryGirl.create(:user) }
+        let(:rating) { FactoryGirl.create(:rating) }
+        it { should have_ability(:create, for: rating) }
+        it { should_not have_ability(any - [:create], for: rating) }
+      end
+      context 'for rating owner' do
+        let(:user) { FactoryGirl.create(:user) }
+        let(:rating) { create(:rating, user: user) }
+        it { should have_ability([:create, :update], for: rating) }
+        it { should_not have_ability(any - [:create, :update], for: rating) }
+      end
+    end
   end
 end
 

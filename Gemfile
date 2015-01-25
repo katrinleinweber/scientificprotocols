@@ -106,6 +106,9 @@ gem 'zenodo'
 # Use PostgreSQL as the database for Active Record.
 gem 'pg'
 
+# Add 5 star rating functionality.
+gem 'rails-assets-raty'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', '~> 0.4.0'

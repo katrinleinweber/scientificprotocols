@@ -22,3 +22,46 @@ $(document).ready ->
   $("#d_clip_button").tooltip()
   return
 
+$(document).ready ->
+  bindRaty()
+  return
+
+@bindRaty = ->
+  $("#star").raty
+    readOnly: true
+    hints: ['', '', '', '', '']
+    noRatedMsg: ''
+    score: ->
+      $(this).attr "data-score"
+    path: "/assets"
+
+  $("#user-star-update").raty
+    hints: ['', '', '', '', '']
+    noRatedMsg: ''
+    score: ->
+      $(this).attr "data-score"
+    path: "/assets"
+    click: (score, evt) ->
+      $.ajax
+        url: $(this).attr("data-path")
+        type: "PATCH"
+        data:
+          score: score
+      return
+
+  $("#user-star-create").raty
+    hints: ['', '', '', '', '']
+    noRatedMsg: ''
+    score: ->
+      $(this).attr "data-score"
+    path: "/assets"
+    click: (score, evt) ->
+      $.ajax
+        url: $(this).attr("data-path")
+        type: "POST"
+        data:
+          score: score
+      return
+  return
+
+

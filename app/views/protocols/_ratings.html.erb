@@ -1,0 +1,24 @@
+<%= t('views.protocols.options.average_rating_text') %>
+<small ><em><%= pluralize(rating_count, t('views.protocols.options.rating_count_text'))%></em></small>
+<div id="star" class="margin-bottom-10" data-score="<%= average_rating_score %>"></div>
+<div class="clearfix"></div>
+<% if current_user.present? %>
+  <% create_class = user_rating_score.present? ? 'hidden' : nil %>
+  <% update_class = user_rating_score.blank? ? 'hidden' : nil %>
+  <%= t('views.protocols.options.user_rating_text') %>
+  <div id="user-star-create"
+    data-score="<%= user_rating_score %>"
+    data-path="<%= rating_path %>"
+    class="margin-bottom-10 <%= create_class %>">
+  </div>
+  <div id="user-star-update"
+    data-score="<%= user_rating_score %>"
+    data-path="<%= rating_path %>"
+    class="margin-bottom-10 <%= update_class %>">
+  </div>
+  <% if !rating_result %>
+    <p class="alert alert-danger">
+      <%= t('views.protocols.options.rating_failure_text') %>
+    </p>
+  <% end %>
+<% end %>

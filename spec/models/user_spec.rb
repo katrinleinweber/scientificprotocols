@@ -4,6 +4,7 @@ describe User do
   describe 'associations' do
     it { should have_many :protocol_managers }
     it { should have_many :protocols }
+    it { should have_many :ratings }
   end
   describe 'validations' do
 

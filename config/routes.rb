@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       post :create_comment
       delete :delete_comment
     end
+    resources :ratings, only: [:create, :update]
   end
   resources :users, except: :index do
     member do

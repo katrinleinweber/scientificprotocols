@@ -124,6 +124,10 @@ en:
         label_embed: 'Embed URL'
         title_clipboard: 'Copy to clipboard'
         data_confirm: 'Are you sure?'
+        average_rating_text: 'Average rating'
+        user_rating_text: 'Your rating'
+        rating_count_text: 'rating'
+        rating_failure_text: 'Your rating attempt was unsuccessful. Please try again.'
       show:
         link_to_protocol: 'Protocol'
         link_to_discussion: 'Discussion'
