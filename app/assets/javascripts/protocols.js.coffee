@@ -30,12 +30,14 @@ $(document).ready ->
   $("#star").raty
     readOnly: true
     hints: ['', '', '', '', '']
+    noRatedMsg: ''
     score: ->
       $(this).attr "data-score"
     path: "/assets"
 
   $("#user-star-update").raty
     hints: ['', '', '', '', '']
+    noRatedMsg: ''
     score: ->
       $(this).attr "data-score"
     path: "/assets"
@@ -49,6 +51,7 @@ $(document).ready ->
 
   $("#user-star-create").raty
     hints: ['', '', '', '', '']
+    noRatedMsg: ''
     score: ->
       $(this).attr "data-score"
     path: "/assets"
