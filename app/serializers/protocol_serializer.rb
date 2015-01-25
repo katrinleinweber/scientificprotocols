@@ -2,7 +2,8 @@ class ProtocolSerializer < ActiveModel::Serializer
   include Rails.application.routes.url_helpers
 
   attributes :id, :url, :title, :description, :gist_id, :html_url, :discussion_html_url,
-    :tags, :doi, :citation_html_url, :author, :created_at, :updated_at
+    :tags, :average_rating, :number_of_ratings, :doi, :citation_html_url, :author,
+    :created_at, :updated_at
 
   def id
     object.slug
@@ -26,6 +27,14 @@ class ProtocolSerializer < ActiveModel::Serializer
 
   def author
     build_author
+  end
+
+  def average_rating
+    object.average_rating
+  end
+
+  def number_of_ratings
+    object.ratings.size
   end
 
   private def build_author
