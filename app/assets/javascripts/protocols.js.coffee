@@ -29,11 +29,13 @@ $(document).ready ->
 @bindRaty = ->
   $("#star").raty
     readOnly: true
+    hints: ['', '', '', '', '']
     score: ->
       $(this).attr "data-score"
     path: "/assets"
 
   $("#user-star-update").raty
+    hints: ['', '', '', '', '']
     score: ->
       $(this).attr "data-score"
     path: "/assets"
@@ -46,6 +48,7 @@ $(document).ready ->
       return
 
   $("#user-star-create").raty
+    hints: ['', '', '', '', '']
     score: ->
       $(this).attr "data-score"
     path: "/assets"
