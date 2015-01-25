@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :rating do
-    protocol nil
-    user nil
+    association :user, factory: :user
+    association :protocol, factory: :protocol
     score 1
   end
 end

@@ -8,13 +8,13 @@ describe RatingsController do
     let(:user) { FactoryGirl.create(:user, username: username) }
     describe 'POST #create' do
       it 'redirects to the login page' do
-        post :create, protocol_id: protocol.id, rating: FactoryGirl.attributes_for(:rating)
+        post :create, protocol_id: protocol.slug, score: 5
         expect(response).to redirect_to '/signup'
       end
     end
     describe 'PATCH #update' do
       it 'redirects to the login page' do
-        patch :update, protocol_id: protocol.id, id: rating.id, rating: { score: 5 }
+        patch :update, protocol_id: protocol.slug, id: rating.id, score: 5
         expect(response).to redirect_to '/signup'
       end
     end
@@ -24,12 +24,12 @@ describe RatingsController do
     let(:user) { FactoryGirl.create(:user, username: username) }
     describe 'POST #create' do
       it 'creates a new rating' do
-        expect{ post :create, protocol_id: protocol.id, rating: FactoryGirl.attributes_for(:rating), format: :js }.to change{ Rating.count }.by(1)
+        expect{ post :create, protocol_id: protocol.slug, score: 5, format: :js }.to change{ Rating.count }.by(1)
       end
     end
     describe 'PATCH #update' do
       it 'forbids access' do
-        expect{ patch :update, protocol_id: protocol.id, id: rating.id, rating: { score: 5 }, format: :js }.to raise_error(CanCan::AccessDenied)
+        expect{ patch :update, protocol_id: protocol.slug, id: rating.id, score: 5, format: :js }.to raise_error(CanCan::AccessDenied)
       end
     end
   end
@@ -41,13 +41,13 @@ describe RatingsController do
     end
     describe 'POST #create' do
       it 'creates a new rating' do
-        expect{ post :create, protocol_id: protocol.id, rating: FactoryGirl.attributes_for(:rating), format: :js }.to change{ Rating.count }.by(1)
+        expect{ post :create, protocol_id: protocol.slug, score: 5, format: :js }.to change{ Rating.count }.by(1)
       end
     end
     describe 'PATCH #update' do
       it 'updates a rating' do
         rating = create(:rating, protocol: protocol, user: user)
-        patch :update, protocol_id: protocol.id, id: rating.id, rating: { score: 5 }, format: :js
+        patch :update, protocol_id: protocol.slug, id: rating.id, score: 5, format: :js
         rating.reload
         expect(rating.score).to eq(5)
       end
