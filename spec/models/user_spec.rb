@@ -7,7 +7,15 @@ describe User do
     it { should have_many :ratings }
   end
   describe 'validations' do
-
+    it { should validate_length_of(:username).is_at_least(1).is_at_most(39) }
+    invalid_usernames = ['a.', 'b_', 'c ', 'd)', 'e@']
+    invalid_usernames.each do |username|
+      it { should_not allow_value(username).for(:username) }
+    end
+    valid_usernames = ['1', 'a', 'A', 'a-b']
+    valid_usernames.each do |username|
+      it { should allow_value(username).for(:username) }
+    end
   end
   describe 'scopes' do
 

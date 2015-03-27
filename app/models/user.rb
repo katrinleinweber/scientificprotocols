@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   has_many :protocol_managers
   has_many :protocols, through: :protocol_managers
   has_many :ratings
-  validates :username, uniqueness: { case_sensitive: false }, format: { with: /\A[a-zA-Z0-9]+\Z/ }, length: { minimum: 1, maximum: 39 }
+  validates :username, uniqueness: { case_sensitive: false }, format: { with: /\A[-a-zA-Z0-9]+\Z/ }, length: { minimum: 1, maximum: 39 }
   validates :email, uniqueness: { case_sensitive: false }, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i }
   attr_accessor :octokit_client
 
