@@ -1,3 +1,5 @@
 <%= render partial: 'shared/page_title', locals: { page_title: t('views.protocols.new.page_title') } %>
+<%= render partial: 'word_file_upload_form' %>
+<hr>
 <%= render 'form' %>
 <%= link_to t('views.protocols.new.link_to_back'), protocols_path %>

@@ -1,0 +1,15 @@
+<%= bootstrap_form_tag(
+      url: parse_word_doc_protocols_path,
+      multipart: true,
+      inline_errors: false
+    ) do |f| %>
+    <%= f.file_field :word_doc,
+      id: 'word-file-upload',
+      accept: WORD_MIME_TYPES.join(', '),
+      label: t('views.protocols.form.label_file_upload'),
+      help: t('views.protocols.form.help_file_upload') %>
+    <%= f.submit(t('views.protocols.form.submit_file_upload'),
+      id: 'word-file-submit',
+      class: 'btn btn-default',
+      disabled: true) %>
+<% end %>

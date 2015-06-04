@@ -42,6 +42,7 @@ gem 'omniauth-github'
 
 # Markdown.
 gem 'redcarpet'
+gem 'word-to-markdown', git: "https://github.com/benbalter/word-to-markdown"
 
 # HTML truncate.
 gem 'truncate_html'

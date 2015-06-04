@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :protocols do
     collection do
       get :tags
+      post :parse_word_doc
     end
     member do
       patch :publish
