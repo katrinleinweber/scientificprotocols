@@ -304,6 +304,13 @@ en:
         saved in a draft state. This allows you to save the progress of your protocol as you go. When you are satisfied that your
         protocol is complete you can publish it. This will make the protocol publicly available. See the protocol publishing section
         for more details of the publishing process.</p>
+        <h5>Starting from a Word document</h5>
+        <p>To save you having to reenter a protocol you already have stored in a Word document you can upload it. Click the
+        Choose File button and select the Word document you have stored locally. The file must have a .doc or .docx extension.
+        When you have selected the file click the Upload button. This will upload the Word file, convert that file to Markdown
+        and replace the contents of the protocol description field with that Markdown. Starting from a Word document is optional
+        but you might find it a more convenient starting point for your protocol.</p>
+        %{image_word_upload}
         <h4>Protocol editing</h4>
         <p>Editing a protocol is much the same as creating one. You can only edit protocols that you are the author of. If you
         would like to use a protocol that another researcher has authored as the template for your protocol you can fork
