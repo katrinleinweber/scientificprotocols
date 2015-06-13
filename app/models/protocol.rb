@@ -277,4 +277,19 @@ class Protocol < ActiveRecord::Base
       protocols = protocols.managed_by(User.find_by_username(options[:u])) if options[:u].present?
       options[:sort].present? ? protocols.reorder(options[:sort].sub('title', 'LOWER(title)::bytea')) : protocols
     end
+
+    # Build a protocol and populate the description field with Markdown
+    # converted from the supplied Word file.
+    # @param [Http::UploadedFile] uploaded_file The Word file we're converting.
+    # @return [Protocol] The new protocol with the description populated.
+    def self.build_from_word(uploaded_file:)
+      protocol = Protocol.new(description: I18n.t('constants.protocols.template'))
+      if WORD_FILE_EXTENSIONS.include?(File.extname(uploaded_file.original_filename))
+        markdown_manager = Service::WordToMarkdownManager.new(filepath: uploaded_file.tempfile)
+        protocol = Protocol.new(description: markdown_manager.markdown)
+      else
+        protocol.errors[:base] << I18n.t('errors.models.protocol.invalid_file_format')
+      end
+      protocol
+    end
 end

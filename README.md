@@ -34,7 +34,7 @@ If you plan to use the site as is at the very minimum you will require API keys 
 - [Amazon AWS](http://aws.amazon.com/documentation/).
 
 ### License
-[ScientificProtocols.org](https://www.scientificprotocols.org) is licensed under the [MIT License](http://opensource.org/licenses/MIT).
+[ScientificProtocols.org](https://www.scientificprotocols.org) is licensed under the [MIT License](http://opensource.org/licenses/MIT)
 
 
 

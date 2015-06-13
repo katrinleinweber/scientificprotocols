@@ -32,6 +32,9 @@ en:
   errors:
     messages:
       not_saved: 'Please fix the following errors:'
+    models:
+      protocol:
+        invalid_file_format: 'The uploaded file must be a Word document'
   notices:
     sessions:
       signed_in: 'You have signed in successfully'
@@ -108,6 +111,9 @@ en:
       form:
         help_description_html: '<a href="https://help.github.com/articles/markdown-basics/" target="_blank">Learn more about writing markdown</a>'
         help_tag_list: 'Select up to three tags that categorize your protocol'
+        label_file_upload: 'Upload and convert a Word document to Markdown (optional)'
+        help_file_upload: 'By starting from a Word document you can avoid the need to reenter a protocol. Warning this will overwrite any existing content in the description field.'
+        submit_file_upload: 'Upload'
       new:
         link_to_back: 'Back'
         page_title: 'New protocol'

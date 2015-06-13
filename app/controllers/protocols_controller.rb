@@ -41,6 +41,16 @@ class ProtocolsController < ApplicationController
     end
   end
 
+  # POST /protocols/parse_word_doc
+  def parse_word_doc
+    if params[:word_doc].present?
+      @protocol = Protocol.build_from_word(uploaded_file: params[:word_doc])
+      render action: :new
+    else
+      redirect_to(new_protocol_path)
+    end
+  end
+
   # GET /protocols/1/edit
   def edit
     respond_to do |format|
@@ -255,6 +265,7 @@ class ProtocolsController < ApplicationController
       @rating_result = true
     end
 
+    # Set variables used to control sorting.
     def set_sort_attributes
       @sort_relevance_url = protocols_path(@params.except(:sort))
       @sort_relevance_url_text = t('views.shared.sort.link_to_sort_relevance')

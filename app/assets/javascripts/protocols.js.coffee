@@ -16,12 +16,20 @@ $("input.tokenize").tokenfield
   showAutocompleteOnFocus: true
   limit: 3
 
+# Disable file upload button if no file selected.
+$(document).ready ->
+  $('input#word-file-upload').on 'change', ->
+    $('input#word-file-submit').prop 'disabled', !$(this).val()
+    return
+  return
+
 # Setup embed protocol button.
 $(document).ready ->
   clip = new ZeroClipboard($("#d_clip_button"))
   $("#d_clip_button").tooltip()
   return
 
+# Setup star ratings.
 $(document).ready ->
   bindRaty()
   return
