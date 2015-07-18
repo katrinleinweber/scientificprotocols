@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-source 'https://rails-assets.org'
 ruby '2.2.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'.
@@ -27,7 +26,8 @@ gem 'jbuilder', '~> 2.0'
 gem 'kgio'
 
 # Bootstrap fields.
-gem 'bootstrap-sass'
+# TODO - Pinned at 3.3.4.1 until glyf icon issue resolved.
+gem 'bootstrap-sass', '3.3.4.1'
 gem 'bootstrap_form'
 gem 'bootstrap_tokenfield_rails'
 gem 'autoprefixer-rails'
@@ -107,9 +107,6 @@ gem 'zenodo'
 # Use PostgreSQL as the database for Active Record.
 gem 'pg'
 
-# Add 5 star rating functionality.
-gem 'rails-assets-raty'
-
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', '~> 0.4.0'
@@ -155,4 +152,9 @@ group :production, :staging do
   gem 'rails_12factor'
   # Use compressed asset versions.
   gem 'heroku_rails_deflate'
+end
+
+source 'https://rails-assets.org' do
+  # Add 5 star rating functionality.
+  gem 'rails-assets-raty'
 end
