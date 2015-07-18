@@ -26,7 +26,8 @@ gem 'jbuilder', '~> 2.0'
 gem 'kgio'
 
 # Bootstrap fields.
-gem 'bootstrap-sass'
+# TODO - Pinned at 3.3.4.1 until glyf icon issue resolved.
+gem 'bootstrap-sass', '3.3.4.1'
 gem 'bootstrap_form'
 gem 'bootstrap_tokenfield_rails'
 gem 'autoprefixer-rails'

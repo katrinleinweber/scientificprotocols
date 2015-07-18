@@ -59,7 +59,7 @@ GEM
       jmespath (~> 1.0)
     aws-sdk-resources (2.1.7)
       aws-sdk-core (= 2.1.7)
-    bootstrap-sass (3.3.5)
+    bootstrap-sass (3.3.4.1)
       autoprefixer-rails (>= 5.0.0.1)
       sass (>= 3.2.19)
     bootstrap_form (2.3.0)
@@ -464,7 +464,7 @@ DEPENDENCIES
   acts-as-taggable-on (= 3.4.2)
   autoprefixer-rails
   aws-sdk
-  bootstrap-sass
+  bootstrap-sass (= 3.3.4.1)
   bootstrap_form
   bootstrap_tokenfield_rails
   cancancan
