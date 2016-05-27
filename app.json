@@ -1,0 +1,62 @@
+{
+  "name": "scientificprotocols",
+  "scripts": {
+  },
+  "env": {
+    "API_AWS_ACCESS_KEY": {
+      "required": true
+    },
+    "API_AWS_ACCESS_KEY_ID": {
+      "required": true
+    },
+    "API_GITHUB": {
+      "required": true
+    },
+    "API_POSTMARK": {
+      "required": true
+    },
+    "API_ZENODO": {
+      "required": true
+    },
+    "GITHUB_CLIENT_ID": {
+      "required": true
+    },
+    "GITHUB_CLIENT_SECRET": {
+      "required": true
+    },
+    "LANG": {
+      "required": true
+    },
+    "RACK_ENV": {
+      "required": true
+    },
+    "RAILS_ENV": {
+      "required": true
+    },
+    "SECRET_KEY_BASE": {
+      "required": true
+    },
+    "WEBSOLR_URL": {
+      "required": true
+    }
+  },
+  "formation": {
+    "worker": {
+      "quantity": 1
+    },
+    "web": {
+      "quantity": 1
+    }
+  },
+  "addons": [
+    "memcachier",
+    "heroku-postgresql",
+    "newrelic",
+    "papertrail"
+  ],
+  "buildpacks": [
+    {
+      "url": "https://github.com/ddollar/heroku-buildpack-multi.git"
+    }
+  ]
+}
