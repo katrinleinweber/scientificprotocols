@@ -2,4 +2,4 @@
 
 User-agent: *
 
-Sitemap: https://www.scientificprotocols.org/sitemap.xml
+Sitemap: https://protocols.scienceexchange.com/sitemap.xml

@@ -5,7 +5,7 @@
 # To test sitemap generation, run:
 # rake sitemap:refresh:no_ping
 
-SitemapGenerator::Sitemap.default_host = 'https://www.scientificprotocols.org'
+SitemapGenerator::Sitemap.default_host = 'https://protocols.scienceexchange.com'
 SitemapGenerator::Sitemap.public_path = 'tmp/'
 
 # Only upload to S3 in production

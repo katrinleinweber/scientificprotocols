@@ -88,9 +88,9 @@ Rails.application.configure do
   Sunspot.config.solr.url = ENV['WEBSOLR_URL']
 
   # Sets the host for mailers.
-  config.action_mailer.default_url_options = {host: 'www.scientificprotocols.org', protocol: 'https'}
+  config.action_mailer.default_url_options = {host: 'protocols.scienceexchange.com', protocol: 'https'}
 end
 
 # This line shouldn't be required.
 # https://github.com/rails-api/active_model_serializers/issues/573
-Rails.application.routes.default_url_options[:host] = 'www.scientificprotocols.org'
+Rails.application.routes.default_url_options[:host] = 'protocols.scienceexchange.com'
