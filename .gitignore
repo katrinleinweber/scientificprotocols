@@ -29,3 +29,6 @@
 /config/settings.local.yml
 /config/sunspot.yml
 /config/database.yml
+
+# Ignore .DS_Store
+.DS_Store
