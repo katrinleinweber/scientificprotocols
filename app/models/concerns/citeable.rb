@@ -4,7 +4,7 @@ module Citeable
 
   def citation_html_url
     return nil if self.doi.blank?
-    "http://dx.doi.org/#{self.doi}"
+    "https://doi.org/#{self.doi}"
   end
 
   def doi_badge
