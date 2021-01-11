@@ -832,7 +832,7 @@ GEM
       nokogiri (~> 1.5)
       trollop (~> 2.1)
     rdoc (4.3.0)
-    redcarpet (3.4.0)
+    redcarpet (3.5.1)
     responders (1.1.2)
       railties (>= 3.2, < 4.2)
     reverse_markdown (0.8.2)
