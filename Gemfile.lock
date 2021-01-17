@@ -744,7 +744,7 @@ GEM
       actionpack (>= 3.2.0, < 5.3)
     method_source (0.9.0)
     mime-types (2.99.3)
-    mini_portile2 (2.3.0)
+    mini_portile2 (2.4.0)
     minitest (5.10.3)
     multi_json (1.12.2)
     multi_xml (0.6.0)
@@ -754,8 +754,8 @@ GEM
     ngrok (1.6.1)
       daemons
       listen
-    nokogiri (1.8.1)
-      mini_portile2 (~> 2.3.0)
+    nokogiri (1.10.10)
+      mini_portile2 (~> 2.4.0)
     nokogiri-styles (0.1.2)
       nokogiri
     notiffany (0.1.1)
