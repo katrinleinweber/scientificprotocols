@@ -1,3 +1,5 @@
+# Archived, because this is only a fork of the previosly existing original.
+
 ### Scientific Protocols - GitHub for Scientific Protocols
 
 [![Build Status](https://travis-ci.org/scienceexchange/scientificprotocols.svg?branch=master)](https://travis-ci.org/scienceexchange/scientificprotocols)
